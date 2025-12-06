@@ -22,7 +22,7 @@ export const FooterLogo = (props: Props) => {
       loading={loading}
       fetchPriority={priority}
       className={clsx('w-auto transition-all duration-300', className)}
-      src="/media/footer-logo2.png"
+      src="/footer-logo2.png"
     />
   )
 }
