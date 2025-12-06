@@ -22,7 +22,7 @@ export const Logo = (props: Props) => {
       loading={loading}
       fetchPriority={priority}
       className={clsx('w-auto transition-all duration-300', className)}
-      src="/main-logo.png"
+      src="/main-logo5.png"
     />
   )
 }
