@@ -46,7 +46,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       className={`transition-all duration-300 z-50 ${
         pathname === '/'
           ? `fixed top-0 left-0 right-0 ${
-              isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+              isScrolled ? 'bg-white/95 md:backdrop-blur-md shadow-lg' : 'bg-transparent'
             }`
           : 'fixed top-0 left-0 right-0 bg-white shadow-lg'
       }`}
