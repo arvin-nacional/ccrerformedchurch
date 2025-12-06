@@ -1,6 +1,7 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 import type { Header as HeaderType } from '@/payload-types'
 
@@ -20,6 +21,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   pathname = '/',
 }) => {
   const navItems = data?.navItems || []
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Determine text color based on page and scroll state
   const getTextColor = () => {
@@ -32,24 +34,133 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
     }
   }
 
+  const getMobileTextColor = () => {
+    // Mobile menu always uses dark text on white background
+    return 'text-gray-900 hover:text-blue-600'
+  }
+
+  const getHamburgerColor = () => {
+    if (pathname === '/') {
+      return isScrolled ? 'text-gray-900' : 'text-white'
+    } else {
+      return 'text-gray-900'
+    }
+  }
+
   return (
-    <nav className="flex gap-6 items-center">
-      {navItems.map(({ link }, i) => {
-        return (
-          <CMSLink
-            key={i}
-            {...link}
-            appearance="link"
-            className={`transition-colors duration-300 font-medium ${getTextColor()}`}
+    <>
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex gap-6 items-center">
+        {navItems.map(({ link }, i) => {
+          return (
+            <div
+              key={i}
+              className="group relative overflow-hidden"
+              style={{ animationDelay: `${i * 100}ms` }}
+            >
+              <CMSLink
+                {...link}
+                appearance="inline"
+                className={`
+                  transition-all duration-300 font-medium relative z-10
+                  transform hover:scale-105 hover:-translate-y-0.5
+                  ${getTextColor()}
+                `}
+              />
+              {/* Hover underline animation */}
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
+            </div>
+          )
+        })}
+      </nav>
+
+      {/* Mobile Menu Button */}
+      <button
+        className={`
+          md:hidden p-2 transition-all duration-300 transform hover:scale-110 active:scale-95
+          ${getHamburgerColor()}
+        `}
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label="Toggle mobile menu"
+      >
+        <div className="relative w-6 h-6">
+          <Menu
+            className={`
+              w-6 h-6 absolute inset-0 transition-all duration-300 transform
+              ${isMobileMenuOpen ? 'rotate-90 opacity-0 scale-0' : 'rotate-0 opacity-100 scale-100'}
+            `}
           />
-        )
-      })}
-      {/* <Link href="/search">
-        <span className="sr-only">Search</span>
-        <SearchIcon 
-          className={`w-5 transition-colors duration-300 ${getTextColor()}`} 
-        />
-      </Link> */}
-    </nav>
+          <X
+            className={`
+              w-6 h-6 absolute inset-0 transition-all duration-300 transform
+              ${isMobileMenuOpen ? 'rotate-0 opacity-100 scale-100' : '-rotate-90 opacity-0 scale-0'}
+            `}
+          />
+        </div>
+      </button>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-[999] md:hidden">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50 animate-in fade-in duration-300"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+
+          {/* Menu Panel */}
+          <div className="absolute top-0 right-0 w-64 h-full bg-white border-l border-gray-200 shadow-xl animate-in slide-in-from-right duration-300 will-change-transform">
+            <div className="flex justify-end p-4">
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 text-gray-900 transition-all duration-200 hover:bg-gray-100 rounded-lg transform hover:scale-110 active:scale-95"
+                aria-label="Close mobile menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <nav className="px-6 py-4">
+              <div className="flex flex-col space-y-4">
+                {navItems.map(({ link }, i) => (
+                  <div
+                    key={i}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="cursor-pointer group"
+                    style={{
+                      animation: `slideInLeft 0.3s ease-out ${i * 100}ms both`,
+                    }}
+                  >
+                    <CMSLink
+                      {...link}
+                      appearance="inline"
+                      className={`
+                        transition-all duration-300 font-medium py-2 block
+                        transform group-hover:translate-x-2 group-hover:text-blue-600
+                        ${getMobileTextColor()}
+                      `}
+                    />
+                  </div>
+                ))}
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
+
+      {/* Custom CSS for staggered animations */}
+      <style jsx>{`
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
+    </>
   )
 }

@@ -43,12 +43,12 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`transition-all duration-300 z-50 ${
         pathname === '/'
-          ? isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-lg'
-            : 'bg-transparent'
-          : 'bg-white/95 backdrop-blur-md shadow-lg'
+          ? `fixed top-0 left-0 right-0 ${
+              isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+            }`
+          : 'fixed top-0 left-0 right-0 bg-white shadow-lg'
       }`}
       {...(theme ? { 'data-theme': theme } : {})}
     >
@@ -59,9 +59,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               loading="eager"
               priority="high"
               className={`transition-all duration-300 ${
-                isScrolled
-                  ? 'h-8' // Smaller when scrolled
-                  : 'h-10' // Larger when at top
+                pathname === '/' && !isScrolled
+                  ? 'h-10' // Same size when not scrolled on homepage
+                  : 'h-10' // Same size everywhere else
               }`}
             />
           </Link>

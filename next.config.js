@@ -30,6 +30,7 @@ const nextConfig = {
     return webpackConfig
   },
   reactStrictMode: true,
+  allowedDevOrigins: ['192.168.100.4'],
   redirects,
 }
 

@@ -9,6 +9,7 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { HeroBlock } from '@/blocks/Hero/Component'
 import { AboutSectionBlock } from '@/blocks/AboutSection/Component'
+import { StatementOfFaithBlock } from '@/blocks/StatementOfFaith/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -18,6 +19,7 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   hero: HeroBlock,
   aboutSection: AboutSectionBlock,
+  statementOfFaith: StatementOfFaithBlock,
 }
 
 export const RenderBlocks: React.FC<{

@@ -9,6 +9,7 @@ import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { HeroBlock } from '../../blocks/Hero/config'
 import { AboutSectionBlock } from '../../blocks/AboutSection/config'
+import { StatementOfFaithBlock } from '../../blocks/StatementOfFaith/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -82,6 +83,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 FormBlock,
                 HeroBlock,
                 AboutSectionBlock,
+                StatementOfFaithBlock,
               ],
               required: true,
               admin: {

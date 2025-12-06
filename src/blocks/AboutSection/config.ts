@@ -38,18 +38,7 @@ export const AboutSectionBlock: Block = {
       name: 'button',
       type: 'group',
       label: 'Call to Action Button',
-      fields: [
-        {
-          name: 'text',
-          type: 'text',
-          defaultValue: 'Our Statement of Faith',
-        },
-        link({
-          overrides: {
-            name: 'link',
-          },
-        }),
-      ],
+      fields: [link({ overrides: { name: 'link' } })],
     },
     {
       name: 'video',
@@ -57,12 +46,6 @@ export const AboutSectionBlock: Block = {
       relationTo: 'media',
       label: 'Video',
       required: true,
-    },
-    {
-      name: 'logo',
-      type: 'upload',
-      relationTo: 'media',
-      label: 'Logo/Image (Optional)',
     },
   ],
   graphQL: {

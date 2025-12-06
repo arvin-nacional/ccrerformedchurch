@@ -200,7 +200,16 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | HeroBlock | AboutSectionBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | HeroBlock
+    | AboutSectionBlock
+    | StatementOfFaithBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -874,7 +883,6 @@ export interface AboutSectionBlock {
     [k: string]: unknown;
   };
   button: {
-    text?: string | null;
     link: {
       type?: ('reference' | 'custom') | null;
       newTab?: boolean | null;
@@ -896,10 +904,55 @@ export interface AboutSectionBlock {
     };
   };
   video: string | Media;
-  logo?: (string | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'aboutSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatementOfFaithBlock".
+ */
+export interface StatementOfFaithBlock {
+  title: string;
+  introduction?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  sections?:
+    | {
+        sectionTitle: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'statementOfFaith';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1211,6 +1264,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         hero?: T | HeroBlockSelect<T>;
         aboutSection?: T | AboutSectionBlockSelect<T>;
+        statementOfFaith?: T | StatementOfFaithBlockSelect<T>;
       };
   meta?:
     | T
@@ -1366,7 +1420,6 @@ export interface AboutSectionBlockSelect<T extends boolean = true> {
   button?:
     | T
     | {
-        text?: T;
         link?:
           | T
           | {
@@ -1379,7 +1432,23 @@ export interface AboutSectionBlockSelect<T extends boolean = true> {
             };
       };
   video?: T;
-  logo?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatementOfFaithBlock_select".
+ */
+export interface StatementOfFaithBlockSelect<T extends boolean = true> {
+  title?: T;
+  introduction?: T;
+  sections?:
+    | T
+    | {
+        sectionTitle?: T;
+        content?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

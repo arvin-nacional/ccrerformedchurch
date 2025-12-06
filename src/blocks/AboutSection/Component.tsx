@@ -24,9 +24,7 @@ export const AboutSectionBlock: React.FC<Props> = ({
           {/* Left Column - Content */}
           <div className="space-y-6">
             {title && (
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
-                {title}
-              </h2>
+              <h2 className="text-xl lg:text-xl font-bold text-gray-900 leading-tight">{title}</h2>
             )}
 
             {content && (
@@ -35,14 +33,12 @@ export const AboutSectionBlock: React.FC<Props> = ({
               </div>
             )}
 
-            {button?.text && button?.link && (
+            {button?.link && (
               <div className="pt-4">
                 <CMSLink
                   {...button.link}
                   className="inline-flex items-center px-6 py-3 bg-orange-600 text-white font-medium rounded-lg hover:bg-orange-700 transition-colors duration-200"
-                >
-                  {button.text}
-                </CMSLink>
+                />
               </div>
             )}
           </div>
