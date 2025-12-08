@@ -10,6 +10,9 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { HeroBlock } from '@/blocks/Hero/Component'
 import { AboutSectionBlock } from '@/blocks/AboutSection/Component'
 import { StatementOfFaithBlock } from '@/blocks/StatementOfFaith/Component'
+import { AboutChurchBlock } from '@/blocks/AboutChurch/Component'
+import { OurVisionBlock } from '@/blocks/OurVision/Component'
+import { OurStrategyBlock } from '@/blocks/OurStrategy/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +23,9 @@ const blockComponents = {
   hero: HeroBlock,
   aboutSection: AboutSectionBlock,
   statementOfFaith: StatementOfFaithBlock,
+  aboutChurch: AboutChurchBlock,
+  ourVision: OurVisionBlock,
+  ourStrategy: OurStrategyBlock,
 }
 
 export const RenderBlocks: React.FC<{

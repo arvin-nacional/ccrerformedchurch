@@ -10,6 +10,9 @@ import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { HeroBlock } from '../../blocks/Hero/config'
 import { AboutSectionBlock } from '../../blocks/AboutSection/config'
 import { StatementOfFaithBlock } from '../../blocks/StatementOfFaith/config'
+import { AboutChurchBlock } from '../../blocks/AboutChurch/config'
+import { OurVisionBlock } from '../../blocks/OurVision/config'
+import { OurStrategyBlock } from '../../blocks/OurStrategy/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -84,6 +87,9 @@ export const Pages: CollectionConfig<'pages'> = {
                 HeroBlock,
                 AboutSectionBlock,
                 StatementOfFaithBlock,
+                AboutChurchBlock,
+                OurVisionBlock,
+                OurStrategyBlock,
               ],
               required: true,
               admin: {

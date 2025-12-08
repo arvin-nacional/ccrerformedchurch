@@ -209,6 +209,9 @@ export interface Page {
     | HeroBlock
     | AboutSectionBlock
     | StatementOfFaithBlock
+    | AboutChurchBlock
+    | OurVisionBlock
+    | OurStrategyBlock
   )[];
   meta?: {
     title?: string | null;
@@ -956,6 +959,117 @@ export interface StatementOfFaithBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutChurchBlock".
+ */
+export interface AboutChurchBlock {
+  title: string;
+  subtitle?: string | null;
+  launchDate?: string | null;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  bibleVerse?: string | null;
+  bibleReference?: string | null;
+  image: string | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutChurch';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurVisionBlock".
+ */
+export interface OurVisionBlock {
+  title: string;
+  subtitle?: string | null;
+  visionCards?:
+    | {
+        icon: 'book' | 'cross' | 'heart' | 'star' | 'users';
+        heading: string;
+        description: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        bibleReference?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ourVision';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurStrategyBlock".
+ */
+export interface OurStrategyBlock {
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  strategyCards?:
+    | {
+        icon: 'book' | 'cross' | 'heart' | 'star' | 'users' | 'target' | 'globe';
+        heading: string;
+        description: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ourStrategy';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1265,6 +1379,9 @@ export interface PagesSelect<T extends boolean = true> {
         hero?: T | HeroBlockSelect<T>;
         aboutSection?: T | AboutSectionBlockSelect<T>;
         statementOfFaith?: T | StatementOfFaithBlockSelect<T>;
+        aboutChurch?: T | AboutChurchBlockSelect<T>;
+        ourVision?: T | OurVisionBlockSelect<T>;
+        ourStrategy?: T | OurStrategyBlockSelect<T>;
       };
   meta?:
     | T
@@ -1447,6 +1564,58 @@ export interface StatementOfFaithBlockSelect<T extends boolean = true> {
     | {
         sectionTitle?: T;
         content?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutChurchBlock_select".
+ */
+export interface AboutChurchBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  launchDate?: T;
+  description?: T;
+  bibleVerse?: T;
+  bibleReference?: T;
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurVisionBlock_select".
+ */
+export interface OurVisionBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  visionCards?:
+    | T
+    | {
+        icon?: T;
+        heading?: T;
+        description?: T;
+        bibleReference?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurStrategyBlock_select".
+ */
+export interface OurStrategyBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  strategyCards?:
+    | T
+    | {
+        icon?: T;
+        heading?: T;
+        description?: T;
         id?: T;
       };
   id?: T;
