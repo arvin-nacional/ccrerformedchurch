@@ -51,7 +51,7 @@ export const AboutChurchBlock: React.FC<Props> = ({
 
               {bibleVerse && (
                 <div className="pt-4 border-t border-gray-200">
-                  <p className="text-gray-700 italic">"{bibleVerse}"</p>
+                  <p className="text-gray-700 italic">&quot;{bibleVerse}&quot;</p>
                   {bibleReference && (
                     <p className="text-gray-600 text-sm mt-2">— {bibleReference}</p>
                   )}
