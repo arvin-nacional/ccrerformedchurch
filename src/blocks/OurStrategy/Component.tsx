@@ -23,9 +23,10 @@ export const OurStrategyBlock: React.FC<Props> = ({
   title,
   description,
   strategyCards,
+  backgroundColor,
 }) => {
   return (
-    <section className={`py-16 bg-gray-50 ${className || ''}`}>
+    <section className={`py-16 ${backgroundColor || ''} ${className || ''}`}>
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-12">

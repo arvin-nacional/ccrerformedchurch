@@ -13,6 +13,13 @@ import { StatementOfFaithBlock } from '@/blocks/StatementOfFaith/Component'
 import { AboutChurchBlock } from '@/blocks/AboutChurch/Component'
 import { OurVisionBlock } from '@/blocks/OurVision/Component'
 import { OurStrategyBlock } from '@/blocks/OurStrategy/Component'
+import { OurMissionBlock } from '@/blocks/MissionBlock/Component'
+import { KnowTheWordBlock } from '@/blocks/KnowTheWord/Component'
+import { TheologicalSchoolBlock } from '@/blocks/TheologicalSchool/Component'
+import { CoursesOfferedBlock } from '@/blocks/CoursesOffered/Component'
+import { LiveOutTheWordBlock } from '@/blocks/LiveOutTheWord/Component'
+import { ProclaimTheWordBlock } from '@/blocks/ProclaimTheWord/Component'
+import { GospelOfSalvationBlock } from '@/blocks/GospelOfSalvation/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -26,6 +33,13 @@ const blockComponents = {
   aboutChurch: AboutChurchBlock,
   ourVision: OurVisionBlock,
   ourStrategy: OurStrategyBlock,
+  ourMission: OurMissionBlock,
+  knowTheWord: KnowTheWordBlock,
+  theologicalSchool: TheologicalSchoolBlock,
+  coursesOffered: CoursesOfferedBlock,
+  liveOutTheWord: LiveOutTheWordBlock,
+  proclaimTheWord: ProclaimTheWordBlock,
+  gospelOfSalvation: GospelOfSalvationBlock,
 }
 
 export const RenderBlocks: React.FC<{

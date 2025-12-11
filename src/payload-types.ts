@@ -212,6 +212,13 @@ export interface Page {
     | AboutChurchBlock
     | OurVisionBlock
     | OurStrategyBlock
+    | OurMissionBlock
+    | KnowTheWordBlock
+    | TheologicalSchoolBlock
+    | CoursesOfferedBlock
+    | LiveOutTheWordBlock
+    | ProclaimTheWordBlock
+    | GospelOfSalvationBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1042,6 +1049,7 @@ export interface OurStrategyBlock {
     };
     [k: string]: unknown;
   };
+  backgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-transparent';
   strategyCards?:
     | {
         icon: 'book' | 'cross' | 'heart' | 'star' | 'users' | 'target' | 'globe';
@@ -1067,6 +1075,455 @@ export interface OurStrategyBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'ourStrategy';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurMissionBlock".
+ */
+export interface OurMissionBlock {
+  title: string;
+  subtitle?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  missionCards?:
+    | {
+        icon: 'book' | 'heart' | 'message';
+        heading: string;
+        bibleReference?: string | null;
+        description: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        linkText?: string | null;
+        linkUrl?: string | null;
+        cardStyle: 'light' | 'dark';
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ourMission';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "KnowTheWordBlock".
+ */
+export interface KnowTheWordBlock {
+  title: string;
+  subtitle?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  ministryTitle: string;
+  ministrySubtitle?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  focusAreas?:
+    | {
+        item: string;
+        id?: string | null;
+      }[]
+    | null;
+  purposeTitle?: string | null;
+  purposeDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  buttonText?: string | null;
+  buttonUrl?: string | null;
+  additionalContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'knowTheWord';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TheologicalSchoolBlock".
+ */
+export interface TheologicalSchoolBlock {
+  title: string;
+  subtitle?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'theologicalSchool';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CoursesOfferedBlock".
+ */
+export interface CoursesOfferedBlock {
+  title: string;
+  subtitle?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  backgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-transparent';
+  courses?:
+    | {
+        courseNumber: string;
+        courseTitle: string;
+        programName: string;
+        tags?: string | null;
+        icon: 'book' | 'graduationCap' | 'bookOpen' | 'library' | 'fileText';
+        iconColor: 'orange' | 'blue' | 'purple' | 'green';
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'coursesOffered';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LiveOutTheWordBlock".
+ */
+export interface LiveOutTheWordBlock {
+  title: string;
+  subtitle?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  backgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-transparent';
+  sectionLabel?: string | null;
+  ministryCards?:
+    | {
+        title: string;
+        subtitle?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        bulletPoints?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  faithInActionTitle?: string | null;
+  faithInActionDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  threeColumns?:
+    | {
+        heading: string;
+        subheading?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  bibleVerse?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'liveOutTheWord';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProclaimTheWordBlock".
+ */
+export interface ProclaimTheWordBlock {
+  title: string;
+  subtitle?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  backgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-transparent';
+  sectionLabel?: string | null;
+  ministryCards?:
+    | {
+        title: string;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  commissionTitle?: string | null;
+  commissionDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  fourColumns?:
+    | {
+        heading: string;
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  bibleVerse?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'proclaimTheWord';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GospelOfSalvationBlock".
+ */
+export interface GospelOfSalvationBlock {
+  title: string;
+  subtitle?: string | null;
+  backgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-transparent';
+  sections?:
+    | {
+        sectionNumber?: string | null;
+        sectionTitle: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        highlightedQuestion?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gospelOfSalvation';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1382,6 +1839,13 @@ export interface PagesSelect<T extends boolean = true> {
         aboutChurch?: T | AboutChurchBlockSelect<T>;
         ourVision?: T | OurVisionBlockSelect<T>;
         ourStrategy?: T | OurStrategyBlockSelect<T>;
+        ourMission?: T | OurMissionBlockSelect<T>;
+        knowTheWord?: T | KnowTheWordBlockSelect<T>;
+        theologicalSchool?: T | TheologicalSchoolBlockSelect<T>;
+        coursesOffered?: T | CoursesOfferedBlockSelect<T>;
+        liveOutTheWord?: T | LiveOutTheWordBlockSelect<T>;
+        proclaimTheWord?: T | ProclaimTheWordBlockSelect<T>;
+        gospelOfSalvation?: T | GospelOfSalvationBlockSelect<T>;
       };
   meta?:
     | T
@@ -1610,12 +2074,175 @@ export interface OurVisionBlockSelect<T extends boolean = true> {
 export interface OurStrategyBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
+  backgroundColor?: T;
   strategyCards?:
     | T
     | {
         icon?: T;
         heading?: T;
         description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurMissionBlock_select".
+ */
+export interface OurMissionBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  missionCards?:
+    | T
+    | {
+        icon?: T;
+        heading?: T;
+        bibleReference?: T;
+        description?: T;
+        linkText?: T;
+        linkUrl?: T;
+        cardStyle?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "KnowTheWordBlock_select".
+ */
+export interface KnowTheWordBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  ministryTitle?: T;
+  ministrySubtitle?: T;
+  focusAreas?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  purposeTitle?: T;
+  purposeDescription?: T;
+  buttonText?: T;
+  buttonUrl?: T;
+  additionalContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TheologicalSchoolBlock_select".
+ */
+export interface TheologicalSchoolBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  content?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CoursesOfferedBlock_select".
+ */
+export interface CoursesOfferedBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  backgroundColor?: T;
+  courses?:
+    | T
+    | {
+        courseNumber?: T;
+        courseTitle?: T;
+        programName?: T;
+        tags?: T;
+        icon?: T;
+        iconColor?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LiveOutTheWordBlock_select".
+ */
+export interface LiveOutTheWordBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  backgroundColor?: T;
+  sectionLabel?: T;
+  ministryCards?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        bulletPoints?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  faithInActionTitle?: T;
+  faithInActionDescription?: T;
+  threeColumns?:
+    | T
+    | {
+        heading?: T;
+        subheading?: T;
+        id?: T;
+      };
+  bibleVerse?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProclaimTheWordBlock_select".
+ */
+export interface ProclaimTheWordBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  backgroundColor?: T;
+  sectionLabel?: T;
+  ministryCards?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  commissionTitle?: T;
+  commissionDescription?: T;
+  fourColumns?:
+    | T
+    | {
+        heading?: T;
+        description?: T;
+        id?: T;
+      };
+  bibleVerse?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GospelOfSalvationBlock_select".
+ */
+export interface GospelOfSalvationBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  backgroundColor?: T;
+  sections?:
+    | T
+    | {
+        sectionNumber?: T;
+        sectionTitle?: T;
+        content?: T;
+        highlightedQuestion?: T;
         id?: T;
       };
   id?: T;

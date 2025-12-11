@@ -13,6 +13,13 @@ import { StatementOfFaithBlock } from '../../blocks/StatementOfFaith/config'
 import { AboutChurchBlock } from '../../blocks/AboutChurch/config'
 import { OurVisionBlock } from '../../blocks/OurVision/config'
 import { OurStrategyBlock } from '../../blocks/OurStrategy/config'
+import { OurMissionBlock } from '../../blocks/MissionBlock/config'
+import { KnowTheWordBlock } from '../../blocks/KnowTheWord/config'
+import { TheologicalSchoolBlock } from '../../blocks/TheologicalSchool/config'
+import { CoursesOfferedBlock } from '../../blocks/CoursesOffered/config'
+import { LiveOutTheWordBlock } from '../../blocks/LiveOutTheWord/config'
+import { ProclaimTheWordBlock } from '../../blocks/ProclaimTheWord/config'
+import { GospelOfSalvationBlock } from '../../blocks/GospelOfSalvation/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -90,6 +97,13 @@ export const Pages: CollectionConfig<'pages'> = {
                 AboutChurchBlock,
                 OurVisionBlock,
                 OurStrategyBlock,
+                OurMissionBlock,
+                KnowTheWordBlock,
+                TheologicalSchoolBlock,
+                CoursesOfferedBlock,
+                LiveOutTheWordBlock,
+                ProclaimTheWordBlock,
+                GospelOfSalvationBlock,
               ],
               required: true,
               admin: {

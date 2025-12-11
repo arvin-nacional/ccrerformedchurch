@@ -1,3 +1,4 @@
+// c:\Users\Arvin\Desktop\windsurf\ccrc\src\blocks\OurMission\config.ts
 import type { Block } from 'payload'
 import {
   FixedToolbarFeature,
@@ -5,46 +6,34 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-export const OurStrategyBlock: Block = {
-  slug: 'ourStrategy',
-  interfaceName: 'OurStrategyBlock',
+export const OurMissionBlock: Block = {
+  slug: 'ourMission',
+  interfaceName: 'OurMissionBlock',
   fields: [
     {
       name: 'title',
       type: 'text',
       required: true,
-      defaultValue: 'Our Strategy',
+      defaultValue: 'Our Mission',
       label: 'Section Title',
     },
     {
-      name: 'description',
+      name: 'subtitle',
       type: 'richText',
-      label: 'Description',
+      label: 'Subtitle',
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
         },
       }),
-      required: true,
+      required: false,
     },
     {
-      name: 'backgroundColor',
-      type: 'select',
-      label: 'Background Color',
-      required: true,
-      options: [
-        { label: 'White', value: 'bg-white' },
-        { label: 'Gray 50', value: 'bg-gray-50' },
-        { label: 'Transparent', value: 'bg-transparent' },
-      ],
-      defaultValue: 'bg-gray-50',
-    },
-    {
-      name: 'strategyCards',
+      name: 'missionCards',
       type: 'array',
-      label: 'Strategy Cards',
+      label: 'Mission Cards',
       minRows: 1,
-      maxRows: 4,
+      maxRows: 3,
       fields: [
         {
           name: 'icon',
@@ -53,12 +42,8 @@ export const OurStrategyBlock: Block = {
           required: true,
           options: [
             { label: 'Book', value: 'book' },
-            { label: 'Cross', value: 'cross' },
             { label: 'Heart', value: 'heart' },
-            { label: 'Star', value: 'star' },
-            { label: 'Users', value: 'users' },
-            { label: 'Target', value: 'target' },
-            { label: 'Globe', value: 'globe' },
+            { label: 'Message', value: 'message' },
           ],
           defaultValue: 'book',
         },
@@ -67,6 +52,12 @@ export const OurStrategyBlock: Block = {
           type: 'text',
           label: 'Card Heading',
           required: true,
+        },
+        {
+          name: 'bibleReference',
+          type: 'text',
+          label: 'Bible Reference',
+          required: false,
         },
         {
           name: 'description',
@@ -79,14 +70,38 @@ export const OurStrategyBlock: Block = {
           }),
           required: true,
         },
+        {
+          name: 'linkText',
+          type: 'text',
+          label: 'Button Text',
+          defaultValue: 'Learn more',
+          required: false,
+        },
+        {
+          name: 'linkUrl',
+          type: 'text',
+          label: 'Button Link URL',
+          required: false,
+        },
+        {
+          name: 'cardStyle',
+          type: 'select',
+          label: 'Card Style',
+          required: true,
+          options: [
+            { label: 'Light (White Background)', value: 'light' },
+            { label: 'Dark (Black Background)', value: 'dark' },
+          ],
+          defaultValue: 'light',
+        },
       ],
     },
   ],
   graphQL: {
-    singularName: 'OurStrategyBlock',
+    singularName: 'OurMissionBlock',
   },
   labels: {
-    plural: 'Our Strategy Blocks',
-    singular: 'Our Strategy Block',
+    plural: 'Our Mission Blocks',
+    singular: 'Our Mission Block',
   },
 }
