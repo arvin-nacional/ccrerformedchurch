@@ -69,8 +69,11 @@ export interface Config {
   collections: {
     pages: Page;
     posts: Post;
+    sermons: Sermon;
     media: Media;
     categories: Category;
+    speakers: Speaker;
+    'sermon-series': SermonSery;
     users: User;
     redirects: Redirect;
     forms: Form;
@@ -91,8 +94,11 @@ export interface Config {
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
+    sermons: SermonsSelect<false> | SermonsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    speakers: SpeakersSelect<false> | SpeakersSelect<true>;
+    'sermon-series': SermonSeriesSelect<false> | SermonSeriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
@@ -1527,6 +1533,153 @@ export interface GospelOfSalvationBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sermons".
+ */
+export interface Sermon {
+  id: string;
+  title: string;
+  heroImage?: (string | null) | Media;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  keyPoints?:
+    | {
+        point: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  scriptureReferences?:
+    | {
+        reference: string;
+        id?: string | null;
+      }[]
+    | null;
+  series?: (string | null) | SermonSery;
+  speaker: string | Speaker;
+  sermonDate: string;
+  duration?: number | null;
+  scriptureBook?: string | null;
+  scriptureReference?: string | null;
+  /**
+   * Upload the sermon video file
+   */
+  videoFile?: (string | null) | Media;
+  /**
+   * Upload the sermon audio file
+   */
+  audioFile?: (string | null) | Media;
+  /**
+   * Upload the sermon notes PDF
+   */
+  sermonNotes?: (string | null) | Media;
+  /**
+   * Upload the sermon transcript
+   */
+  transcript?: (string | null) | Media;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  populatedSpeaker?: {
+    id?: string | null;
+    name?: string | null;
+    title?: string | null;
+    bio?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sermon-series".
+ */
+export interface SermonSery {
+  id: string;
+  title: string;
+  description?: string | null;
+  image?: (string | null) | Media;
+  startDate?: string | null;
+  endDate?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "speakers".
+ */
+export interface Speaker {
+  id: string;
+  name: string;
+  title?: string | null;
+  bio?: string | null;
+  photo?: (string | null) | Media;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1724,12 +1877,24 @@ export interface PayloadLockedDocument {
         value: string | Post;
       } | null)
     | ({
+        relationTo: 'sermons';
+        value: string | Sermon;
+      } | null)
+    | ({
         relationTo: 'media';
         value: string | Media;
       } | null)
     | ({
         relationTo: 'categories';
         value: string | Category;
+      } | null)
+    | ({
+        relationTo: 'speakers';
+        value: string | Speaker;
+      } | null)
+    | ({
+        relationTo: 'sermon-series';
+        value: string | SermonSery;
       } | null)
     | ({
         relationTo: 'users';
@@ -2281,6 +2446,59 @@ export interface PostsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sermons_select".
+ */
+export interface SermonsSelect<T extends boolean = true> {
+  title?: T;
+  heroImage?: T;
+  description?: T;
+  content?: T;
+  keyPoints?:
+    | T
+    | {
+        point?: T;
+        id?: T;
+      };
+  scriptureReferences?:
+    | T
+    | {
+        reference?: T;
+        id?: T;
+      };
+  series?: T;
+  speaker?: T;
+  sermonDate?: T;
+  duration?: T;
+  scriptureBook?: T;
+  scriptureReference?: T;
+  videoFile?: T;
+  audioFile?: T;
+  sermonNotes?: T;
+  transcript?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  populatedSpeaker?:
+    | T
+    | {
+        id?: T;
+        name?: T;
+        title?: T;
+        bio?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
@@ -2390,6 +2608,35 @@ export interface CategoriesSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "speakers_select".
+ */
+export interface SpeakersSelect<T extends boolean = true> {
+  name?: T;
+  title?: T;
+  bio?: T;
+  photo?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sermon-series_select".
+ */
+export interface SermonSeriesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
+  startDate?: T;
+  endDate?: T;
+  generateSlug?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2839,6 +3086,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'posts';
           value: string | Post;
+        } | null)
+      | ({
+          relationTo: 'sermons';
+          value: string | Sermon;
         } | null);
     global?: string | null;
     user?: (string | null) | User;
