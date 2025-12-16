@@ -76,7 +76,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       {/* Back to Sermons Link */}
-      <div className="container pt-8">
+      <div className="container pt-12">
         <Link
           href="/sermons"
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
