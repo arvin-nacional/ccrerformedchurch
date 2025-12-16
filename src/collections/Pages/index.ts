@@ -20,6 +20,7 @@ import { CoursesOfferedBlock } from '../../blocks/CoursesOffered/config'
 import { LiveOutTheWordBlock } from '../../blocks/LiveOutTheWord/config'
 import { ProclaimTheWordBlock } from '../../blocks/ProclaimTheWord/config'
 import { GospelOfSalvationBlock } from '../../blocks/GospelOfSalvation/config'
+import { RecentSermonsBlock } from '../../blocks/RecentSermons/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -104,6 +105,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 LiveOutTheWordBlock,
                 ProclaimTheWordBlock,
                 GospelOfSalvationBlock,
+                RecentSermonsBlock,
               ],
               required: true,
               admin: {

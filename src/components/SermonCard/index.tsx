@@ -31,7 +31,7 @@ export const SermonCard: React.FC<{
   return (
     <article
       className={cn(
-        'border border-border rounded-lg overflow-hidden bg-card hover:cursor-pointer',
+        'shadow-lg rounded-2xl overflow-hidden bg-gradient-to-r from-white to-gray-200 hover:cursor-pointer',
         className,
       )}
       ref={card.ref}
@@ -40,7 +40,7 @@ export const SermonCard: React.FC<{
         {!metaImage && <div className="w-full h-full bg-muted" />}
         {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
       </div>
-      <div className="p-4">
+      <div className="p-6">
         {showSeries && series && typeof series === 'object' && (
           <div className="text-sm text-muted-foreground mb-2">
             {series.title || 'Expository Series'}
@@ -78,7 +78,7 @@ export const SermonCard: React.FC<{
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
-              <span>{populatedSpeaker.name}</span>
+              <span className="text-gray-700">{populatedSpeaker.name}</span>
             </div>
           )}
           {sermonDate && (
@@ -100,7 +100,9 @@ export const SermonCard: React.FC<{
                 <line x1="8" x2="8" y1="2" y2="6" />
                 <line x1="3" x2="21" y1="10" y2="10" />
               </svg>
-              <time dateTime={sermonDate}>{formatDateTime(sermonDate)}</time>
+              <time dateTime={sermonDate} className="text-gray-700">
+                {formatDateTime(sermonDate)}
+              </time>
             </div>
           )}
         </div>

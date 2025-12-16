@@ -105,7 +105,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
           <div>
             {/* Hero Video/Image */}
             <div className="pb-6">
-              <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden">
                 {sermon.youtubeUrl ? (
                   (() => {
                     const videoId = getYouTubeVideoId(sermon.youtubeUrl)
@@ -222,7 +222,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
           <div className="space-y-6">
             {/* About the Speaker */}
             {sermon.populatedSpeaker && (
-              <div className="border border-border rounded-lg p-6">
+              <div className="border border-border rounded-2xl p-6">
                 <h3 className="text-sm font-semibold mb-4">About the Speaker</h3>
                 <h4 className="font-bold text-lg mb-1">{sermon.populatedSpeaker.name}</h4>
                 {sermon.populatedSpeaker.title && (
@@ -238,7 +238,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
 
             {/* About This Series */}
             {sermon.series && typeof sermon.series === 'object' && (
-              <div className="border border-border rounded-lg p-6">
+              <div className="border border-border rounded-2xl p-6">
                 <h3 className="text-sm font-semibold mb-4">About This Series</h3>
                 <h4 className="font-bold text-lg mb-3">{sermon.series.title}</h4>
                 {sermon.series.description && (

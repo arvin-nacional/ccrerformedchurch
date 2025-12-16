@@ -225,6 +225,7 @@ export interface Page {
     | LiveOutTheWordBlock
     | ProclaimTheWordBlock
     | GospelOfSalvationBlock
+    | RecentSermonsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1533,6 +1534,33 @@ export interface GospelOfSalvationBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentSermonsBlock".
+ */
+export interface RecentSermonsBlock {
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  limit?: number | null;
+  showButton?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'recentSermons';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sermons".
  */
 export interface Sermon {
@@ -1974,6 +2002,7 @@ export interface PagesSelect<T extends boolean = true> {
         liveOutTheWord?: T | LiveOutTheWordBlockSelect<T>;
         proclaimTheWord?: T | ProclaimTheWordBlockSelect<T>;
         gospelOfSalvation?: T | GospelOfSalvationBlockSelect<T>;
+        recentSermons?: T | RecentSermonsBlockSelect<T>;
       };
   meta?:
     | T
@@ -2373,6 +2402,18 @@ export interface GospelOfSalvationBlockSelect<T extends boolean = true> {
         highlightedQuestion?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RecentSermonsBlock_select".
+ */
+export interface RecentSermonsBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  limit?: T;
+  showButton?: T;
   id?: T;
   blockName?: T;
 }

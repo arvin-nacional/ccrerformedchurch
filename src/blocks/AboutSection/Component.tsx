@@ -37,7 +37,7 @@ export const AboutSectionBlock: React.FC<Props> = ({
               <div className="pt-4">
                 <CMSLink
                   {...button.link}
-                  className="inline-flex items-center px-6 py-3 bg-orange-600 text-white font-medium rounded-lg hover:bg-orange-700 transition-colors duration-200"
+                  className="inline-flex items-center px-6 py-3 bg-orange-600 text-white font-medium rounded-xl hover:bg-orange-700 transition-colors duration-200 text-sm"
                 />
               </div>
             )}

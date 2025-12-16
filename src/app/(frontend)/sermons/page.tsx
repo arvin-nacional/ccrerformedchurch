@@ -19,6 +19,7 @@ export default async function Page() {
     depth: 1,
     limit: 12,
     overrideAccess: false,
+    sort: '-sermonDate',
     select: {
       title: true,
       slug: true,
@@ -57,8 +58,8 @@ export default async function Page() {
       <PageClient />
       <div className="container mb-8">
         <div className="prose dark:prose-invert max-w-none text-center">
-          <h1>Sermon Archive</h1>
-          <p className="text-muted-foreground">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Sermon Archive</h2>
+          <p className="text-gray-600 text-sm">
             Browse our complete collection of sermons. Watch, listen, and grow in your faith
             journey.
           </p>
