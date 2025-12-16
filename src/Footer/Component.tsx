@@ -14,7 +14,7 @@ export async function Footer() {
   const { description, socialLinks, contactInfo, copyright } = footerData || {}
 
   return (
-    <footer className="bg-gray-100 text-gray-800 py-12">
+    <footer className="bg-black text-white py-12">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Section - Logo and Description */}
@@ -24,7 +24,7 @@ export async function Footer() {
             </Link>
 
             {description && (
-              <p className="text-sm text-gray-600 leading-relaxed max-w-xs">{description}</p>
+              <p className="text-sm text-gray-400 leading-relaxed max-w-xs">{description}</p>
             )}
 
             {/* Social Media Icons */}
@@ -32,7 +32,7 @@ export async function Footer() {
               {socialLinks?.facebook && (
                 <Link
                   href={socialLinks.facebook}
-                  className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors"
+                  className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -42,7 +42,7 @@ export async function Footer() {
               {socialLinks?.instagram && (
                 <Link
                   href={socialLinks.instagram}
-                  className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors"
+                  className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -52,7 +52,7 @@ export async function Footer() {
               {socialLinks?.youtube && (
                 <Link
                   href={socialLinks.youtube}
-                  className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors"
+                  className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -64,13 +64,13 @@ export async function Footer() {
 
           {/* Center Section - Links */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-4">Links</h3>
+            <h3 className="font-semibold text-white mb-4">Links</h3>
             <nav className="space-y-2">
               {navItems.map(({ link }, i) => (
                 <CMSLink
                   key={i}
                   {...link}
-                  className="block text-sm text-gray-600 hover:text-gray-800 transition-colors"
+                  className="block text-sm text-gray-400 hover:text-white transition-colors"
                 />
               ))}
             </nav>
@@ -78,8 +78,8 @@ export async function Footer() {
 
           {/* Right Section - Contact Us */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-4">Contact Us</h3>
-            <div className="space-y-3 text-sm text-gray-600">
+            <h3 className="font-semibold text-white mb-4">Contact Us</h3>
+            <div className="space-y-3 text-sm text-gray-400">
               {contactInfo?.phone && <div>{contactInfo.phone}</div>}
 
               {contactInfo?.address && (
@@ -94,7 +94,7 @@ export async function Footer() {
                 <div>
                   <Link
                     href={`mailto:${contactInfo.email}`}
-                    className="text-gray-600 hover:text-gray-800 transition-colors"
+                    className="text-gray-400 hover:text-white transition-colors"
                   >
                     {contactInfo.email}
                   </Link>
@@ -106,7 +106,7 @@ export async function Footer() {
 
         {/* Copyright */}
         {copyright && (
-          <div className="mt-8 pt-6 border-t border-gray-200 text-center">
+          <div className="mt-8 pt-6 border-t border-gray-800 text-center">
             <p className="text-xs text-gray-500">{copyright}</p>
           </div>
         )}

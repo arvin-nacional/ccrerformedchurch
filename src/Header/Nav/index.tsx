@@ -26,24 +26,24 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   // Determine text color based on page and scroll state
   const getTextColor = () => {
     if (pathname === '/') {
-      // Home page: white when not scrolled, black when scrolled
-      return isScrolled ? 'text-gray-900 hover:text-blue-600' : 'text-white hover:text-blue-200'
+      // Home page: white when not scrolled, white when scrolled (black background)
+      return isScrolled ? 'text-white' : 'text-white'
     } else {
-      // Other pages: always black
-      return 'text-gray-900 hover:text-blue-600'
+      // Other pages: always white (black background)
+      return 'text-white'
     }
   }
 
   const getMobileTextColor = () => {
     // Mobile menu always uses dark text on white background
-    return 'text-gray-900 hover:text-blue-600'
+    return 'text-gray-900'
   }
 
   const getHamburgerColor = () => {
     if (pathname === '/') {
-      return isScrolled ? 'text-gray-900' : 'text-white'
+      return isScrolled ? 'text-white' : 'text-white'
     } else {
-      return 'text-gray-900'
+      return 'text-white'
     }
   }
 
@@ -68,7 +68,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                 `}
               />
               {/* Hover underline animation */}
-              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-600 transition-all duration-300 group-hover:w-full" />
             </div>
           )
         })}

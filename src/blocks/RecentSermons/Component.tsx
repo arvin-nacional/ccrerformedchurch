@@ -41,8 +41,8 @@ export const RecentSermonsBlock: React.FC<RecentSermonsProps> = (props) => {
         <div className="text-center mb-12">
           {title && <h2 className="text-4xl font-bold mb-4">{title}</h2>}
           {description && (
-            <div className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              <RichText data={description} enableGutter={false} />
+            <div className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-gray-600 text-base">{description}</p>
             </div>
           )}
         </div>

@@ -1,11 +1,5 @@
 import type { Block } from 'payload'
 
-import {
-  FixedToolbarFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-
 export const RecentSermonsBlock: Block = {
   slug: 'recentSermons',
   interfaceName: 'RecentSermonsBlock',
@@ -19,12 +13,9 @@ export const RecentSermonsBlock: Block = {
     },
     {
       name: 'description',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
-        },
-      }),
+      type: 'text',
+      defaultValue:
+        'Catch up on recent messages or revisit your favorites. All sermons are available to watch anytime.',
       label: 'Description',
     },
     {

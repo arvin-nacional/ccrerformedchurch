@@ -32,7 +32,7 @@ export const OurStrategyBlock: React.FC<Props> = ({
         <div className="text-center mb-12">
           {title && <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{title}</h2>}
           {description && (
-            <div className="prose prose-base max-w-3xl mx-auto text-gray-600">
+            <div className="prose prose-base max-w-3xl mx-auto text-gray-600 text-sm">
               <RichText data={description} enableGutter={false} />
             </div>
           )}
