@@ -1539,6 +1539,10 @@ export interface Sermon {
   id: string;
   title: string;
   heroImage?: (string | null) | Media;
+  /**
+   * Enter the full YouTube URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID)
+   */
+  youtubeUrl?: string | null;
   description: {
     root: {
       type: string;
@@ -1554,47 +1558,6 @@ export interface Sermon {
     };
     [k: string]: unknown;
   };
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  keyPoints?:
-    | {
-        point: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  scriptureReferences?:
-    | {
-        reference: string;
-        id?: string | null;
-      }[]
-    | null;
   series?: (string | null) | SermonSery;
   speaker: string | Speaker;
   sermonDate: string;
@@ -2451,20 +2414,8 @@ export interface PostsSelect<T extends boolean = true> {
 export interface SermonsSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
+  youtubeUrl?: T;
   description?: T;
-  content?: T;
-  keyPoints?:
-    | T
-    | {
-        point?: T;
-        id?: T;
-      };
-  scriptureReferences?:
-    | T
-    | {
-        reference?: T;
-        id?: T;
-      };
   series?: T;
   speaker?: T;
   sermonDate?: T;

@@ -79,6 +79,15 @@ export const Sermons: CollectionConfig<'sermons'> = {
               label: 'Hero Image',
             },
             {
+              name: 'youtubeUrl',
+              type: 'text',
+              label: 'YouTube Video URL',
+              admin: {
+                description:
+                  'Enter the full YouTube URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID)',
+              },
+            },
+            {
               name: 'description',
               type: 'richText',
               required: true,
@@ -89,52 +98,52 @@ export const Sermons: CollectionConfig<'sermons'> = {
                 },
               }),
             },
-            {
-              name: 'content',
-              type: 'richText',
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                    HorizontalRuleFeature(),
-                  ]
-                },
-              }),
-              label: 'Full Sermon Content',
-            },
-            {
-              name: 'keyPoints',
-              type: 'array',
-              label: 'Key Points',
-              fields: [
-                {
-                  name: 'point',
-                  type: 'richText',
-                  required: true,
-                  editor: lexicalEditor({
-                    features: ({ rootFeatures }) => {
-                      return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
-                    },
-                  }),
-                },
-              ],
-            },
-            {
-              name: 'scriptureReferences',
-              type: 'array',
-              label: 'Scripture References',
-              fields: [
-                {
-                  name: 'reference',
-                  type: 'text',
-                  required: true,
-                  label: 'Reference (e.g., Hebrews 11:1-8)',
-                },
-              ],
-            },
+            // {
+            //   name: 'content',
+            //   type: 'richText',
+            //   editor: lexicalEditor({
+            //     features: ({ rootFeatures }) => {
+            //       return [
+            //         ...rootFeatures,
+            //         HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            //         FixedToolbarFeature(),
+            //         InlineToolbarFeature(),
+            //         HorizontalRuleFeature(),
+            //       ]
+            //     },
+            //   }),
+            //   label: 'Full Sermon Content',
+            // },
+            // {
+            //   name: 'keyPoints',
+            //   type: 'array',
+            //   label: 'Key Points',
+            //   fields: [
+            //     {
+            //       name: 'point',
+            //       type: 'richText',
+            //       required: true,
+            //       editor: lexicalEditor({
+            //         features: ({ rootFeatures }) => {
+            //           return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
+            //         },
+            //       }),
+            //     },
+            //   ],
+            // },
+            // {
+            //   name: 'scriptureReferences',
+            //   type: 'array',
+            //   label: 'Scripture References',
+            //   fields: [
+            //     {
+            //       name: 'reference',
+            //       type: 'text',
+            //       required: true,
+            //       label: 'Reference (e.g., Hebrews 11:1-8)',
+            //     },
+            //   ],
+            // },
           ],
           label: 'Content',
         },

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { BookOpen, Calendar, Clock, MapPin } from 'lucide-react'
 import { Media } from '@/components/Media'
@@ -24,6 +24,21 @@ export const HeroBlock: React.FC<Props> = ({
   serviceTimes,
   title,
 }) => {
+  const parallaxRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const scrolled = window.scrollY
+        const rate = scrolled * 0.5
+        parallaxRef.current.style.transform = `translate3d(0, ${rate}px, 0)`
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
@@ -32,9 +47,16 @@ export const HeroBlock: React.FC<Props> = ({
   }
 
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center">
+    <section
+      id="home"
+      className="relative h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center">
+      <div
+        ref={parallaxRef}
+        className="absolute inset-0 bg-cover bg-center will-change-transform"
+        style={{ top: '-20%', height: '120%' }}
+      >
         {backgroundImage && typeof backgroundImage === 'object' ? (
           <Media fill imgClassName="object-cover" priority resource={backgroundImage} />
         ) : (
