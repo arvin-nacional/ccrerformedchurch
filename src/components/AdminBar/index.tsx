@@ -43,12 +43,21 @@ export const AdminBar: React.FC<{
   const router = useRouter()
 
   const onAuthChange = React.useCallback((user: PayloadMeUser) => {
-    setShow(Boolean(user?.id))
+    const isLoggedIn = Boolean(user?.id)
+    setShow(isLoggedIn)
+
+    if (typeof document !== 'undefined') {
+      if (isLoggedIn) {
+        document.body.setAttribute('data-admin-bar-visible', 'true')
+      } else {
+        document.body.removeAttribute('data-admin-bar-visible')
+      }
+    }
   }, [])
 
   return (
     <div
-      className={cn(baseClass, 'py-2 bg-black text-white', {
+      className={cn(baseClass, 'fixed top-0 left-0 right-0 py-2 bg-black text-white z-[100]', {
         block: show,
         hidden: !show,
       })}
