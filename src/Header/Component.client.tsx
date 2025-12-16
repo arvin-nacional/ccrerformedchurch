@@ -17,7 +17,6 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   /* Storing the value in a useState to avoid hydration errors */
   const [theme, setTheme] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [hasAdminBar, setHasAdminBar] = useState(false)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 
@@ -42,33 +41,15 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Check for admin bar
-  useEffect(() => {
-    const checkAdminBar = () => {
-      setHasAdminBar(document.body.hasAttribute('data-admin-bar-visible'))
-    }
-
-    checkAdminBar()
-
-    const observer = new MutationObserver(checkAdminBar)
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ['data-admin-bar-visible'],
-    })
-
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <header
       className={`transition-all duration-300 z-50 ${
         pathname === '/'
-          ? `fixed left-0 right-0 ${
+          ? `fixed top-0 left-0 right-0 ${
               isScrolled ? 'bg-black/95 md:backdrop-blur-md shadow-lg' : 'bg-transparent'
             }`
-          : 'fixed left-0 right-0 bg-black shadow-lg'
+          : 'fixed top-0 left-0 right-0 bg-black shadow-lg'
       }`}
-      style={{ top: hasAdminBar ? '24px' : '0' }}
       {...(theme ? { 'data-theme': theme } : {})}
     >
       <div className="container mx-auto">
