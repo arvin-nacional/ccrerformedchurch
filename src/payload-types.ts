@@ -228,7 +228,7 @@ export interface Page {
     | ProclaimTheWordBlock
     | GospelOfSalvationBlock
     | RecentSermonsBlock
-    | ThinkingBiblicallyBlock
+    | RecentThinkingBiblicallyBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1550,16 +1550,17 @@ export interface RecentSermonsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ThinkingBiblicallyBlock".
+ * via the `definition` "RecentThinkingBiblicallyBlock".
  */
-export interface ThinkingBiblicallyBlock {
+export interface RecentThinkingBiblicallyBlock {
   title: string;
   description?: string | null;
   limit?: number | null;
   showButton?: boolean | null;
+  backgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-transparent';
   id?: string | null;
   blockName?: string | null;
-  blockType: 'thinkingBiblically';
+  blockType: 'recentThinkingBiblically';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2065,7 +2066,7 @@ export interface PagesSelect<T extends boolean = true> {
         proclaimTheWord?: T | ProclaimTheWordBlockSelect<T>;
         gospelOfSalvation?: T | GospelOfSalvationBlockSelect<T>;
         recentSermons?: T | RecentSermonsBlockSelect<T>;
-        thinkingBiblically?: T | ThinkingBiblicallyBlockSelect<T>;
+        recentThinkingBiblically?: T | RecentThinkingBiblicallyBlockSelect<T>;
       };
   meta?:
     | T
@@ -2482,13 +2483,14 @@ export interface RecentSermonsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ThinkingBiblicallyBlock_select".
+ * via the `definition` "RecentThinkingBiblicallyBlock_select".
  */
-export interface ThinkingBiblicallyBlockSelect<T extends boolean = true> {
+export interface RecentThinkingBiblicallyBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   limit?: T;
   showButton?: T;
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }

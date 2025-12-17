@@ -2,21 +2,29 @@
 import React, { useEffect, useState } from 'react'
 import { ThinkingBiblicallyCard } from '@/components/ThinkingBiblicallyCard'
 import type {
-  ThinkingBiblicallyBlock as ThinkingBiblicallyBlockType,
+  RecentThinkingBiblicallyBlock as RecentThinkingBiblicallyBlockType,
   ThinkingBiblically,
 } from '@/payload-types'
 import Link from 'next/link'
 
-export type ThinkingBiblicallyProps = {
+export type RecentThinkingBiblicallyProps = {
   className?: string
-  title?: ThinkingBiblicallyBlockType['title']
-  description?: ThinkingBiblicallyBlockType['description']
-  limit?: ThinkingBiblicallyBlockType['limit']
-  showButton?: ThinkingBiblicallyBlockType['showButton']
+  title?: RecentThinkingBiblicallyBlockType['title']
+  description?: RecentThinkingBiblicallyBlockType['description']
+  limit?: RecentThinkingBiblicallyBlockType['limit']
+  showButton?: RecentThinkingBiblicallyBlockType['showButton']
+  backgroundColor?: RecentThinkingBiblicallyBlockType['backgroundColor']
 }
 
-export const ThinkingBiblicallyBlock: React.FC<ThinkingBiblicallyProps> = (props) => {
-  const { className, title, description, limit = 6, showButton = true } = props
+export const RecentThinkingBiblicallyBlock: React.FC<RecentThinkingBiblicallyProps> = (props) => {
+  const {
+    className,
+    title,
+    description,
+    limit = 3,
+    showButton = true,
+    backgroundColor = 'bg-white',
+  } = props
   const [items, setItems] = useState<ThinkingBiblically[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -39,14 +47,16 @@ export const ThinkingBiblicallyBlock: React.FC<ThinkingBiblicallyProps> = (props
   }, [limit])
 
   return (
-    <section className={className}>
-      <div className="container py-16">
-        {title && <h2 className="text-4xl font-bold mb-4 text-center">{title}</h2>}
-        {description && (
-          <div className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mb-12">
-            <p className="text-gray-600 text-base">{description}</p>
-          </div>
-        )}
+    <section className={`py-16 ${backgroundColor || 'bg-white'} ${className || ''}`}>
+      <div className="container">
+        <div className="text-center mb-12">
+          {title && <h2 className="text-4xl font-bold mb-4">{title}</h2>}
+          {description && (
+            <div className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-gray-600 text-base">{description}</p>
+            </div>
+          )}
+        </div>
 
         {loading ? (
           <div className="text-center text-muted-foreground">Loading...</div>

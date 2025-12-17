@@ -21,7 +21,7 @@ import { LiveOutTheWordBlock } from '@/blocks/LiveOutTheWord/Component'
 import { ProclaimTheWordBlock } from '@/blocks/ProclaimTheWord/Component'
 import { GospelOfSalvationBlock } from '@/blocks/GospelOfSalvation/Component'
 import { RecentSermonsBlock } from '@/blocks/RecentSermons/Component'
-import { ThinkingBiblicallyBlock } from '@/blocks/ThinkingBiblically/Component'
+import { RecentThinkingBiblicallyBlock } from '@/blocks/RecentThinkingBiblically/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -43,7 +43,7 @@ const blockComponents = {
   proclaimTheWord: ProclaimTheWordBlock,
   gospelOfSalvation: GospelOfSalvationBlock,
   recentSermons: RecentSermonsBlock,
-  thinkingBiblically: ThinkingBiblicallyBlock,
+  recentThinkingBiblically: RecentThinkingBiblicallyBlock,
 }
 
 export const RenderBlocks: React.FC<{
