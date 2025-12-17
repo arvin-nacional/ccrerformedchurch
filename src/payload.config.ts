@@ -13,6 +13,7 @@ import { Posts } from './collections/Posts'
 import { Sermons } from './collections/Sermons'
 import { SermonSeries } from './collections/SermonSeries'
 import { Speakers } from './collections/Speakers'
+import { ThinkingBiblically } from './collections/ThinkingBiblically'
 import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
@@ -65,7 +66,17 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Sermons, Media, Categories, Speakers, SermonSeries, Users],
+  collections: [
+    Pages,
+    Posts,
+    Sermons,
+    ThinkingBiblically,
+    Media,
+    Categories,
+    Speakers,
+    SermonSeries,
+    Users,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

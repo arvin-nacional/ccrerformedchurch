@@ -70,6 +70,7 @@ export interface Config {
     pages: Page;
     posts: Post;
     sermons: Sermon;
+    'thinking-biblically': ThinkingBiblically;
     media: Media;
     categories: Category;
     speakers: Speaker;
@@ -95,6 +96,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     sermons: SermonsSelect<false> | SermonsSelect<true>;
+    'thinking-biblically': ThinkingBiblicallySelect<false> | ThinkingBiblicallySelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     speakers: SpeakersSelect<false> | SpeakersSelect<true>;
@@ -226,6 +228,7 @@ export interface Page {
     | ProclaimTheWordBlock
     | GospelOfSalvationBlock
     | RecentSermonsBlock
+    | ThinkingBiblicallyBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1547,6 +1550,19 @@ export interface RecentSermonsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ThinkingBiblicallyBlock".
+ */
+export interface ThinkingBiblicallyBlock {
+  title: string;
+  description?: string | null;
+  limit?: number | null;
+  showButton?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'thinkingBiblically';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sermons".
  */
 export interface Sermon {
@@ -1654,6 +1670,62 @@ export interface Speaker {
   slug: string;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "thinking-biblically".
+ */
+export interface ThinkingBiblically {
+  id: string;
+  title: string;
+  contentType: 'article' | 'video';
+  heroImage: string | Media;
+  /**
+   * Enter the full YouTube URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID). Required for video content.
+   */
+  youtubeUrl?: string | null;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: string | null;
+  publishedDate: string;
+  /**
+   * Estimated reading time for articles
+   */
+  readTime?: number | null;
+  /**
+   * Video duration
+   */
+  duration?: number | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1858,6 +1930,10 @@ export interface PayloadLockedDocument {
         value: string | Sermon;
       } | null)
     | ({
+        relationTo: 'thinking-biblically';
+        value: string | ThinkingBiblically;
+      } | null)
+    | ({
         relationTo: 'media';
         value: string | Media;
       } | null)
@@ -1989,6 +2065,7 @@ export interface PagesSelect<T extends boolean = true> {
         proclaimTheWord?: T | ProclaimTheWordBlockSelect<T>;
         gospelOfSalvation?: T | GospelOfSalvationBlockSelect<T>;
         recentSermons?: T | RecentSermonsBlockSelect<T>;
+        thinkingBiblically?: T | ThinkingBiblicallyBlockSelect<T>;
       };
   meta?:
     | T
@@ -2405,6 +2482,18 @@ export interface RecentSermonsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ThinkingBiblicallyBlock_select".
+ */
+export interface ThinkingBiblicallyBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  limit?: T;
+  showButton?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -2469,6 +2558,34 @@ export interface SermonsSelect<T extends boolean = true> {
         title?: T;
         bio?: T;
       };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "thinking-biblically_select".
+ */
+export interface ThinkingBiblicallySelect<T extends boolean = true> {
+  title?: T;
+  contentType?: T;
+  heroImage?: T;
+  youtubeUrl?: T;
+  description?: T;
+  author?: T;
+  publishedDate?: T;
+  readTime?: T;
+  duration?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
   generateSlug?: T;
   slug?: T;
   updatedAt?: T;
@@ -3068,6 +3185,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'sermons';
           value: string | Sermon;
+        } | null)
+      | ({
+          relationTo: 'thinking-biblically';
+          value: string | ThinkingBiblically;
         } | null);
     global?: string | null;
     user?: (string | null) | User;
