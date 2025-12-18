@@ -96,7 +96,7 @@ export const CoursesOfferedBlock: React.FC<Props> = ({
 
                   {/* Program Name */}
                   {course.programName && (
-                    <p className="text-sm text-blue-600 font-medium mb-3">{course.programName}</p>
+                    <p className="text-sm text-gray-600 font-medium mb-3">{course.programName}</p>
                   )}
 
                   {/* Tags */}

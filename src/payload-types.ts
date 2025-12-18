@@ -229,6 +229,7 @@ export interface Page {
     | GospelOfSalvationBlock
     | RecentSermonsBlock
     | RecentThinkingBiblicallyBlock
+    | EventsAnnouncementsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1564,6 +1565,36 @@ export interface RecentThinkingBiblicallyBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventsAnnouncementsBlock".
+ */
+export interface EventsAnnouncementsBlock {
+  title: string;
+  description?: string | null;
+  events?:
+    | {
+        category: 'weekly' | 'special' | 'retreat' | 'fellowship' | 'conference';
+        eventTitle: string;
+        eventDescription?: string | null;
+        /**
+         * e.g., "November 22, 2025" or "Every Tuesday"
+         */
+        date: string;
+        /**
+         * e.g., "04:00 PM to 06:00 PM" or "07:00 PM"
+         */
+        time: string;
+        location: string;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-transparent';
+  cardBackgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-gray-100';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'eventsAnnouncements';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sermons".
  */
 export interface Sermon {
@@ -2067,6 +2098,7 @@ export interface PagesSelect<T extends boolean = true> {
         gospelOfSalvation?: T | GospelOfSalvationBlockSelect<T>;
         recentSermons?: T | RecentSermonsBlockSelect<T>;
         recentThinkingBiblically?: T | RecentThinkingBiblicallyBlockSelect<T>;
+        eventsAnnouncements?: T | EventsAnnouncementsBlockSelect<T>;
       };
   meta?:
     | T
@@ -2491,6 +2523,29 @@ export interface RecentThinkingBiblicallyBlockSelect<T extends boolean = true> {
   limit?: T;
   showButton?: T;
   backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EventsAnnouncementsBlock_select".
+ */
+export interface EventsAnnouncementsBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  events?:
+    | T
+    | {
+        category?: T;
+        eventTitle?: T;
+        eventDescription?: T;
+        date?: T;
+        time?: T;
+        location?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  cardBackgroundColor?: T;
   id?: T;
   blockName?: T;
 }

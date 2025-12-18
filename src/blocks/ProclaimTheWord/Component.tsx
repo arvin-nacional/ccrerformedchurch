@@ -35,7 +35,7 @@ export const ProclaimTheWordBlock: React.FC<Props> = ({
         {/* Section Label */}
         {sectionLabel && (
           <div className="text-center mb-8">
-            <h3 className="text-lg font-bold text-blue-700">{sectionLabel}</h3>
+            <h3 className="text-lg font-bold text-gray-900">{sectionLabel}</h3>
           </div>
         )}
 
@@ -49,7 +49,7 @@ export const ProclaimTheWordBlock: React.FC<Props> = ({
               >
                 {/* Card Title */}
                 {card.title && (
-                  <h4 className="text-base font-bold text-blue-700 mb-3">{card.title}</h4>
+                  <h4 className="text-base font-bold text-gray-900 mb-3">{card.title}</h4>
                 )}
 
                 {/* Card Description */}

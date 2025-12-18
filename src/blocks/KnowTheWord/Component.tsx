@@ -39,7 +39,7 @@ export const KnowTheWordBlock: React.FC<Props> = ({
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           {/* Ministry Title */}
           {ministryTitle && (
-            <h3 className="text-xl font-bold text-blue-700 mb-3">{ministryTitle}</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-3">{ministryTitle}</h3>
           )}
 
           {/* Ministry Subtitle */}

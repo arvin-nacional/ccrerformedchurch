@@ -22,6 +22,7 @@ import { ProclaimTheWordBlock } from '../../blocks/ProclaimTheWord/config'
 import { GospelOfSalvationBlock } from '../../blocks/GospelOfSalvation/config'
 import { RecentSermonsBlock } from '../../blocks/RecentSermons/config'
 import { RecentThinkingBiblicallyBlock } from '../../blocks/RecentThinkingBiblically/config'
+import { EventsAnnouncementsBlock } from '../../blocks/EventsAnnouncements/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -108,6 +109,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 GospelOfSalvationBlock,
                 RecentSermonsBlock,
                 RecentThinkingBiblicallyBlock,
+                EventsAnnouncementsBlock,
               ],
               required: true,
               admin: {

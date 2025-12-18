@@ -8,7 +8,7 @@ export const RecentThinkingBiblicallyBlock: Block = {
       name: 'title',
       type: 'text',
       required: true,
-      defaultValue: 'Recent Articles & Videos',
+      defaultValue: 'Thinking Biblically',
       label: 'Section Title',
     },
     {
