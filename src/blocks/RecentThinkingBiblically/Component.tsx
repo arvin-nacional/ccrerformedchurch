@@ -59,7 +59,7 @@ export const RecentThinkingBiblicallyBlock: React.FC<RecentThinkingBiblicallyPro
         </div>
 
         {loading ? (
-          <div className="text-center text-muted-foreground">Loading...</div>
+          <div className="text-center text-muted-foreground mb-4">Loading...</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {items.map((item) => (

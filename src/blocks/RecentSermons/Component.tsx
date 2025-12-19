@@ -49,7 +49,7 @@ export const RecentSermonsBlock: React.FC<RecentSermonsProps> = (props) => {
 
         {/* Sermons Grid */}
         {loading ? (
-          <div className="text-center text-muted-foreground">Loading sermons...</div>
+          <div className="text-center text-muted-foreground mb-4">Loading sermons...</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {sermons.map((sermon) => (
