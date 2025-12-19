@@ -2,6 +2,11 @@ import type { CollectionConfig } from 'payload'
 import { authenticated } from '../access/authenticated'
 import { anyone } from '../access/anyone'
 import { slugField } from 'payload'
+import {
+  FixedToolbarFeature,
+  InlineToolbarFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
 
 export const Speakers: CollectionConfig = {
   slug: 'speakers',
@@ -27,9 +32,14 @@ export const Speakers: CollectionConfig = {
       label: 'Title/Role',
     },
     {
-      name: 'bio',
-      type: 'textarea',
-      label: 'Biography',
+      name: 'description',
+      type: 'richText',
+      label: 'Description',
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
+        },
+      }),
     },
     {
       name: 'photo',

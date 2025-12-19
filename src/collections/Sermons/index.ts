@@ -317,8 +317,8 @@ export const Sermons: CollectionConfig<'sermons'> = {
           type: 'text',
         },
         {
-          name: 'bio',
-          type: 'textarea',
+          name: 'description',
+          type: 'richText',
         },
       ],
     },

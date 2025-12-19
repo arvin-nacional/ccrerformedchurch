@@ -250,8 +250,12 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
                     {sermon.populatedSpeaker.title}
                   </p>
                 )}
-                {sermon.populatedSpeaker.bio && (
-                  <p className="text-sm leading-relaxed">{sermon.populatedSpeaker.bio}</p>
+                {sermon.populatedSpeaker.description && (
+                  <RichText
+                    className="prose dark:prose-invert prose-sm max-w-none"
+                    data={sermon.populatedSpeaker.description}
+                    enableGutter={false}
+                  />
                 )}
               </div>
             )}

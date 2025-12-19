@@ -1687,7 +1687,21 @@ export interface Sermon {
     id?: string | null;
     name?: string | null;
     title?: string | null;
-    bio?: string | null;
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
   };
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
@@ -1725,7 +1739,21 @@ export interface Speaker {
   id: string;
   name: string;
   title?: string | null;
-  bio?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   photo?: (string | null) | Media;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
@@ -2676,7 +2704,7 @@ export interface SermonsSelect<T extends boolean = true> {
         id?: T;
         name?: T;
         title?: T;
-        bio?: T;
+        description?: T;
       };
   generateSlug?: T;
   slug?: T;
@@ -2833,7 +2861,7 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface SpeakersSelect<T extends boolean = true> {
   name?: T;
   title?: T;
-  bio?: T;
+  description?: T;
   photo?: T;
   generateSlug?: T;
   slug?: T;

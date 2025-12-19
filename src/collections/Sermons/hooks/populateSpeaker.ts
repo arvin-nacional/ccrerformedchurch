@@ -15,7 +15,7 @@ export const populateSpeaker: CollectionAfterReadHook = async ({ doc, req, req: 
           id: speakerDoc.id,
           name: speakerDoc.name,
           title: speakerDoc.title,
-          bio: speakerDoc.bio,
+          description: speakerDoc.description,
         }
       }
     } catch {
