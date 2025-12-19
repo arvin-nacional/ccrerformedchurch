@@ -7,17 +7,29 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
+import { notFound } from 'next/navigation'
 
-export const dynamic = 'force-static'
 export const revalidate = 600
 
-export default async function Page() {
+type Args = {
+  params: Promise<{
+    pageNumber: string
+  }>
+}
+
+export default async function Page({ params: paramsPromise }: Args) {
+  const { pageNumber } = await paramsPromise
   const payload = await getPayload({ config: configPromise })
+
+  const sanitizedPageNumber = Number(pageNumber)
+
+  if (!Number.isInteger(sanitizedPageNumber)) notFound()
 
   const sermons = await payload.find({
     collection: 'sermons',
     depth: 1,
     limit: 12,
+    page: sanitizedPageNumber,
     overrideAccess: false,
     sort: '-sermonDate',
     select: {
@@ -78,7 +90,7 @@ export default async function Page() {
       <SermonArchive sermons={sermons.docs} series={series.docs} speakers={speakers.docs} />
 
       <div className="container mt-8">
-        {sermons.totalPages > 1 && sermons.page && (
+        {sermons?.page && sermons?.totalPages > 1 && (
           <Pagination page={sermons.page} totalPages={sermons.totalPages} basePath="/sermons" />
         )}
       </div>
@@ -86,9 +98,28 @@ export default async function Page() {
   )
 }
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
+  const { pageNumber } = await paramsPromise
   return {
-    title: `Sermon Archive - Capitol Commons Reformed Church`,
+    title: `Sermon Archive - Page ${pageNumber || ''} - Capitol Commons Reformed Church`,
     description: 'Browse our complete collection of sermons and grow in your faith journey.',
   }
+}
+
+export async function generateStaticParams() {
+  const payload = await getPayload({ config: configPromise })
+  const { totalDocs } = await payload.count({
+    collection: 'sermons',
+    overrideAccess: false,
+  })
+
+  const totalPages = Math.ceil(totalDocs / 12)
+
+  const pages: { pageNumber: string }[] = []
+
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push({ pageNumber: String(i) })
+  }
+
+  return pages
 }
