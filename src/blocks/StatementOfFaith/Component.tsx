@@ -20,10 +20,10 @@ export const StatementOfFaithBlock: React.FC<Props> = ({
         {/* Header */}
         {title && (
           <div className="text-center mb-12">
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{title}</h1>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
             {introduction && (
-              <div className="prose prose-lg max-w-none text-gray-700 mx-auto">
-                <RichText data={introduction} enableGutter={false} />
+              <div className="prose prose-lg max-w-none text-gray-700 mx-auto text-sm ">
+                <RichText data={introduction} enableGutter={false} className="text-sm" />
               </div>
             )}
           </div>
