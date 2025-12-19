@@ -230,6 +230,7 @@ export interface Page {
     | RecentSermonsBlock
     | RecentThinkingBiblicallyBlock
     | EventsAnnouncementsBlock
+    | ContactUsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1595,6 +1596,37 @@ export interface EventsAnnouncementsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsBlock".
+ */
+export interface ContactUsBlock {
+  title: string;
+  description?: string | null;
+  getInTouchTitle?: string | null;
+  getInTouchDescription?: string | null;
+  address?: string | null;
+  addressLine2?: string | null;
+  phone?: string | null;
+  phoneHours?: string | null;
+  email?: string | null;
+  emailNote?: string | null;
+  serviceTimesTitle?: string | null;
+  serviceTimes?:
+    | {
+        serviceName: string;
+        time: string;
+        id?: string | null;
+      }[]
+    | null;
+  formTitle?: string | null;
+  formDescription?: string | null;
+  form: string | Form;
+  backgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-transparent';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactUs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sermons".
  */
 export interface Sermon {
@@ -2099,6 +2131,7 @@ export interface PagesSelect<T extends boolean = true> {
         recentSermons?: T | RecentSermonsBlockSelect<T>;
         recentThinkingBiblically?: T | RecentThinkingBiblicallyBlockSelect<T>;
         eventsAnnouncements?: T | EventsAnnouncementsBlockSelect<T>;
+        contactUs?: T | ContactUsBlockSelect<T>;
       };
   meta?:
     | T
@@ -2546,6 +2579,36 @@ export interface EventsAnnouncementsBlockSelect<T extends boolean = true> {
       };
   backgroundColor?: T;
   cardBackgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsBlock_select".
+ */
+export interface ContactUsBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  getInTouchTitle?: T;
+  getInTouchDescription?: T;
+  address?: T;
+  addressLine2?: T;
+  phone?: T;
+  phoneHours?: T;
+  email?: T;
+  emailNote?: T;
+  serviceTimesTitle?: T;
+  serviceTimes?:
+    | T
+    | {
+        serviceName?: T;
+        time?: T;
+        id?: T;
+      };
+  formTitle?: T;
+  formDescription?: T;
+  form?: T;
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }

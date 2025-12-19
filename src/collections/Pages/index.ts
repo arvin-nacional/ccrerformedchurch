@@ -23,6 +23,7 @@ import { GospelOfSalvationBlock } from '../../blocks/GospelOfSalvation/config'
 import { RecentSermonsBlock } from '../../blocks/RecentSermons/config'
 import { RecentThinkingBiblicallyBlock } from '../../blocks/RecentThinkingBiblically/config'
 import { EventsAnnouncementsBlock } from '../../blocks/EventsAnnouncements/config'
+import { ContactUsBlock } from '../../blocks/ContactUs/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -110,6 +111,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 RecentSermonsBlock,
                 RecentThinkingBiblicallyBlock,
                 EventsAnnouncementsBlock,
+                ContactUsBlock,
               ],
               required: true,
               admin: {
