@@ -15,6 +15,7 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Media } from '@/components/Media'
 import { formatDateTime } from '@/utilities/formatDateTime'
 import Link from 'next/link'
+import { RelatedThinkingBiblically } from '@/components/RelatedThinkingBiblically'
 
 function getYouTubeVideoId(url: string): string | null {
   const patterns = [
@@ -70,7 +71,7 @@ export default async function ThinkingBiblicallyDetailPage({ params: paramsPromi
   const isVideo = item.contentType === 'video'
 
   return (
-    <article className="pb-16 pt-12 ">
+    <article className="pt-12">
       <PageClient />
 
       <PayloadRedirects disableNotFound url={url} />
@@ -296,6 +297,15 @@ export default async function ThinkingBiblicallyDetailPage({ params: paramsPromi
           </div>
         </div>
       </div>
+
+      {/* Related Content */}
+      {item.publishedDate && (
+        <RelatedThinkingBiblically
+          currentItemId={item.id}
+          currentPublishedDate={item.publishedDate}
+          contentType={item.contentType}
+        />
+      )}
     </article>
   )
 }

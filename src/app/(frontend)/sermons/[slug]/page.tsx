@@ -15,6 +15,7 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Media } from '@/components/Media'
 import { formatDateTime } from '@/utilities/formatDateTime'
 import Link from 'next/link'
+import { RelatedSermons } from '@/components/RelatedSermons'
 
 function getYouTubeVideoId(url: string): string | null {
   const patterns = [
@@ -68,7 +69,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
   if (!sermon) return <PayloadRedirects url={url} />
 
   return (
-    <article className="pb-16 pt-12 ">
+    <article className=" pt-12 ">
       <PageClient />
 
       <PayloadRedirects disableNotFound url={url} />
@@ -288,6 +289,11 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
           </div>
         </div>
       </div>
+
+      {/* Related Sermons */}
+      {sermon.sermonDate && (
+        <RelatedSermons currentSermonId={sermon.id} currentSermonDate={sermon.sermonDate} />
+      )}
     </article>
   )
 }
