@@ -1,6 +1,6 @@
 'use client'
 import { cn } from '@/utilities/ui'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import {
   ThinkingBiblicallyCard,
@@ -16,29 +16,56 @@ import {
 } from '@/components/ui/select'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Search, Filter } from 'lucide-react'
+import type { ThinkingBiblically } from '@/payload-types'
 
 export type Props = {
   items: CardThinkingBiblicallyData[]
 }
 
 export const ThinkingBiblicallyArchive: React.FC<Props> = (props) => {
-  const { items } = props
+  const { items: initialItems } = props
+  const [items, setItems] = useState<ThinkingBiblically[]>(initialItems as ThinkingBiblically[])
+  const [loading, setLoading] = useState(false)
   const [selectedType, setSelectedType] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [categoryFilter, setCategoryFilter] = useState<string>('all')
+  const [hasFilterApplied, setHasFilterApplied] = useState(false)
+
+  const fetchItems = useCallback(async (contentType: string) => {
+    setLoading(true)
+    try {
+      const url = `/api/thinking-biblically?limit=100&sort=-publishedDate&depth=1&where[contentType][equals]=${contentType}`
+      const response = await fetch(url)
+      const data = await response.json()
+      setItems(data.docs || [])
+    } catch (error) {
+      console.error('Error fetching items:', error)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    const contentType =
+      categoryFilter !== 'all' ? categoryFilter : selectedType !== 'all' ? selectedType : null
+
+    if (contentType) {
+      setHasFilterApplied(true)
+      fetchItems(contentType)
+    } else if (hasFilterApplied) {
+      setItems(initialItems as ThinkingBiblically[])
+      setHasFilterApplied(false)
+    }
+  }, [categoryFilter, selectedType, fetchItems, initialItems, hasFilterApplied])
 
   const filteredItems = items.filter((item) => {
-    const typeMatch = selectedType === 'all' || item.contentType === selectedType
-
     const searchMatch =
       searchQuery === '' ||
       item.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.meta?.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.author?.toLowerCase().includes(searchQuery.toLowerCase())
 
-    const categoryMatch = categoryFilter === 'all' || item.contentType === categoryFilter
-
-    return typeMatch && searchMatch && categoryMatch
+    return searchMatch
   })
 
   return (
@@ -55,7 +82,7 @@ export const ThinkingBiblicallyArchive: React.FC<Props> = (props) => {
               className="pl-10  border-none bg-gray-100 rounded-xl"
             />
           </div>
-          <div className="flex items-center gap-2 md:w-64 bg-gray-100 rounded-xl px-4">
+          {/* <div className="flex items-center gap-2 md:w-64 bg-gray-100 rounded-xl px-4">
             <Filter className="text-muted-foreground h-4 w-4" />
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
               <SelectTrigger className="border-none bg-transparent">
@@ -67,7 +94,7 @@ export const ThinkingBiblicallyArchive: React.FC<Props> = (props) => {
                 <SelectItem value="video">Videos</SelectItem>
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
         </div>
 
         <div className="flex justify-center">
@@ -116,23 +143,29 @@ export const ThinkingBiblicallyArchive: React.FC<Props> = (props) => {
       </div>
 
       <div>
-        <div className="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 xl:gap-x-8">
-          {filteredItems?.map((result, index) => {
-            if (typeof result === 'object' && result !== null) {
-              return (
-                <div className="col-span-4" key={index}>
-                  <ThinkingBiblicallyCard className="h-full" doc={result} />
-                </div>
-              )
-            }
+        {loading ? (
+          <div className="text-center py-12 text-muted-foreground">Loading...</div>
+        ) : (
+          <>
+            <div className="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 xl:gap-x-8">
+              {filteredItems?.map((result, index) => {
+                if (typeof result === 'object' && result !== null) {
+                  return (
+                    <div className="col-span-4" key={index}>
+                      <ThinkingBiblicallyCard className="h-full" doc={result} />
+                    </div>
+                  )
+                }
 
-            return null
-          })}
-        </div>
-        {filteredItems.length === 0 && (
-          <div className="text-center py-12 text-muted-foreground">
-            No items found matching your search or filter.
-          </div>
+                return null
+              })}
+            </div>
+            {filteredItems.length === 0 && (
+              <div className="text-center py-12 text-muted-foreground">
+                No items found matching your search or filter.
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
