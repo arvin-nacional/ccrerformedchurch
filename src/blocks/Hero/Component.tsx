@@ -1,10 +1,10 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
-import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 import { BookOpen, Calendar, Clock, MapPin } from 'lucide-react'
-import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
+import { getMediaUrl } from '@/utilities/getMediaUrl'
 import type { HeroBlock as HeroBlockType } from '@/payload-types'
 
 type Props = {
@@ -57,14 +57,23 @@ export const HeroBlock: React.FC<Props> = ({
         className="absolute inset-0 bg-cover bg-center will-change-transform"
         style={{ top: '-20%', height: '120%' }}
       >
-        {backgroundImage && typeof backgroundImage === 'object' ? (
-          <Media fill imgClassName="object-cover" priority resource={backgroundImage} />
+        {backgroundImage && typeof backgroundImage === 'object' && backgroundImage.url ? (
+          <Image
+            src={getMediaUrl(backgroundImage.url)}
+            alt={backgroundImage.alt || 'Hero background'}
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
         ) : (
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1655392032622-e026b4e8ef69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHVyY2glMjBpbnRlcmlvciUyMHdvcnNoaXB8ZW58MXx8fHwxNzYxNjk3NzA5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral')`,
-            }}
+          <Image
+            src="https://images.unsplash.com/photo-1655392032622-e026b4e8ef69?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHVyY2glMjBpbnRlcmlvciUyMHdvcnNoaXB8ZW58MXx8fHwxNzYxNjk3NzA5fDA&ixlib=rb-4.1.0&q=80&w=1080"
+            alt="Church interior"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
           />
         )}
         <div className="absolute inset-0 bg-black/50" />
