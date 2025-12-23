@@ -16,6 +16,7 @@ import { Media } from '@/components/Media'
 import { formatDateTime } from '@/utilities/formatDateTime'
 import Link from 'next/link'
 import { RelatedThinkingBiblically } from '@/components/RelatedThinkingBiblically'
+import { ShareButton } from '@/components/ShareButton'
 
 function getYouTubeVideoId(url: string): string | null {
   const patterns = [
@@ -174,7 +175,7 @@ export default async function ThinkingBiblicallyDetailPage({ params: paramsPromi
                   </span>
                 </div>
                 <h1 className="text-4xl lg:text-4xl font-bold mb-4">{item.title}</h1>
-                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                   {item.author && (
                     <div className="flex items-center gap-2">
                       <svg
@@ -253,6 +254,7 @@ export default async function ThinkingBiblicallyDetailPage({ params: paramsPromi
                       {item.duration} min
                     </div>
                   )}
+                  <ShareButton title={item.title} />
                 </div>
               </div>
             </div>
@@ -274,9 +276,13 @@ export default async function ThinkingBiblicallyDetailPage({ params: paramsPromi
               <h3 className="text-sm font-semibold mb-4">About Thinking Biblically</h3>
               <h4 className="font-bold text-lg mb-3">Thinking Biblically</h4>
               <p className="text-sm leading-relaxed">
-                Thinking Biblically is a resource designed to help you understand and apply
-                Scripture to everyday life. Through articles and videos, we explore biblical truths
-                and provide practical insights for living out your faith in a Christ-centered way.
+                Thinking Biblically is a ministry which aims to point people to Christ and scripture
+                in answering and addressing the realities of this fallen world. Every 4th Sunday of
+                the Month, CCRC holds a question and answer for its flock right after service to
+                help people think biblically on issues and matters relevant to people. There are
+                also blogs and articles made under this same spirit of pointing people to the Word
+                on anything and everything. May these articles and discussions exalt the name of
+                Christ and His Words in your life!
               </p>
             </div>
 

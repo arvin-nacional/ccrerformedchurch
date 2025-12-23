@@ -15,7 +15,7 @@ export const EventsAnnouncementsBlock: Block = {
       name: 'description',
       type: 'textarea',
       defaultValue:
-        "Join us as we gather to hear the faithful preaching of God's Word — the foundation by which Christ builds His church. Stay updated on upcoming services and events as we know, live, and proclaim Christ together.",
+        'According to God’s will and purposes, may you join us in worshipping the Lord in spirit and in truth. Please stay updated as well for our upcoming events and announcements here.',
       label: 'Description',
     },
     {
@@ -32,6 +32,7 @@ export const EventsAnnouncementsBlock: Block = {
           required: true,
           options: [
             { label: 'Weekly', value: 'weekly' },
+            { label: 'Fortnightly', value: 'fortnightly' },
             { label: 'Special Event', value: 'special' },
             { label: 'Retreat', value: 'retreat' },
             { label: 'Fellowship', value: 'fellowship' },

@@ -16,6 +16,7 @@ import { Media } from '@/components/Media'
 import { formatDateTime } from '@/utilities/formatDateTime'
 import Link from 'next/link'
 import { RelatedSermons } from '@/components/RelatedSermons'
+import { ShareButton } from '@/components/ShareButton'
 
 function getYouTubeVideoId(url: string): string | null {
   const patterns = [
@@ -139,7 +140,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
                   <div className="text-sm text-muted-foreground mb-2">{sermon.series.title}</div>
                 )}
                 <h1 className="text-4xl lg:text-4xl font-bold mb-4">{sermon.title}</h1>
-                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                   {sermon.populatedSpeaker?.name && (
                     <div className="flex items-center gap-2">
                       <svg
@@ -219,6 +220,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
                       {sermon.scriptureBook} {sermon.scriptureReference}
                     </div>
                   )}
+                  <ShareButton title={sermon.title} />
                 </div>
               </div>
             </div>

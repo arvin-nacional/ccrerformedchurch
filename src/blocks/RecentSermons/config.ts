@@ -15,7 +15,7 @@ export const RecentSermonsBlock: Block = {
       name: 'description',
       type: 'text',
       defaultValue:
-        'Catch up on recent messages or revisit your favorites. All sermons are available to watch anytime.',
+        'May the Lord provide you discernment, wisdom and submission as you view these sermons. The Lord has allowed these sermons to sanctify our souls unto Christlikeness and we pray it will do so for you as well.',
       label: 'Description',
     },
     {

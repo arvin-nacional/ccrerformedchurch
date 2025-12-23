@@ -1573,7 +1573,7 @@ export interface EventsAnnouncementsBlock {
   description?: string | null;
   events?:
     | {
-        category: 'weekly' | 'special' | 'retreat' | 'fellowship' | 'conference';
+        category: 'weekly' | 'fortnightly' | 'special' | 'retreat' | 'fellowship' | 'conference';
         eventTitle: string;
         eventDescription?: string | null;
         /**

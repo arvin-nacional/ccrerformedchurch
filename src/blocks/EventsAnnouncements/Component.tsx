@@ -3,7 +3,7 @@ import React from 'react'
 import { Calendar, Clock, MapPin } from 'lucide-react'
 import type { EventsAnnouncementsBlock as EventsAnnouncementsBlockType } from '@/payload-types'
 
-type CategoryType = 'weekly' | 'special' | 'retreat' | 'fellowship' | 'conference'
+type CategoryType = 'weekly' | 'special' | 'retreat' | 'fellowship' | 'conference' | 'fortnightly'
 
 const categoryStyles: Record<CategoryType, { bg: string; text: string; label: string }> = {
   weekly: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Weekly' },
@@ -11,6 +11,7 @@ const categoryStyles: Record<CategoryType, { bg: string; text: string; label: st
   retreat: { bg: 'bg-purple-100', text: 'text-purple-700', label: 'Retreat' },
   fellowship: { bg: 'bg-green-100', text: 'text-green-700', label: 'Fellowship' },
   conference: { bg: 'bg-orange-100', text: 'text-orange-700', label: 'Conference' },
+  fortnightly: { bg: 'bg-blue-200', text: 'text-blue-700', label: 'Fortnightly' },
 }
 
 export type EventsAnnouncementsProps = {
