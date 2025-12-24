@@ -3,7 +3,14 @@ import React from 'react'
 import { Calendar, Clock, MapPin } from 'lucide-react'
 import type { EventsAnnouncementsBlock as EventsAnnouncementsBlockType } from '@/payload-types'
 
-type CategoryType = 'weekly' | 'special' | 'retreat' | 'fellowship' | 'conference' | 'fortnightly'
+type CategoryType =
+  | 'weekly'
+  | 'special'
+  | 'retreat'
+  | 'fellowship'
+  | 'conference'
+  | 'fortnightly'
+  | 'upon-request'
 
 const categoryStyles: Record<CategoryType, { bg: string; text: string; label: string }> = {
   weekly: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Weekly' },
@@ -12,6 +19,7 @@ const categoryStyles: Record<CategoryType, { bg: string; text: string; label: st
   fellowship: { bg: 'bg-green-100', text: 'text-green-700', label: 'Fellowship' },
   conference: { bg: 'bg-orange-100', text: 'text-orange-700', label: 'Conference' },
   fortnightly: { bg: 'bg-blue-200', text: 'text-blue-700', label: 'Fortnightly' },
+  'upon-request': { bg: 'bg-amber-100', text: 'text-amber-700', label: 'Upon Request' },
 }
 
 export type EventsAnnouncementsProps = {
@@ -72,19 +80,34 @@ export const EventsAnnouncementsBlock: React.FC<EventsAnnouncementsProps> = (pro
                 )}
 
                 <div className="space-y-2 mt-4">
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <Calendar className="w-4 h-4" />
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <Clock className="w-4 h-4" />
-                    <span>{event.time}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500">
-                    <MapPin className="w-4 h-4" />
-                    <span>{event.location}</span>
-                  </div>
+                  {event.date && (
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <Calendar className="w-4 h-4" />
+                      <span>{event.date}</span>
+                    </div>
+                  )}
+                  {event.time && (
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <Clock className="w-4 h-4" />
+                      <span>{event.time}</span>
+                    </div>
+                  )}
+                  {event.location && (
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <MapPin className="w-4 h-4" />
+                      <span>{event.location}</span>
+                    </div>
+                  )}
                 </div>
+
+                {event.linkText && event.linkUrl && (
+                  <a
+                    href={event.linkUrl}
+                    className="inline-block mt-4 text-sm font-medium text-[#B08D57] hover:underline"
+                  >
+                    {event.linkText} →
+                  </a>
+                )}
               </div>
             )
           })}

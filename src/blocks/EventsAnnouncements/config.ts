@@ -37,6 +37,7 @@ export const EventsAnnouncementsBlock: Block = {
             { label: 'Retreat', value: 'retreat' },
             { label: 'Fellowship', value: 'fellowship' },
             { label: 'Conference', value: 'conference' },
+            { label: 'Upon Request', value: 'upon-request' },
           ],
           defaultValue: 'weekly',
         },
@@ -55,26 +56,43 @@ export const EventsAnnouncementsBlock: Block = {
           name: 'date',
           type: 'text',
           label: 'Date',
-          required: true,
+          required: false,
           admin: {
-            description: 'e.g., "November 22, 2025" or "Every Tuesday"',
+            description: 'e.g., "November 22, 2025" or "Every Tuesday" or "Upon Request"',
           },
         },
         {
           name: 'time',
           type: 'text',
           label: 'Time',
-          required: true,
+          required: false,
           admin: {
-            description: 'e.g., "04:00 PM to 06:00 PM" or "07:00 PM"',
+            description:
+              'e.g., "04:00 PM to 06:00 PM" or "07:00 PM" (leave empty for Upon Request)',
           },
         },
         {
           name: 'location',
           type: 'text',
           label: 'Location',
-          required: true,
+          required: false,
           defaultValue: 'Main Sanctuary',
+        },
+        {
+          name: 'linkText',
+          type: 'text',
+          label: 'Link Text',
+          admin: {
+            description: 'e.g., "Click here to make an appointment"',
+          },
+        },
+        {
+          name: 'linkUrl',
+          type: 'text',
+          label: 'Link URL',
+          admin: {
+            description: 'URL for the link (e.g., contact page or external booking link)',
+          },
         },
       ],
     },

@@ -1621,18 +1621,26 @@ export interface EventsAnnouncementsBlock {
   description?: string | null;
   events?:
     | {
-        category: 'weekly' | 'fortnightly' | 'special' | 'retreat' | 'fellowship' | 'conference';
+        category: 'weekly' | 'fortnightly' | 'special' | 'retreat' | 'fellowship' | 'conference' | 'upon-request';
         eventTitle: string;
         eventDescription?: string | null;
         /**
-         * e.g., "November 22, 2025" or "Every Tuesday"
+         * e.g., "November 22, 2025" or "Every Tuesday" or "Upon Request"
          */
-        date: string;
+        date?: string | null;
         /**
-         * e.g., "04:00 PM to 06:00 PM" or "07:00 PM"
+         * e.g., "04:00 PM to 06:00 PM" or "07:00 PM" (leave empty for Upon Request)
          */
-        time: string;
-        location: string;
+        time?: string | null;
+        location?: string | null;
+        /**
+         * e.g., "Click here to make an appointment"
+         */
+        linkText?: string | null;
+        /**
+         * URL for the link (e.g., contact page or external booking link)
+         */
+        linkUrl?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -2757,6 +2765,8 @@ export interface EventsAnnouncementsBlockSelect<T extends boolean = true> {
         date?: T;
         time?: T;
         location?: T;
+        linkText?: T;
+        linkUrl?: T;
         id?: T;
       };
   backgroundColor?: T;
