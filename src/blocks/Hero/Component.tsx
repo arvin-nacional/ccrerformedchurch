@@ -92,15 +92,15 @@ export const HeroBlock: React.FC<Props> = ({
 
         {/* Service Times */}
         {serviceTimes && (
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex flex-row gap-4 justify-center items-center mb-8">
             {serviceTimes.day && (
-              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-xl">
+              <div className="flex items-center gap-2  px-6 py-3 rounded-xl">
                 <Calendar className="w-5 h-5" />
                 <span>{serviceTimes.day}</span>
               </div>
             )}
             {serviceTimes.times && (
-              <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-xl">
+              <div className="flex items-center gap-2 px-6 py-3 rounded-xl">
                 <Clock className="w-5 h-5" />
                 <span>{serviceTimes.times}</span>
               </div>
@@ -108,23 +108,19 @@ export const HeroBlock: React.FC<Props> = ({
           </div>
         )}
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
           {primaryButton && (
             <CMSLink
               {...primaryButton.link}
-              className="inline-flex items-center justify-center rounded-xl text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-orange-600 text-white hover:bg-orange-700 h-11 px-8"
-            >
-              <BookOpen className="ml-2" />
-            </CMSLink>
+              className="inline-flex items-center justify-center rounded-xl text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gray-950 text-white hover:bg-gray-800 h-11 px-8"
+            ></CMSLink>
           )}
 
           {secondaryButton && (
             <CMSLink
               {...secondaryButton.link}
-              className="inline-flex items-center justify-center rounded-xl text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 h-11 px-8"
-            >
-              <MapPin className="ml-2" />
-            </CMSLink>
+              className="inline-flex items-center justify-center rounded-xl text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-white bg-white/10   text-white hover:bg-white/20 h-11 px-8"
+            ></CMSLink>
           )}
         </div>
       </div>
