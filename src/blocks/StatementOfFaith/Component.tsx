@@ -1,6 +1,7 @@
 // src/blocks/StatementOfFaith/Component.tsx
 import React from 'react'
 import RichText from '@/components/RichText'
+import { CMSLink } from '@/components/Link'
 import type { StatementOfFaithBlock as StatementOfFaithBlockType } from '@/payload-types'
 
 type Props = {
@@ -13,6 +14,10 @@ export const StatementOfFaithBlock: React.FC<Props> = ({
   title,
   introduction,
   sections,
+  ctaTitle,
+  ctaDescription,
+  ctaLink,
+  ctaFooterText,
 }) => {
   return (
     <section className={`py-16 bg-white ${className || ''}`}>
@@ -46,6 +51,25 @@ export const StatementOfFaithBlock: React.FC<Props> = ({
                 )}
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Call to Action Section */}
+        {(ctaTitle || ctaDescription || ctaLink) && (
+          <div className="mt-16 bg-[#074081] text-white rounded-2xl px-8 py-10 text-center">
+            {ctaTitle && <h3 className="text-2xl font-bold mb-4">{ctaTitle}</h3>}
+            {ctaDescription && (
+              <p className="text-sm text-gray-200 max-w-2xl mx-auto mb-6">{ctaDescription}</p>
+            )}
+            {ctaLink && (
+              <CMSLink
+                {...ctaLink}
+                className="inline-block bg-white text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+              />
+            )}
+            {ctaFooterText && (
+              <p className="text-xs text-gray-300 max-w-xl mx-auto mt-6">{ctaFooterText}</p>
+            )}
           </div>
         )}
       </div>

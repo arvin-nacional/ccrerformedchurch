@@ -972,6 +972,28 @@ export interface StatementOfFaithBlock {
         id?: string | null;
       }[]
     | null;
+  ctaTitle?: string | null;
+  ctaDescription?: string | null;
+  ctaLink: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: string | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  ctaFooterText?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'statementOfFaith';
@@ -2344,6 +2366,19 @@ export interface StatementOfFaithBlockSelect<T extends boolean = true> {
         content?: T;
         id?: T;
       };
+  ctaTitle?: T;
+  ctaDescription?: T;
+  ctaLink?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  ctaFooterText?: T;
   id?: T;
   blockName?: T;
 }

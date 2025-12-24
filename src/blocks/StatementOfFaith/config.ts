@@ -1,6 +1,7 @@
 // src/blocks/StatementOfFaith/config.ts
 import type { Block } from 'payload'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { link } from '@/fields/link'
 
 export const StatementOfFaithBlock: Block = {
   slug: 'statementOfFaith',
@@ -49,6 +50,38 @@ export const StatementOfFaithBlock: Block = {
             },
           }),
           required: true,
+        },
+      ],
+    },
+    {
+      type: 'collapsible',
+      label: 'Call to Action Section',
+      fields: [
+        {
+          name: 'ctaTitle',
+          type: 'text',
+          label: 'CTA Title',
+          defaultValue: 'Want to go deeper?',
+        },
+        {
+          name: 'ctaDescription',
+          type: 'textarea',
+          label: 'CTA Description',
+          defaultValue:
+            'The full version of our Statement of Faith includes all 157 doctrinal affirmations with detailed Scripture references and theological foundations. If you would like to explore the complete version, you may read it on the CCRC Statement of Faith Page.',
+        },
+        link({
+          overrides: {
+            name: 'ctaLink',
+            label: 'CTA Button Link',
+          },
+        }),
+        {
+          name: 'ctaFooterText',
+          type: 'textarea',
+          label: 'CTA Footer Text',
+          defaultValue:
+            'We hope this summary is a helpful entry point into understanding what we believe. May it lead you to a deeper confidence in the gospel and a greater love for Christ and His Church.',
         },
       ],
     },
