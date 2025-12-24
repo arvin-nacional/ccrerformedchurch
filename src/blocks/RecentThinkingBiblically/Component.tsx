@@ -50,7 +50,9 @@ export const RecentThinkingBiblicallyBlock: React.FC<RecentThinkingBiblicallyPro
     <section className={`py-16 ${backgroundColor || 'bg-white'} ${className || ''}`}>
       <div className="container">
         <div className="text-center mb-12">
-          {title && <h2 className="text-4xl font-bold mb-4">{title}</h2>}
+          {title && (
+            <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-900">{title}</h2>
+          )}
           {description && (
             <div className="text-lg text-muted-foreground max-w-5xl mx-auto">
               <p className="text-gray-600 text-base">{description}</p>

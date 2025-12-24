@@ -48,7 +48,7 @@ export const SermonCard: React.FC<{
         )}
         {title && (
           <div className="prose mb-2">
-            <h3 className="text-xl font-semibold mb-2">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-900">
               <Link className="not-prose hover:underline" href={href} ref={link.ref}>
                 {title}
               </Link>
