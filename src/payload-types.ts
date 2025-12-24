@@ -231,6 +231,7 @@ export interface Page {
     | RecentThinkingBiblicallyBlock
     | EventsAnnouncementsBlock
     | ContactUsBlock
+    | ChurchLeadershipBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1649,6 +1650,53 @@ export interface ContactUsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ChurchLeadershipBlock".
+ */
+export interface ChurchLeadershipBlock {
+  title: string;
+  introduction?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  backgroundColor: 'bg-white' | 'bg-gray-50' | 'bg-transparent';
+  statements?:
+    | {
+        statementCode: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'churchLeadership';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sermons".
  */
 export interface Sermon {
@@ -2182,6 +2230,7 @@ export interface PagesSelect<T extends boolean = true> {
         recentThinkingBiblically?: T | RecentThinkingBiblicallyBlockSelect<T>;
         eventsAnnouncements?: T | EventsAnnouncementsBlockSelect<T>;
         contactUs?: T | ContactUsBlockSelect<T>;
+        churchLeadership?: T | ChurchLeadershipBlockSelect<T>;
       };
   meta?:
     | T
@@ -2672,6 +2721,24 @@ export interface ContactUsBlockSelect<T extends boolean = true> {
   formDescription?: T;
   form?: T;
   backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ChurchLeadershipBlock_select".
+ */
+export interface ChurchLeadershipBlockSelect<T extends boolean = true> {
+  title?: T;
+  introduction?: T;
+  backgroundColor?: T;
+  statements?:
+    | T
+    | {
+        statementCode?: T;
+        content?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
