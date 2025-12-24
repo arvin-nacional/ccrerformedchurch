@@ -52,7 +52,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden lg:flex gap-6 items-center">
+      <nav className="hidden xl:flex gap-6 items-center">
         {navItems.map(({ link }, i) => {
           return (
             <div
@@ -114,7 +114,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
       {/* Mobile Menu Button */}
       <button
         className={`
-          lg:hidden p-2 transition-all duration-300 transform hover:scale-110 active:scale-95
+          xl:hidden p-2 transition-all duration-300 transform hover:scale-110 active:scale-95
           ${getHamburgerColor()}
         `}
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -138,7 +138,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[999] lg:hidden">
+        <div className="fixed inset-0 z-[999] xl:hidden">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/50 animate-in fade-in duration-300"
