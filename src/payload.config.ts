@@ -16,6 +16,7 @@ import { SermonSeries } from './collections/SermonSeries'
 import { Speakers } from './collections/Speakers'
 import { ThinkingBiblically } from './collections/ThinkingBiblically'
 import { Users } from './collections/Users'
+import { Members } from './collections/Members'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -81,6 +82,7 @@ export default buildConfig({
     Speakers,
     SermonSeries,
     Users,
+    Members,
   ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],

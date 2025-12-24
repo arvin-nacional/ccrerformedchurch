@@ -12,6 +12,7 @@ export const Header: GlobalConfig = {
     {
       name: 'navItems',
       type: 'array',
+      label: 'Navigation Items',
       fields: [
         link({
           appearances: false,
@@ -24,6 +25,24 @@ export const Header: GlobalConfig = {
           RowLabel: '@/Header/RowLabel#RowLabel',
         },
       },
+    },
+    {
+      name: 'memberNavItems',
+      type: 'array',
+      label: 'Member-Only Navigation Items',
+      admin: {
+        description: 'These links will only be visible to logged-in members',
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/Header/RowLabel#RowLabel',
+        },
+      },
+      fields: [
+        link({
+          appearances: false,
+        }),
+      ],
+      maxRows: 6,
     },
   ],
   hooks: {

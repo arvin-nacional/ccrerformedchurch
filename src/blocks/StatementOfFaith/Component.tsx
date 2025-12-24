@@ -64,7 +64,7 @@ export const StatementOfFaithBlock: React.FC<Props> = ({
             {ctaLink && (
               <CMSLink
                 {...ctaLink}
-                className="inline-block bg-white text-gray-900 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors"
+                className="inline-block bg-white text-gray-900 font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors"
               />
             )}
             {ctaFooterText && (

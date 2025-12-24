@@ -7,7 +7,7 @@ import type { Header as HeaderType } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 import Link from 'next/link'
-import { SearchIcon } from 'lucide-react'
+import { useMemberAuth } from '@/providers/MemberAuth'
 
 interface HeaderNavProps {
   data: HeaderType
@@ -21,7 +21,9 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   pathname = '/',
 }) => {
   const navItems = data?.navItems || []
+  const memberNavItems = data?.memberNavItems || []
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { member, logout, isLoading } = useMemberAuth()
 
   // Determine text color based on page and scroll state
   const getTextColor = () => {
@@ -72,6 +74,41 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             </div>
           )
         })}
+        {/* Member-Only Nav Items */}
+        {member &&
+          memberNavItems.map(({ link }, i) => {
+            return (
+              <div key={`member-${i}`} className="group relative overflow-hidden">
+                <CMSLink
+                  {...link}
+                  appearance="inline"
+                  className={`
+                  transition-all duration-300 font-medium relative z-10
+                  transform hover:scale-105 hover:-translate-y-0.5
+                  ${getTextColor()}
+                `}
+                />
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#B08D57] transition-all duration-300 group-hover:w-full" />
+              </div>
+            )
+          })}
+        {/* Sign In / Sign Out Button */}
+        {!isLoading &&
+          (member ? (
+            <button
+              onClick={() => logout()}
+              className="ml-4 px-4 py-2 border border-white text-white rounded-2xl text-sm font-medium transition-all duration-300 hover:bg-white hover:text-black"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <Link
+              href="/member-login"
+              className="ml-4 px-4 py-2 border border-white text-white rounded-2xl text-sm font-medium transition-all duration-300 hover:bg-white hover:text-black"
+            >
+              Sign In
+            </Link>
+          ))}
       </nav>
 
       {/* Mobile Menu Button */}
@@ -142,6 +179,59 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                     />
                   </div>
                 ))}
+                {/* Member-Only Nav Items (Mobile) */}
+                {member && memberNavItems.length > 0 && (
+                  <div className="pt-4 border-t border-gray-200 mt-4">
+                    <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">
+                      Member Area
+                    </div>
+                    {memberNavItems.map(({ link }, i) => (
+                      <div
+                        key={`member-mobile-${i}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="cursor-pointer group"
+                        style={{
+                          animation: `slideInLeft 0.3s ease-out ${(navItems.length + i) * 100}ms both`,
+                        }}
+                      >
+                        <CMSLink
+                          {...link}
+                          appearance="inline"
+                          className={`
+                            transition-all duration-300 font-medium py-2 block
+                            transform group-hover:translate-x-2 text-[#B08D57]
+                          `}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {/* Sign In / Sign Out Button (Mobile) */}
+                {!isLoading && (
+                  <div
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="pt-4 border-t border-gray-200 mt-4"
+                    style={{
+                      animation: `slideInLeft 0.3s ease-out ${(navItems.length + (member ? memberNavItems.length : 0)) * 100}ms both`,
+                    }}
+                  >
+                    {member ? (
+                      <button
+                        onClick={() => logout()}
+                        className="w-full block text-center px-4 py-2 border border-[#B08D57] text-[#B08D57] rounded-lg text-sm font-medium transition-all duration-300 hover:bg-[#B08D57] hover:text-black"
+                      >
+                        Sign Out
+                      </button>
+                    ) : (
+                      <Link
+                        href="/member-login"
+                        className="block text-center px-4 py-2 border border-[#B08D57] text-[#B08D57] rounded-lg text-sm font-medium transition-all duration-300 hover:bg-[#B08D57] hover:text-black"
+                      >
+                        Sign In
+                      </Link>
+                    )}
+                  </div>
+                )}
               </div>
             </nav>
           </div>
