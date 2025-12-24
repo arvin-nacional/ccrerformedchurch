@@ -92,16 +92,16 @@ export const HeroBlock: React.FC<Props> = ({
 
         {/* Service Times */}
         {serviceTimes && (
-          <div className="flex flex-row gap-4 justify-center items-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center mb-8">
             {serviceTimes.day && (
-              <div className="flex items-center gap-2  px-6 py-3 rounded-xl">
-                <Calendar className="w-5 h-5" />
+              <div className="flex items-center gap-2 px-6 py-3 rounded-xl whitespace-nowrap">
+                <Calendar className="w-5 h-5 flex-shrink-0" />
                 <span>{serviceTimes.day}</span>
               </div>
             )}
             {serviceTimes.times && (
-              <div className="flex items-center gap-2 px-6 py-3 rounded-xl">
-                <Clock className="w-5 h-5" />
+              <div className="flex items-center gap-2 px-6 py-3 rounded-xl whitespace-nowrap">
+                <Clock className="w-5 h-5 flex-shrink-0" />
                 <span>{serviceTimes.times}</span>
               </div>
             )}
