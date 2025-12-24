@@ -31,12 +31,12 @@ export const GospelOfSalvationBlock: React.FC<Props> = ({
                 {/* Section Title */}
                 <div className="mb-6">
                   {section.sectionNumber && section.sectionTitle && (
-                    <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide">
+                    <h3 className="text-xl font-bold text-[#B08D57] uppercase tracking-wide">
                       {section.sectionNumber} {section.sectionTitle}
                     </h3>
                   )}
                   {!section.sectionNumber && section.sectionTitle && (
-                    <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide">
+                    <h3 className="text-xl font-bold text-[#B08D57] uppercase tracking-wide">
                       {section.sectionTitle}
                     </h3>
                   )}
@@ -51,7 +51,7 @@ export const GospelOfSalvationBlock: React.FC<Props> = ({
 
                 {/* Highlighted Question */}
                 {section.highlightedQuestion && (
-                  <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded">
+                  <div className="bg-orange-50 border-l-4 border-[#B08D57] p-4 rounded">
                     <div className="prose prose-sm max-w-none text-orange-900 font-medium">
                       <RichText data={section.highlightedQuestion} enableGutter={false} />
                     </div>

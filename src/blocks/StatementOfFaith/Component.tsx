@@ -25,7 +25,7 @@ export const StatementOfFaithBlock: React.FC<Props> = ({
         {/* Header */}
         {title && (
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{title}</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 ">{title}</h2>
             {introduction && (
               <div className="prose prose-lg max-w-none text-gray-700 mx-auto text-sm ">
                 <RichText data={introduction} enableGutter={false} className="text-sm" />
@@ -40,7 +40,7 @@ export const StatementOfFaithBlock: React.FC<Props> = ({
             {sections.map((section, index) => (
               <div key={index} className=" px-[42px] py-[29px] shadow-xl rounded-3xl bg-white">
                 {section.sectionTitle && (
-                  <h2 className="text-xl font-bold text-gray-900 mb-4 uppercase tracking-wide">
+                  <h2 className="text-xl font-bold mb-4 uppercase tracking-wide text-[#B08D57]">
                     {section.sectionTitle}
                   </h2>
                 )}
