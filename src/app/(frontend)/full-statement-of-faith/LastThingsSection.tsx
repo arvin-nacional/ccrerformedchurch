@@ -41,7 +41,7 @@ export function LastThingsSection() {
           <BibleLink q="Revelation+20%3A1-4">Revelation 20:1–4</BibleLink>
         </Statement>
         <Statement num="143">
-          After Satan's final defeat, the dead will be judged.{' '}
+          After Satan&apos;s final defeat, the dead will be judged.{' '}
           <BibleLink q="Revelation+20%3A7-15">Revelation 20:7–15</BibleLink>
         </Statement>
         <Statement num="144">
@@ -53,17 +53,17 @@ export function LastThingsSection() {
           <BibleLink q="Titus+2%3A13">Titus 2:13</BibleLink>
         </Statement>
         <Statement num="146">
-          Christ's return is imminent—He could come at any moment.{' '}
+          Christ&apos;s return is imminent—He could come at any moment.{' '}
           <BibleLink q="Matthew+24%3A36">Matthew 24:36</BibleLink>;{' '}
           <BibleLink q="1+Thessalonians+5%3A2">1 Thessalonians 5:2</BibleLink>
         </Statement>
         <Statement num="147">
-          At death, the believer's soul is immediately in the presence of the Lord.{' '}
+          At death, the believer&apos;s soul is immediately in the presence of the Lord.{' '}
           <BibleLink q="2+Corinthians+5%3A8">2 Corinthians 5:8</BibleLink>;{' '}
           <BibleLink q="Philippians+1%3A23">Philippians 1:23</BibleLink>
         </Statement>
         <Statement num="148">
-          At death, the unbeliever's soul goes to a place of conscious torment.{' '}
+          At death, the unbeliever&apos;s soul goes to a place of conscious torment.{' '}
           <BibleLink q="Luke+16%3A19-31">Luke 16:19–31</BibleLink>
         </Statement>
         <Statement num="149">
@@ -72,7 +72,7 @@ export function LastThingsSection() {
           <BibleLink q="Daniel+12%3A2">Daniel 12:2</BibleLink>
         </Statement>
         <Statement num="150">
-          Believers will receive glorified bodies like Christ's.{' '}
+          Believers will receive glorified bodies like Christ&apos;s.{' '}
           <BibleLink q="Philippians+3%3A20-21">Philippians 3:20–21</BibleLink>;{' '}
           <BibleLink q="1+Corinthians+15%3A42-44">1 Corinthians 15:42–44</BibleLink>
         </Statement>
@@ -103,8 +103,8 @@ export function LastThingsSection() {
           <BibleLink q="Romans+8%3A30">Romans 8:30</BibleLink>
         </Statement>
         <Statement num="156">
-          This is not merely a return to Eden but the fulfillment of God's original eschatological
-          purpose—what creation was always destined for before the fall.{' '}
+          This is not merely a return to Eden but the fulfillment of God&apos;s original
+          eschatological purpose—what creation was always destined for before the fall.{' '}
           <BibleLink q="Ephesians+1%3A9-10">Ephesians 1:9-10</BibleLink>;{' '}
           <BibleLink q="Romans+8%3A18-23">Romans 8:18-23</BibleLink>
         </Statement>

@@ -7,15 +7,8 @@ import {
   CardThinkingBiblicallyData,
 } from '@/components/ThinkingBiblicallyCard'
 import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Search, Filter } from 'lucide-react'
+import { Search } from 'lucide-react'
 import type { ThinkingBiblically } from '@/payload-types'
 
 export type Props = {
@@ -28,7 +21,7 @@ export const ThinkingBiblicallyArchive: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(false)
   const [selectedType, setSelectedType] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState<string>('')
-  const [categoryFilter, setCategoryFilter] = useState<string>('all')
+  const [categoryFilter, _setCategoryFilter] = useState<string>('all')
   const [hasFilterApplied, setHasFilterApplied] = useState(false)
 
   const fetchItems = useCallback(async (contentType: string) => {

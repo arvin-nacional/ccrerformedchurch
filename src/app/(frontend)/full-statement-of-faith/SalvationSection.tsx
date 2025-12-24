@@ -107,20 +107,20 @@ export function SalvationSection() {
           <BibleLink q="Romans+8:28-30">Romans 8:28–30</BibleLink>
         </Statement>
         <Statement num="71">
-          The reason for the choosing is completely of the Lord's prerogative as creator God.{' '}
+          The reason for the choosing is completely of the Lord&apos;s prerogative as creator God.{' '}
           <BibleLink q="Romans+9:15-16">Romans 9:15–16</BibleLink>;{' '}
           <BibleLink q="Romans+11:5-6">Romans 11:5–6</BibleLink>
         </Statement>
         <Statement num="72">
           Hence, the election of people who will come to faith in Christ is not conditioned upon how
-          people live their lives but solely on God's divine will.{' '}
+          people live their lives but solely on God&apos;s divine will.{' '}
           <BibleLink q="Romans+9:11-13">Romans 9:11–13</BibleLink>;{' '}
           <BibleLink q="Romans+9:19-23">Romans 9:19–23</BibleLink>
         </Statement>
         <Statement num="73">
           For the unregenerated person, this will be received as unfair and cruel but for the
-          regenerated person, through the Holy Spirit's illumination of the heart and the mind, this
-          will be received as a mercy.{' '}
+          regenerated person, through the Holy Spirit&apos;s illumination of the heart and the mind,
+          this will be received as a mercy.{' '}
           <BibleLink q="1+Corinthians+2:14">1 Corinthians 2:14</BibleLink>;{' '}
           <BibleLink q="Romans+11:5-6">Romans 11:5–6</BibleLink>;{' '}
           <BibleLink q="Ephesians+1:11">Ephesians 1:11</BibleLink>
@@ -164,7 +164,7 @@ export function SalvationSection() {
           <BibleLink q="Hebrews+9:28">Hebrews 9:28</BibleLink>
         </Statement>
         <Statement num="80">
-          Christ's atonement is limited not in its power, but in its application.{' '}
+          Christ&apos;s atonement is limited not in its power, but in its application.{' '}
           <BibleLink q="Acts+13:48">Acts 13:48</BibleLink>;{' '}
           <BibleLink q="Matthew+1:21">Matthew 1:21</BibleLink>;{' '}
           <BibleLink q="Romans+8:33-34">Romans 8:33–34</BibleLink>
@@ -177,8 +177,9 @@ export function SalvationSection() {
         </Statement>
         <Statement num="82">
           All whom God the Father has unconditionally elected to be part of those who will be atoned
-          for by the sacrifice of Christ will truly come to the Lord Jesus Christ in faith, in God's
-          perfect and appointed time for him. <BibleLink q="John+6:37">John 6:37</BibleLink>;{' '}
+          for by the sacrifice of Christ will truly come to the Lord Jesus Christ in faith, in
+          God&apos;s perfect and appointed time for him.{' '}
+          <BibleLink q="John+6:37">John 6:37</BibleLink>;{' '}
           <BibleLink q="Romans+8:30">Romans 8:30</BibleLink>;{' '}
           <BibleLink q="John+10:29">John 10:29</BibleLink>
         </Statement>
@@ -209,8 +210,8 @@ export function SalvationSection() {
           The moment the person confesses with his mouth that Jesus is Lord and believes in his
           heart that God raised Christ Jesus from the dead, he is at this point justified, which
           means, this person is now declared righteous by God through the righteousness of Christ
-          achieved on this person's behalf, because of the sacrifice of Christ Jesus on the cross
-          and His victory over sin and death at His resurrection.{' '}
+          achieved on this person&apos;s behalf, because of the sacrifice of Christ Jesus on the
+          cross and His victory over sin and death at His resurrection.{' '}
           <BibleLink q="Romans+10:9-10">Romans 10:9–10</BibleLink>;{' '}
           <BibleLink q="Romans+4:25">Romans 4:25</BibleLink>
         </Statement>
@@ -233,8 +234,8 @@ export function SalvationSection() {
         </Statement>
         <Statement num="91">
           However, it is also possible that the person simply may not have been regenerated. Hence,
-          his active and willful "resisting"—for how can one resist what has not been gifted to him?{' '}
-          <BibleLink q="John+8:43-44">John 8:43–44</BibleLink>;{' '}
+          his active and willful &quot;resisting&quot;—for how can one resist what has not been
+          gifted to him? <BibleLink q="John+8:43-44">John 8:43–44</BibleLink>;{' '}
           <BibleLink q="1+John+2:19">1 John 2:19</BibleLink>;{' '}
           <BibleLink q="John+3:3-7">John 3:3–7</BibleLink>
         </Statement>
@@ -296,8 +297,8 @@ export function SalvationSection() {
           <BibleLink q="Matthew+7%3A21-23">Matthew 7:21–23</BibleLink>
         </Statement>
         <Statement num="102">
-          The security of the believer rests not in the believer's ability to hold on to God but in
-          God's promise to hold on to the believer.{' '}
+          The security of the believer rests not in the believer&apos;s ability to hold on to God
+          but in God&apos;s promise to hold on to the believer.{' '}
           <BibleLink q="John+10%3A28-29">John 10:28–29</BibleLink>;{' '}
           <BibleLink q="Romans+8%3A38-39">Romans 8:38–39</BibleLink>;{' '}
           <BibleLink q="Jude+24">Jude 24</BibleLink>

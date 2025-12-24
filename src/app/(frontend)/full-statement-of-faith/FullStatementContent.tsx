@@ -15,9 +15,10 @@ export function FullStatementContent() {
       {/* THE BIBLE */}
       <Section title="I. THE BIBLE">
         <Statement num="1">
-          The Bible (the original scriptures) is the Triune God's divinely and organically inspired
-          written words and is His complete, infallible, and inerrant revelation of Himself and His
-          redemptive plan for man. <BibleLink q="2+Timothy+2%3A15">2 Timothy 2:15</BibleLink> |{' '}
+          The Bible (the original scriptures) is the Triune God&apos;s divinely and organically
+          inspired written words and is His complete, infallible, and inerrant revelation of Himself
+          and His redemptive plan for man.{' '}
+          <BibleLink q="2+Timothy+2%3A15">2 Timothy 2:15</BibleLink> |{' '}
           <BibleLink q="2+Timothy+3%3A15-17">2 Timothy 3:15–17</BibleLink> |{' '}
           <BibleLink q="Psalm+119%3A160">Psalm 119:160</BibleLink> |{' '}
           <BibleLink q="Psalm+119%3A89">Psalm 119:89</BibleLink> |{' '}
@@ -28,7 +29,7 @@ export function FullStatementContent() {
           God but an error of man. <BibleLink q="2+Peter+1%3A20">2 Peter 1:20</BibleLink>
         </Statement>
         <Statement num="3">
-          The Holy Spirit inspired the Bible through God's appointed individuals in biblical
+          The Holy Spirit inspired the Bible through God&apos;s appointed individuals in biblical
           history. <BibleLink q="2+Peter+1%3A21">2 Peter 1:21</BibleLink>
         </Statement>
         <Statement num="4">
@@ -137,7 +138,7 @@ export function FullStatementContent() {
           <BibleLink q="Romans+8%3A28">Romans 8:28</BibleLink>
         </Statement>
         <Statement num="24">
-          God's attributes are expressed throughout the scriptures, and God expresses all these
+          God&apos;s attributes are expressed throughout the scriptures, and God expresses all these
           attributes in perfect unity. <BibleLink q="Exodus+34%3A6-7">Exodus 34:6-7</BibleLink>;{' '}
           <BibleLink q="Psalm+145%3A17">Psalm 145:17</BibleLink>
         </Statement>
@@ -314,23 +315,23 @@ export function FullStatementContent() {
           <BibleLink q="Matthew+22%3A37-39">Matthew 22:37–39</BibleLink>
         </Statement>
         <Statement num="52">
-          This means loving all things according to God's original design and purpose, but it also
-          means being merciful, gracious, and gentle but truthful to those who have yet come to the
-          saving knowledge of Christ Jesus.{' '}
+          This means loving all things according to God&apos;s original design and purpose, but it
+          also means being merciful, gracious, and gentle but truthful to those who have yet come to
+          the saving knowledge of Christ Jesus.{' '}
           <BibleLink q="Ephesians+4%3A15">Ephesians 4:15</BibleLink>;{' '}
           <BibleLink q="Colossians+4%3A6">Colossians 4:6</BibleLink>
         </Statement>
         <Statement num="53">
-          Tragically, because of Adam and Eve's favoring of their glory rather than God's glory, and
-          with help from the serpent's temptations, they both fell into sin and condemnation, and
-          through this, all men are born into the world in sin.{' '}
+          Tragically, because of Adam and Eve&apos;s favoring of their glory rather than God&apos;s
+          glory, and with help from the serpent&apos;s temptations, they both fell into sin and
+          condemnation, and through this, all men are born into the world in sin.{' '}
           <BibleLink q="Genesis+3%3A1-19">Genesis 3:1–19</BibleLink>,{' '}
           <BibleLink q="Romans+5%3A12">Romans 5:12</BibleLink>,{' '}
           <BibleLink q="Romans+5%3A18-19">Romans 5:18–19</BibleLink>
         </Statement>
         <Statement num="54">
-          This tragedy didn't just bring sin into the picture and in the hearts and minds of men; it
-          also caused a massive separation between the creator God and His created beings, a
+          This tragedy didn&apos;t just bring sin into the picture and in the hearts and minds of
+          men; it also caused a massive separation between the creator God and His created beings, a
           separation that cannot be bridged by man, for God is thrice holy, and He cannot have
           anything to do with sin and wickedness.{' '}
           <BibleLink q="Isaiah+59%3A2">Isaiah 59:2</BibleLink>,{' '}
@@ -363,8 +364,8 @@ export function FullStatementContent() {
           While man can practice good deeds and even behave in a manner that demonstrates moral
           goodness in life because the laws of God are written in their hearts, these things that
           the world would consider good behavior or good works will all amount to nothing to the
-          Lord and in His sight; all are filthy rags before Him because God's demand is not only
-          sporadic goodness, His demand is eternal perfection, and that is a state no man can
+          Lord and in His sight; all are filthy rags before Him because God&apos;s demand is not
+          only sporadic goodness, His demand is eternal perfection, and that is a state no man can
           attain. <BibleLink q="Romans+2%3A14-15">Romans 2:14–15</BibleLink>;{' '}
           <BibleLink q="Isaiah+64%3A6">Isaiah 64:6</BibleLink>;{' '}
           <BibleLink q="Romans+3%3A20">Romans 3:20</BibleLink>

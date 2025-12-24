@@ -20,14 +20,6 @@ function BibleLink({ q, children }: { q: string; children: React.ReactNode }) {
   )
 }
 
-function SubSection({ title }: { title: string }) {
-  return (
-    <h3 className="text-xl font-bold mt-8 mb-4" style={{ color: goldColor }}>
-      {title}
-    </h3>
-  )
-}
-
 export function ChurchSection() {
   return (
     <div className="px-[42px] py-[29px] shadow-xl rounded-3xl bg-white">
@@ -52,19 +44,19 @@ export function ChurchSection() {
           <BibleLink q="Ephesians+4%3A11-16">Ephesians 4:11–16</BibleLink>
         </Statement>
         <Statement num="106">
-          The church practices baptism and the Lord's Supper as ordinances.{' '}
+          The church practices baptism and the Lord&apos;s Supper as ordinances.{' '}
           <BibleLink q="Matthew+28%3A19">Matthew 28:19</BibleLink>;{' '}
           <BibleLink q="1+Corinthians+11%3A23-26">1 Corinthians 11:23–26</BibleLink>
         </Statement>
         <Statement num="107">
-          Baptism is an outward sign of an inward reality—the believer's identification with Christ
-          in His death, burial, and resurrection.{' '}
+          Baptism is an outward sign of an inward reality—the believer&apos;s identification with
+          Christ in His death, burial, and resurrection.{' '}
           <BibleLink q="Romans+6%3A3-4">Romans 6:3–4</BibleLink>;{' '}
           <BibleLink q="Acts+8%3A36-39">Acts 8:36–39</BibleLink>
         </Statement>
         <Statement num="108">
-          The Lord's Supper is a memorial of Christ's sacrificial death and a proclamation of His
-          return. <BibleLink q="1+Corinthians+11%3A23-26">1 Corinthians 11:23–26</BibleLink>;{' '}
+          The Lord&apos;s Supper is a memorial of Christ&apos;s sacrificial death and a proclamation
+          of His return. <BibleLink q="1+Corinthians+11%3A23-26">1 Corinthians 11:23–26</BibleLink>;{' '}
           <BibleLink q="Luke+22%3A19">Luke 22:19</BibleLink>
         </Statement>
         <Statement num="109">
@@ -160,7 +152,7 @@ export function ChurchSection() {
           <BibleLink q="Acts+1%3A8">Acts 1:8</BibleLink>
         </Statement>
         <Statement num="128">
-          Missions is central to the church's calling.{' '}
+          Missions is central to the church&apos;s calling.{' '}
           <BibleLink q="Romans+10%3A14-15">Romans 10:14–15</BibleLink>
         </Statement>
         <Statement num="129">
