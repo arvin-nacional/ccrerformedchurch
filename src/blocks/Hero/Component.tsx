@@ -63,6 +63,7 @@ export const HeroBlock: React.FC<Props> = ({
             alt={backgroundImage.alt || 'Hero background'}
             fill
             priority
+            quality={75}
             className="object-cover"
             sizes="100vw"
           />

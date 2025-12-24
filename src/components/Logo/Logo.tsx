@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Image from 'next/image'
 import React from 'react'
 
 interface Props {
@@ -10,19 +11,18 @@ interface Props {
 export const Logo = (props: Props) => {
   const { loading: loadingFromProps, priority: priorityFromProps, className } = props
 
-  const loading = loadingFromProps || 'lazy'
-  const priority = priorityFromProps || 'low'
+  const isPriority = priorityFromProps === 'high'
 
   return (
-    /* eslint-disable @next/next/no-img-element */
-    <img
+    <Image
       alt="Capitol Commons Reformed Church Logo"
       width={244}
       height={53}
-      loading={loading}
-      fetchPriority={priority}
+      priority={isPriority}
+      quality={85}
       className={clsx('w-auto transition-all duration-300', className)}
       src="/main-logo5.png"
+      sizes="(max-width: 768px) 150px, 244px"
     />
   )
 }
