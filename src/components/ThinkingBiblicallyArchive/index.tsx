@@ -24,10 +24,13 @@ export const ThinkingBiblicallyArchive: React.FC<Props> = (props) => {
   const [categoryFilter, _setCategoryFilter] = useState<string>('all')
   const [hasFilterApplied, setHasFilterApplied] = useState(false)
 
-  const fetchItems = useCallback(async (contentType: string) => {
+  const fetchItems = useCallback(async (contentType?: string) => {
     setLoading(true)
     try {
-      const url = `/api/thinking-biblically?limit=100&sort=-publishedDate&depth=1&where[contentType][equals]=${contentType}`
+      let url = `/api/thinking-biblically?limit=100&sort=-publishedDate&depth=1`
+      if (contentType) {
+        url += `&where[contentType][equals]=${contentType}`
+      }
       const response = await fetch(url)
       const data = await response.json()
       setItems(data.docs || [])
@@ -46,10 +49,11 @@ export const ThinkingBiblicallyArchive: React.FC<Props> = (props) => {
       setHasFilterApplied(true)
       fetchItems(contentType)
     } else if (hasFilterApplied) {
-      setItems(initialItems as ThinkingBiblically[])
+      // Fetch all items fresh from API when switching back to "All"
+      fetchItems()
       setHasFilterApplied(false)
     }
-  }, [categoryFilter, selectedType, fetchItems, initialItems, hasFilterApplied])
+  }, [categoryFilter, selectedType, fetchItems, hasFilterApplied])
 
   const filteredItems = items.filter((item) => {
     const searchMatch =
