@@ -24,7 +24,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
   }, [])
 
   if (resource && typeof resource === 'object') {
-    const { url } = resource
+    const { url, thumbnailURL } = resource
     const cacheTag = resource.updatedAt
 
     return (
@@ -34,6 +34,8 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         loop
         onClick={onClick}
         playsInline
+        poster={thumbnailURL || undefined}
+        preload="metadata"
         ref={videoRef}
       >
         <source src={getMediaUrl(url, cacheTag)} />
