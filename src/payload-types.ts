@@ -348,6 +348,10 @@ export interface Media {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Thumbnail image displayed before the video plays
+   */
+  videoThumbnail?: (string | null) | Media;
   folder?: (string | null) | FolderInterface;
   updatedAt: string;
   createdAt: string;
@@ -2929,6 +2933,7 @@ export interface ThinkingBiblicallySelect<T extends boolean = true> {
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
+  videoThumbnail?: T;
   folder?: T;
   updatedAt?: T;
   createdAt?: T;

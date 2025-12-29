@@ -38,6 +38,16 @@ export const Media: CollectionConfig = {
         },
       }),
     },
+    {
+      name: 'videoThumbnail',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Video Thumbnail',
+      admin: {
+        condition: (data) => data?.mimeType?.startsWith('video/'),
+        description: 'Thumbnail image displayed before the video plays',
+      },
+    },
   ],
   upload: {
     // Using S3 storage instead of local storage
