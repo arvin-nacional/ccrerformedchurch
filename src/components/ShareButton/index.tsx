@@ -11,7 +11,17 @@ export const ShareButton: React.FC<Props> = ({ title, url }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '')
+  const getFullUrl = () => {
+    if (typeof window === 'undefined') return ''
+    if (!url) return window.location.href
+    // If url is relative, prepend origin
+    if (url.startsWith('/')) {
+      return window.location.origin + url
+    }
+    return url
+  }
+
+  const shareUrl = getFullUrl()
 
   const handleCopyLink = async () => {
     try {

@@ -254,7 +254,7 @@ export default async function ThinkingBiblicallyDetailPage({ params: paramsPromi
                       {item.duration} min
                     </div>
                   )}
-                  <ShareButton title={item.title} />
+                  <ShareButton title={item.title} url={url} />
                 </div>
               </div>
             </div>
