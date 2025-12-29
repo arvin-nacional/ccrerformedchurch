@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Share2, Check, Copy, Facebook, Twitter } from 'lucide-react'
 
 type Props = {
@@ -10,18 +10,17 @@ type Props = {
 export const ShareButton: React.FC<Props> = ({ title, url }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [shareUrl, setShareUrl] = useState('')
 
-  const getFullUrl = () => {
-    if (typeof window === 'undefined') return ''
-    if (!url) return window.location.href
-    // If url is relative, prepend origin
-    if (url.startsWith('/')) {
-      return window.location.origin + url
+  useEffect(() => {
+    if (!url) {
+      setShareUrl(window.location.href)
+    } else if (url.startsWith('/')) {
+      setShareUrl(window.location.origin + url)
+    } else {
+      setShareUrl(url)
     }
-    return url
-  }
-
-  const shareUrl = getFullUrl()
+  }, [url])
 
   const handleCopyLink = async () => {
     try {
