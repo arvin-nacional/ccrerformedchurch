@@ -68,7 +68,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   return (
     <article className={slug !== 'home' ? 'pt-10' : ''}>
-      <PageClient />
+      <PageClient slug={decodedSlug} />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
