@@ -16,6 +16,7 @@ export const revalidateSermon: CollectionAfterChangeHook<Sermon> = ({
       payload.logger.info(`Revalidating sermon at path: ${path}`)
 
       revalidatePath(path)
+      revalidatePath('/sermons')
       revalidateTag('sermons-sitemap')
     }
 
@@ -25,6 +26,7 @@ export const revalidateSermon: CollectionAfterChangeHook<Sermon> = ({
       payload.logger.info(`Revalidating old sermon at path: ${oldPath}`)
 
       revalidatePath(oldPath)
+      revalidatePath('/sermons')
       revalidateTag('sermons-sitemap')
     }
   }
@@ -36,6 +38,7 @@ export const revalidateDelete: CollectionAfterDeleteHook<Sermon> = ({ doc, req: 
     const path = `/sermons/${doc?.slug}`
 
     revalidatePath(path)
+    revalidatePath('/sermons')
     revalidateTag('sermons-sitemap')
   }
 
