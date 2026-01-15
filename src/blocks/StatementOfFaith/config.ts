@@ -41,6 +41,24 @@ export const StatementOfFaithBlock: Block = {
           required: true,
         },
         {
+          name: 'sectionAnchor',
+          type: 'select',
+          label: 'Link to Full Statement Section',
+          admin: {
+            description:
+              'When clicked, the title will link to this section on the Full Statement of Faith page',
+          },
+          options: [
+            { label: 'None', value: '' },
+            { label: 'I. The Bible', value: 'the-bible' },
+            { label: 'II. God', value: 'god' },
+            { label: 'III. Man', value: 'man' },
+            { label: 'IV. Salvation', value: 'salvation' },
+            { label: 'V. The Church', value: 'the-church' },
+            { label: 'VI. The Last Things', value: 'last-things' },
+          ],
+        },
+        {
           name: 'content',
           type: 'richText',
           label: 'Section Content',

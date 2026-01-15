@@ -984,6 +984,10 @@ export interface StatementOfFaithBlock {
   sections?:
     | {
         sectionTitle: string;
+        /**
+         * When clicked, the title will link to this section on the Full Statement of Faith page
+         */
+        sectionAnchor?: ('' | 'the-bible' | 'god' | 'man' | 'salvation' | 'the-church' | 'last-things') | null;
         content: {
           root: {
             type: string;
@@ -2494,6 +2498,7 @@ export interface StatementOfFaithBlockSelect<T extends boolean = true> {
     | T
     | {
         sectionTitle?: T;
+        sectionAnchor?: T;
         content?: T;
         id?: T;
       };

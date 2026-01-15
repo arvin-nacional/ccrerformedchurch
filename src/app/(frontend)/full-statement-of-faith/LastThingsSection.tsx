@@ -22,7 +22,10 @@ function BibleLink({ q, children }: { q: string; children: React.ReactNode }) {
 
 export function LastThingsSection() {
   return (
-    <div className="px-[42px] py-[29px] shadow-xl rounded-3xl bg-white">
+    <div
+      id="last-things"
+      className="px-[42px] py-[29px] shadow-xl rounded-3xl bg-white scroll-mt-32"
+    >
       <h2 className="text-2xl font-bold mb-6 uppercase tracking-wide" style={{ color: goldColor }}>
         VI. THE LAST THINGS
       </h2>

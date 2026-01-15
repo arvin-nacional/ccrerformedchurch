@@ -30,7 +30,7 @@ function SubSection({ title }: { title: string }) {
 
 export function SalvationSection() {
   return (
-    <div className="px-[42px] py-[29px] shadow-xl rounded-3xl bg-white">
+    <div id="salvation" className="px-[42px] py-[29px] shadow-xl rounded-3xl bg-white scroll-mt-32">
       <h2 className="text-2xl font-bold mb-6 uppercase tracking-wide" style={{ color: goldColor }}>
         IV. SALVATION
       </h2>

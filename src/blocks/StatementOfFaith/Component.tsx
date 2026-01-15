@@ -1,5 +1,6 @@
 // src/blocks/StatementOfFaith/Component.tsx
 import React from 'react'
+import Link from 'next/link'
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
 import type { StatementOfFaithBlock as StatementOfFaithBlockType } from '@/payload-types'
@@ -41,7 +42,16 @@ export const StatementOfFaithBlock: React.FC<Props> = ({
               <div key={index} className=" px-[42px] py-[29px] shadow-xl rounded-3xl bg-white">
                 {section.sectionTitle && (
                   <h2 className="text-xl font-bold mb-4 uppercase tracking-wide text-[#B08D57]">
-                    {section.sectionTitle}
+                    {section.sectionAnchor ? (
+                      <Link
+                        href={`/full-statement-of-faith#${section.sectionAnchor}`}
+                        className="hover:underline"
+                      >
+                        {section.sectionTitle}
+                      </Link>
+                    ) : (
+                      section.sectionTitle
+                    )}
                   </h2>
                 )}
                 {section.content && (

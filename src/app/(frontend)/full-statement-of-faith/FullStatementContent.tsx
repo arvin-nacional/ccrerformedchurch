@@ -13,7 +13,7 @@ export function FullStatementContent() {
   return (
     <div className="space-y-12">
       {/* THE BIBLE */}
-      <Section title="I. THE BIBLE">
+      <Section title="I. THE BIBLE" id="the-bible">
         <Statement num="1">
           The Bible (the original scriptures) is the Triune God&apos;s divinely and organically
           inspired written words and is His complete, infallible, and inerrant revelation of Himself
@@ -111,7 +111,7 @@ export function FullStatementContent() {
       </Section>
 
       {/* GOD */}
-      <Section title="II. GOD">
+      <Section title="II. GOD" id="god">
         <Statement num="19">
           There is only one God. <BibleLink q="Deuteronomy+6%3A4">Deuteronomy 6:4</BibleLink>
         </Statement>
@@ -278,7 +278,7 @@ export function FullStatementContent() {
       </Section>
 
       {/* MAN */}
-      <Section title="III. MAN">
+      <Section title="III. MAN" id="man">
         <Statement num="45">
           All men are created in the image of God.{' '}
           <BibleLink q="Genesis+1%3A26-27">Genesis 1:26–27</BibleLink>
@@ -379,9 +379,17 @@ export function FullStatementContent() {
   )
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+  id,
+}: {
+  title: string
+  children: React.ReactNode
+  id?: string
+}) {
   return (
-    <div className="px-[42px] py-[29px] shadow-xl rounded-3xl bg-white">
+    <div id={id} className="px-[42px] py-[29px] shadow-xl rounded-3xl bg-white scroll-mt-32">
       <h2 className="text-2xl font-bold mb-6 uppercase tracking-wide" style={{ color: goldColor }}>
         {title}
       </h2>
