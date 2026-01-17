@@ -4,15 +4,51 @@ import { SermonArchive } from '@/components/SermonArchive'
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload, Where } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
 
-export const dynamic = 'force-static'
-export const revalidate = 600
+export const dynamic = 'force-dynamic'
 
-export default async function Page() {
+type SearchParams = {
+  series?: string
+  speaker?: string
+  year?: string
+  q?: string
+}
+
+export default async function Page({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const params = await searchParams
   const payload = await getPayload({ config: configPromise })
+
+  // Build where clause based on search params
+  const conditions: Where[] = []
+
+  if (params.series && params.series !== 'all') {
+    conditions.push({ series: { equals: params.series } })
+  }
+
+  if (params.speaker && params.speaker !== 'all') {
+    conditions.push({ speaker: { equals: params.speaker } })
+  }
+
+  if (params.year && params.year !== 'all') {
+    const year = parseInt(params.year)
+    conditions.push({
+      sermonDate: {
+        greater_than_equal: `${year}-01-01`,
+        less_than_equal: `${year}-12-31`,
+      },
+    })
+  }
+
+  if (params.q) {
+    conditions.push({
+      or: [{ title: { contains: params.q } }],
+    })
+  }
+
+  const where: Where = conditions.length > 0 ? { and: conditions } : {}
 
   const sermons = await payload.find({
     collection: 'sermons',
@@ -20,6 +56,7 @@ export default async function Page() {
     limit: 12,
     overrideAccess: false,
     sort: '-sermonDate',
+    where,
     select: {
       title: true,
       slug: true,
@@ -53,6 +90,25 @@ export default async function Page() {
     },
   })
 
+  // Fetch all sermon dates to extract available years
+  const allSermons = await payload.find({
+    collection: 'sermons',
+    depth: 0,
+    limit: 0,
+    overrideAccess: false,
+    select: {
+      sermonDate: true,
+    },
+  })
+
+  const years = Array.from(
+    new Set(
+      allSermons.docs
+        .map((sermon) => sermon.sermonDate && new Date(sermon.sermonDate).getFullYear())
+        .filter(Boolean) as number[],
+    ),
+  ).sort((a, b) => b - a)
+
   return (
     <div className="pt-24 pb-24">
       <PageClient />
@@ -75,7 +131,12 @@ export default async function Page() {
         />
       </div>
 
-      <SermonArchive sermons={sermons.docs} series={series.docs} speakers={speakers.docs} />
+      <SermonArchive
+        sermons={sermons.docs}
+        series={series.docs}
+        speakers={speakers.docs}
+        years={years}
+      />
 
       <div className="container mt-8">
         {sermons.totalPages > 1 && sermons.page && (

@@ -9,7 +9,7 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination'
 import { cn } from '@/utilities/ui'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
 export const Pagination: React.FC<{
@@ -19,8 +19,17 @@ export const Pagination: React.FC<{
   basePath?: string
 }> = (props) => {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   const { className, page, totalPages, basePath = '/posts' } = props
+
+  const buildPageUrl = (pageNum: number) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.delete('page')
+    const queryString = params.toString()
+    const base = pageNum === 1 ? basePath : `${basePath}/page/${pageNum}`
+    return queryString ? `${base}?${queryString}` : base
+  }
   const hasNextPage = page < totalPages
   const hasPrevPage = page > 1
 
@@ -35,7 +44,7 @@ export const Pagination: React.FC<{
             <PaginationPrevious
               disabled={!hasPrevPage}
               onClick={() => {
-                router.push(`${basePath}/page/${page - 1}`)
+                router.push(buildPageUrl(page - 1))
               }}
             />
           </PaginationItem>
@@ -50,7 +59,7 @@ export const Pagination: React.FC<{
             <PaginationItem>
               <PaginationLink
                 onClick={() => {
-                  router.push(`${basePath}/page/${page - 1}`)
+                  router.push(buildPageUrl(page - 1))
                 }}
               >
                 {page - 1}
@@ -62,7 +71,7 @@ export const Pagination: React.FC<{
             <PaginationLink
               isActive
               onClick={() => {
-                router.push(`${basePath}/page/${page}`)
+                router.push(buildPageUrl(page))
               }}
             >
               {page}
@@ -73,7 +82,7 @@ export const Pagination: React.FC<{
             <PaginationItem>
               <PaginationLink
                 onClick={() => {
-                  router.push(`${basePath}/page/${page + 1}`)
+                  router.push(buildPageUrl(page + 1))
                 }}
               >
                 {page + 1}
@@ -91,7 +100,7 @@ export const Pagination: React.FC<{
             <PaginationNext
               disabled={!hasNextPage}
               onClick={() => {
-                router.push(`${basePath}/page/${page + 1}`)
+                router.push(buildPageUrl(page + 1))
               }}
             />
           </PaginationItem>

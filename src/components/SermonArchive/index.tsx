@@ -1,6 +1,7 @@
 'use client'
 import { cn } from '@/utilities/ui'
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import { SermonCard, CardSermonData } from '@/components/SermonCard'
 import { Input } from '@/components/ui/input'
@@ -11,50 +12,62 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Search, Filter, Calendar, User, BookOpen } from 'lucide-react'
+import { Search, Calendar, User, BookOpen } from 'lucide-react'
 import type { SermonSery, Speaker } from '@/payload-types'
 
 export type Props = {
   sermons: CardSermonData[]
   series?: SermonSery[]
   speakers?: Speaker[]
+  years?: number[]
 }
 
 export const SermonArchive: React.FC<Props> = (props) => {
-  const { sermons, series = [], speakers = [] } = props
-  const [selectedSeries, setSelectedSeries] = useState<string>('all')
-  const [selectedSpeaker, setSelectedSpeaker] = useState<string>('all')
-  const [selectedYear, setSelectedYear] = useState<string>('all')
-  const [searchQuery, setSearchQuery] = useState<string>('')
+  const { sermons, series = [], speakers = [], years = [] } = props
+  const router = useRouter()
+  const searchParams = useSearchParams()
 
-  const years = Array.from(
-    new Set(
-      sermons
-        .map((sermon) => sermon.sermonDate && new Date(sermon.sermonDate).getFullYear())
-        .filter(Boolean),
-    ),
-  ).sort((a, b) => (b as number) - (a as number))
+  const selectedSeries = searchParams.get('series') || 'all'
+  const selectedSpeaker = searchParams.get('speaker') || 'all'
+  const selectedYear = searchParams.get('year') || 'all'
+  const searchQuery = searchParams.get('q') || ''
 
-  const filteredSermons = sermons.filter((sermon) => {
-    const seriesMatch =
-      selectedSeries === 'all' ||
-      (typeof sermon.series === 'object' && sermon.series?.id === selectedSeries)
-    const speakerMatch =
-      selectedSpeaker === 'all' ||
-      (typeof sermon.speaker === 'object' && sermon.speaker?.id === selectedSpeaker)
-    const yearMatch =
-      selectedYear === 'all' ||
-      (sermon.sermonDate && new Date(sermon.sermonDate).getFullYear().toString() === selectedYear)
-    const searchMatch =
-      searchQuery === '' ||
-      sermon.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (typeof sermon.speaker === 'object' &&
-        sermon.speaker?.name?.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (typeof sermon.series === 'object' &&
-        sermon.series?.title?.toLowerCase().includes(searchQuery.toLowerCase()))
+  const updateSearchParams = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (value === 'all' || value === '') {
+      params.delete(key)
+    } else {
+      params.set(key, value)
+    }
+    // Reset to page 1 when filters change
+    params.delete('page')
+    router.push(`/sermons?${params.toString()}`)
+  }
 
-    return seriesMatch && speakerMatch && yearMatch && searchMatch
-  })
+  const [searchInput, setSearchInput] = useState(searchQuery)
+
+  const debouncedSearch = useCallback(
+    (value: string) => {
+      const params = new URLSearchParams(searchParams.toString())
+      if (value === '') {
+        params.delete('q')
+      } else {
+        params.set('q', value)
+      }
+      params.delete('page')
+      router.push(`/sermons?${params.toString()}`)
+    },
+    [searchParams, router],
+  )
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchInput !== searchQuery) {
+        debouncedSearch(searchInput)
+      }
+    }, 400)
+    return () => clearTimeout(timer)
+  }, [searchInput, searchQuery, debouncedSearch])
 
   return (
     <div className={cn('container')}>
@@ -65,14 +78,17 @@ export const SermonArchive: React.FC<Props> = (props) => {
             <Input
               type="text"
               placeholder="Search sermons..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
               className="pl-10 border-none bg-gray-100 rounded-xl"
             />
           </div>
           <div className="flex items-center gap-2 md:w-56 bg-gray-100 rounded-xl px-4">
             <BookOpen className="text-muted-foreground h-4 w-4 flex-shrink-0" />
-            <Select value={selectedSeries} onValueChange={setSelectedSeries}>
+            <Select
+              value={selectedSeries}
+              onValueChange={(value) => updateSearchParams('series', value)}
+            >
               <SelectTrigger className="border-none bg-transparent">
                 <SelectValue placeholder="All Series" />
               </SelectTrigger>
@@ -88,7 +104,10 @@ export const SermonArchive: React.FC<Props> = (props) => {
           </div>
           <div className="flex items-center gap-2 md:w-56 bg-gray-100 rounded-xl px-4">
             <User className="text-muted-foreground h-4 w-4 flex-shrink-0" />
-            <Select value={selectedSpeaker} onValueChange={setSelectedSpeaker}>
+            <Select
+              value={selectedSpeaker}
+              onValueChange={(value) => updateSearchParams('speaker', value)}
+            >
               <SelectTrigger className="border-none bg-transparent">
                 <SelectValue placeholder="All Speakers" />
               </SelectTrigger>
@@ -104,7 +123,10 @@ export const SermonArchive: React.FC<Props> = (props) => {
           </div>
           <div className="flex items-center gap-2 md:w-44 bg-gray-100 rounded-xl px-4">
             <Calendar className="text-muted-foreground h-4 w-4 flex-shrink-0" />
-            <Select value={selectedYear} onValueChange={setSelectedYear}>
+            <Select
+              value={selectedYear}
+              onValueChange={(value) => updateSearchParams('year', value)}
+            >
               <SelectTrigger className="border-none bg-transparent">
                 <SelectValue placeholder="All Years" />
               </SelectTrigger>
@@ -123,7 +145,7 @@ export const SermonArchive: React.FC<Props> = (props) => {
 
       <div>
         <div className="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-y-4 gap-x-4 lg:gap-y-8 lg:gap-x-8 xl:gap-x-8">
-          {filteredSermons?.map((result, index) => {
+          {sermons?.map((result, index) => {
             if (typeof result === 'object' && result !== null) {
               return (
                 <div className="col-span-4" key={index}>
@@ -135,7 +157,7 @@ export const SermonArchive: React.FC<Props> = (props) => {
             return null
           })}
         </div>
-        {filteredSermons.length === 0 && (
+        {sermons.length === 0 && (
           <div className="text-center py-12 text-muted-foreground">
             No sermons found matching your filters.
           </div>
