@@ -1,6 +1,6 @@
 'use client'
 import { cn } from '@/utilities/ui'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { SermonCard, CardSermonData } from '@/components/SermonCard'
@@ -22,7 +22,7 @@ export type Props = {
   years?: number[]
 }
 
-export const SermonArchive: React.FC<Props> = (props) => {
+const SermonArchiveInner: React.FC<Props> = (props) => {
   const { sermons, series = [], speakers = [], years = [] } = props
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -164,5 +164,13 @@ export const SermonArchive: React.FC<Props> = (props) => {
         )}
       </div>
     </div>
+  )
+}
+
+export const SermonArchive: React.FC<Props> = (props) => {
+  return (
+    <Suspense fallback={<div className="container">Loading...</div>}>
+      <SermonArchiveInner {...props} />
+    </Suspense>
   )
 }

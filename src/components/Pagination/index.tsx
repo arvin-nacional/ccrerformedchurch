@@ -10,14 +10,16 @@ import {
 } from '@/components/ui/pagination'
 import { cn } from '@/utilities/ui'
 import { useRouter, useSearchParams } from 'next/navigation'
-import React from 'react'
+import React, { Suspense } from 'react'
 
-export const Pagination: React.FC<{
+type PaginationProps = {
   className?: string
   page: number
   totalPages: number
   basePath?: string
-}> = (props) => {
+}
+
+const PaginationInner: React.FC<PaginationProps> = (props) => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -107,5 +109,13 @@ export const Pagination: React.FC<{
         </PaginationContent>
       </PaginationComponent>
     </div>
+  )
+}
+
+export const Pagination: React.FC<PaginationProps> = (props) => {
+  return (
+    <Suspense fallback={<div className="my-12" />}>
+      <PaginationInner {...props} />
+    </Suspense>
   )
 }
