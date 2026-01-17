@@ -9,7 +9,7 @@ import React from 'react'
 import PageClient from './page.client'
 import { notFound } from 'next/navigation'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 600
 
 type Args = {
   params: Promise<{
@@ -61,65 +61,51 @@ export default async function Page({ params: paramsPromise, searchParams }: Args
 
   const where: Where = conditions.length > 0 ? { and: conditions } : {}
 
-  const sermons = await payload.find({
-    collection: 'sermons',
-    depth: 1,
-    limit: 12,
-    page: sanitizedPageNumber,
-    overrideAccess: false,
-    sort: '-sermonDate',
-    where,
-    select: {
-      title: true,
-      slug: true,
-      series: true,
-      speaker: true,
-      sermonDate: true,
-      meta: true,
-      populatedSpeaker: true,
-    },
-  })
+  // Run all queries in parallel for better performance
+  const [sermons, series, speakers] = await Promise.all([
+    payload.find({
+      collection: 'sermons',
+      depth: 1,
+      limit: 12,
+      page: sanitizedPageNumber,
+      overrideAccess: false,
+      sort: '-sermonDate',
+      where,
+      select: {
+        title: true,
+        slug: true,
+        series: true,
+        speaker: true,
+        sermonDate: true,
+        meta: true,
+        populatedSpeaker: true,
+      },
+    }),
+    payload.find({
+      collection: 'sermon-series',
+      depth: 0,
+      limit: 100,
+      overrideAccess: false,
+      select: {
+        title: true,
+        id: true,
+      },
+    }),
+    payload.find({
+      collection: 'speakers',
+      depth: 0,
+      limit: 100,
+      overrideAccess: false,
+      select: {
+        name: true,
+        id: true,
+      },
+    }),
+  ])
 
-  const series = await payload.find({
-    collection: 'sermon-series',
-    depth: 0,
-    limit: 100,
-    overrideAccess: false,
-    select: {
-      title: true,
-      id: true,
-    },
-  })
-
-  const speakers = await payload.find({
-    collection: 'speakers',
-    depth: 0,
-    limit: 100,
-    overrideAccess: false,
-    select: {
-      name: true,
-      id: true,
-    },
-  })
-
-  // Fetch all sermon dates to extract available years
-  const allSermons = await payload.find({
-    collection: 'sermons',
-    depth: 0,
-    limit: 0,
-    overrideAccess: false,
-    select: {
-      sermonDate: true,
-    },
-  })
-
-  const years = Array.from(
-    new Set(
-      allSermons.docs
-        .map((sermon) => sermon.sermonDate && new Date(sermon.sermonDate).getFullYear())
-        .filter(Boolean) as number[],
-    ),
-  ).sort((a, b) => b - a)
+  // Generate year range (current year down to 2020)
+  const currentYear = new Date().getFullYear()
+  const years = Array.from({ length: currentYear - 2019 }, (_, i) => currentYear - i)
 
   return (
     <div className="pt-24 pb-24">
