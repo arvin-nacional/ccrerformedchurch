@@ -3,6 +3,15 @@ import { cn } from '@/utilities/ui'
 import React, { useState } from 'react'
 
 import { SermonCard, CardSermonData } from '@/components/SermonCard'
+import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { Search, Filter, Calendar, User, BookOpen } from 'lucide-react'
 import type { SermonSery, Speaker } from '@/payload-types'
 
 export type Props = {
@@ -16,6 +25,7 @@ export const SermonArchive: React.FC<Props> = (props) => {
   const [selectedSeries, setSelectedSeries] = useState<string>('all')
   const [selectedSpeaker, setSelectedSpeaker] = useState<string>('all')
   const [selectedYear, setSelectedYear] = useState<string>('all')
+  const [searchQuery, setSearchQuery] = useState<string>('')
 
   const years = Array.from(
     new Set(
@@ -35,60 +45,78 @@ export const SermonArchive: React.FC<Props> = (props) => {
     const yearMatch =
       selectedYear === 'all' ||
       (sermon.sermonDate && new Date(sermon.sermonDate).getFullYear().toString() === selectedYear)
+    const searchMatch =
+      searchQuery === '' ||
+      sermon.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (typeof sermon.speaker === 'object' &&
+        sermon.speaker?.name?.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (typeof sermon.series === 'object' &&
+        sermon.series?.title?.toLowerCase().includes(searchQuery.toLowerCase()))
 
-    return seriesMatch && speakerMatch && yearMatch
+    return seriesMatch && speakerMatch && yearMatch && searchMatch
   })
 
   return (
     <div className={cn('container')}>
-      <div className="mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label className="block text-sm font-medium mb-2">Series</label>
-            <select
-              className="w-full px-4 py-2 border border-border rounded-lg bg-background"
-              value={selectedSeries}
-              onChange={(e) => setSelectedSeries(e.target.value)}
-            >
-              <option value="all">All Series</option>
-              {series.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.title}
-                </option>
-              ))}
-            </select>
+      <div className="mb-8 space-y-4">
+        <div className="flex flex-col lg:flex-row gap-4 bg-white p-4 rounded-2xl">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Input
+              type="text"
+              placeholder="Search sermons..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 border-none bg-gray-100 rounded-xl"
+            />
           </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Speakers</label>
-            <select
-              className="w-full px-4 py-2 border border-border rounded-lg bg-background"
-              value={selectedSpeaker}
-              onChange={(e) => setSelectedSpeaker(e.target.value)}
-            >
-              <option value="all">All Speakers</option>
-              {speakers.map((speaker) => (
-                <option key={speaker.id} value={speaker.id}>
-                  {speaker.name}
-                </option>
-              ))}
-            </select>
+          <div className="flex items-center gap-2 md:w-56 bg-gray-100 rounded-xl px-4">
+            <BookOpen className="text-muted-foreground h-4 w-4 flex-shrink-0" />
+            <Select value={selectedSeries} onValueChange={setSelectedSeries}>
+              <SelectTrigger className="border-none bg-transparent">
+                <SelectValue placeholder="All Series" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Series</SelectItem>
+                {series.map((s) => (
+                  <SelectItem key={s.id} value={s.id}>
+                    {s.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Years</label>
-            <select
-              className="w-full px-4 py-2 border border-border rounded-lg bg-background"
-              value={selectedYear}
-              onChange={(e) => setSelectedYear(e.target.value)}
-            >
-              <option value="all">All Years</option>
-              {years.map((year) => (
-                <option key={year} value={year?.toString()}>
-                  {year}
-                </option>
-              ))}
-            </select>
+          <div className="flex items-center gap-2 md:w-56 bg-gray-100 rounded-xl px-4">
+            <User className="text-muted-foreground h-4 w-4 flex-shrink-0" />
+            <Select value={selectedSpeaker} onValueChange={setSelectedSpeaker}>
+              <SelectTrigger className="border-none bg-transparent">
+                <SelectValue placeholder="All Speakers" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Speakers</SelectItem>
+                {speakers.map((speaker) => (
+                  <SelectItem key={speaker.id} value={speaker.id}>
+                    {speaker.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex items-center gap-2 md:w-44 bg-gray-100 rounded-xl px-4">
+            <Calendar className="text-muted-foreground h-4 w-4 flex-shrink-0" />
+            <Select value={selectedYear} onValueChange={setSelectedYear}>
+              <SelectTrigger className="border-none bg-transparent">
+                <SelectValue placeholder="All Years" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Years</SelectItem>
+                {years.map((year) => (
+                  <SelectItem key={year} value={year?.toString() || ''}>
+                    {year}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </div>
       </div>
