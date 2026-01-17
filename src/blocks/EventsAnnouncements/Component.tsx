@@ -74,7 +74,7 @@ export const EventsAnnouncementsBlock: React.FC<EventsAnnouncementsProps> = (pro
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{event.eventTitle}</h3>
 
                 {event.eventDescription && (
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                     {event.eventDescription}
                   </p>
                 )}
