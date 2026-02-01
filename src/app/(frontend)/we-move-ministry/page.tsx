@@ -2,18 +2,18 @@ import type { Metadata } from 'next'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import React from 'react'
-import { ThinkingBiblicallyArchive } from '@/components/ThinkingBiblicallyArchive'
+import { WeMoveMinistryArchive } from '@/components/WeMoveMinistryArchive'
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
 
-export default async function ThinkingBiblicallyPage() {
+export default async function WeMoveMinistryPage() {
   const payload = await getPayload({ config: configPromise })
 
   const items = await payload.find({
-    collection: 'thinking-biblically',
+    collection: 'we-move-ministry',
     depth: 1,
     limit: 12,
     overrideAccess: false,
@@ -21,11 +21,9 @@ export default async function ThinkingBiblicallyPage() {
     select: {
       title: true,
       slug: true,
-      contentType: true,
       publishedDate: true,
       author: true,
       readTime: true,
-      duration: true,
       meta: {
         image: true,
         description: true,
@@ -37,10 +35,10 @@ export default async function ThinkingBiblicallyPage() {
     <div className="pt-24 pb-24">
       <div className="container mb-8">
         <div className="flex flex-col items-center">
-          <h2 className="mb-4 text-3xl lg:text-4xl font-bold mt-2">Thinking Biblically</h2>
+          <h2 className="mb-4 text-3xl lg:text-4xl font-bold mt-2">We Move</h2>
           <div className="prose prose-lg dark:prose-invert">
             <p className="text-center text-muted-foreground text-sm">
-              Explore articles and videos to help you think biblically about faith and life.
+              Explore devotions and articles from our We Move Ministry.
             </p>
           </div>
         </div>
@@ -48,21 +46,21 @@ export default async function ThinkingBiblicallyPage() {
 
       <div className="container mb-8">
         <PageRange
-          collectionLabels={{ plural: 'Items', singular: 'Item' }}
+          collectionLabels={{ plural: 'Devotions', singular: 'Devotion' }}
           currentPage={items.page}
           limit={12}
           totalDocs={items.totalDocs}
         />
       </div>
 
-      <ThinkingBiblicallyArchive items={items.docs} />
+      <WeMoveMinistryArchive items={items.docs} />
 
       <div className="container mt-8">
         {items.totalPages > 1 && items.page && (
           <Pagination
             page={items.page}
             totalPages={items.totalPages}
-            basePath="/thinking-biblically"
+            basePath="/we-move-ministry"
           />
         )}
       </div>
@@ -72,7 +70,7 @@ export default async function ThinkingBiblicallyPage() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'Thinking Biblically',
-    description: 'Explore articles and videos to help you think biblically about faith and life.',
+    title: 'We Move Ministry',
+    description: 'Explore devotions from our We Move Ministry.',
   }
 }

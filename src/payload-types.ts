@@ -72,6 +72,7 @@ export interface Config {
     posts: Post;
     sermons: Sermon;
     'thinking-biblically': ThinkingBiblically;
+    'we-move-ministry': WeMoveMinistry;
     media: Media;
     categories: Category;
     speakers: Speaker;
@@ -99,6 +100,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     sermons: SermonsSelect<false> | SermonsSelect<true>;
     'thinking-biblically': ThinkingBiblicallySelect<false> | ThinkingBiblicallySelect<true>;
+    'we-move-ministry': WeMoveMinistrySelect<false> | WeMoveMinistrySelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     speakers: SpeakersSelect<false> | SpeakersSelect<true>;
@@ -1932,6 +1934,53 @@ export interface ThinkingBiblically {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "we-move-ministry".
+ */
+export interface WeMoveMinistry {
+  id: string;
+  title: string;
+  heroImage: string | Media;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  author?: string | null;
+  publishedDate: string;
+  /**
+   * Estimated reading time
+   */
+  readTime?: number | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "members".
  */
 export interface Member {
@@ -2166,6 +2215,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'thinking-biblically';
         value: string | ThinkingBiblically;
+      } | null)
+    | ({
+        relationTo: 'we-move-ministry';
+        value: string | WeMoveMinistry;
       } | null)
     | ({
         relationTo: 'media';
@@ -2933,6 +2986,31 @@ export interface ThinkingBiblicallySelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "we-move-ministry_select".
+ */
+export interface WeMoveMinistrySelect<T extends boolean = true> {
+  title?: T;
+  heroImage?: T;
+  description?: T;
+  author?: T;
+  publishedDate?: T;
+  readTime?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
@@ -3592,6 +3670,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'thinking-biblically';
           value: string | ThinkingBiblically;
+        } | null)
+      | ({
+          relationTo: 'we-move-ministry';
+          value: string | WeMoveMinistry;
         } | null);
     global?: string | null;
     user?: (string | null) | User;

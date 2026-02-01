@@ -15,6 +15,7 @@ import { Sermons } from './collections/Sermons'
 import { SermonSeries } from './collections/SermonSeries'
 import { Speakers } from './collections/Speakers'
 import { ThinkingBiblically } from './collections/ThinkingBiblically'
+import { WeMoveMinistry } from './collections/WeMoveMinistry'
 import { Users } from './collections/Users'
 import { Members } from './collections/Members'
 import { Footer } from './Footer/config'
@@ -77,6 +78,7 @@ export default buildConfig({
     Posts,
     Sermons,
     ThinkingBiblically,
+    WeMoveMinistry,
     Media,
     Categories,
     Speakers,
