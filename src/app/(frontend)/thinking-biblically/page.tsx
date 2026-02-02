@@ -72,7 +72,7 @@ export default async function ThinkingBiblicallyPage() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'Thinking Biblically',
+    title: 'Thinking Biblically | CCRC',
     description: 'Explore articles and videos to help you think biblically about faith and life.',
   }
 }

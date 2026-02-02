@@ -88,7 +88,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { pageNumber } = await paramsPromise
   return {
-    title: `Thinking Biblically - Page ${pageNumber || ''}`,
+    title: `Thinking Biblically - Page ${pageNumber || ''} | CCRC`,
     description: 'Explore articles and videos to help you think biblically about faith and life.',
   }
 }

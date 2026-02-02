@@ -88,7 +88,7 @@ export default async function Page() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Sermon Archive - Capitol Commons Reformed Church`,
+    title: `Sermon Archive | CCRC`,
     description: 'Browse our complete collection of sermons and grow in your faith journey.',
   }
 }

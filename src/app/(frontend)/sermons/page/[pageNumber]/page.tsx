@@ -101,7 +101,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { pageNumber } = await paramsPromise
   return {
-    title: `Sermon Archive - Page ${pageNumber || ''} - Capitol Commons Reformed Church`,
+    title: `Sermon Archive - Page ${pageNumber || ''} | CCRC`,
     description: 'Browse our complete collection of sermons and grow in your faith journey.',
   }
 }

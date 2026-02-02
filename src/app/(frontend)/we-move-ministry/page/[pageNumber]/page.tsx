@@ -88,7 +88,7 @@ export default async function WeMoveMinistryPageNumber({ params: paramsPromise }
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'We Move Ministry',
+    title: 'We Move Ministry | CCRC',
     description: 'Explore devotions from our We Move Ministry.',
   }
 }
