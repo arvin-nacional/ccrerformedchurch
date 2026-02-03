@@ -1,12 +1,13 @@
 import type { CollectionConfig } from 'payload'
-import { authenticated } from '../access/authenticated'
-import { anyone } from '../access/anyone'
+import { authenticated } from '../../access/authenticated'
+import { anyone } from '../../access/anyone'
 import { slugField } from 'payload'
 import {
   FixedToolbarFeature,
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { revalidateSpeaker, revalidateDeleteSpeaker } from './hooks/revalidateSpeaker'
 
 export const Speakers: CollectionConfig = {
   slug: 'speakers',
@@ -18,6 +19,10 @@ export const Speakers: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
+  },
+  hooks: {
+    afterChange: [revalidateSpeaker],
+    afterDelete: [revalidateDeleteSpeaker],
   },
   fields: [
     {
