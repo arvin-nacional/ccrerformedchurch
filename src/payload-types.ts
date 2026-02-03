@@ -1939,6 +1939,7 @@ export interface ThinkingBiblically {
 export interface WeMoveMinistry {
   id: string;
   title: string;
+  category: 'announcements' | 'articles' | 'devotions';
   heroImage: string | Media;
   description: {
     root: {
@@ -2990,6 +2991,7 @@ export interface ThinkingBiblicallySelect<T extends boolean = true> {
  */
 export interface WeMoveMinistrySelect<T extends boolean = true> {
   title?: T;
+  category?: T;
   heroImage?: T;
   description?: T;
   author?: T;

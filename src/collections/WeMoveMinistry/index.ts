@@ -9,10 +9,7 @@ import {
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import {
-  revalidateDelete,
-  revalidateWeMoveMinistry,
-} from './hooks/revalidateWeMoveMinistry'
+import { revalidateDelete, revalidateWeMoveMinistry } from './hooks/revalidateWeMoveMinistry'
 
 import {
   MetaDescriptionField,
@@ -63,6 +60,20 @@ export const WeMoveMinistry: CollectionConfig<'we-move-ministry'> = {
       type: 'text',
       required: true,
       label: 'Title',
+    },
+    {
+      name: 'category',
+      type: 'select',
+      required: true,
+      defaultValue: 'devotions',
+      options: [
+        { label: 'Announcements', value: 'announcements' },
+        { label: 'Articles', value: 'articles' },
+        { label: 'Devotions', value: 'devotions' },
+      ],
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       type: 'tabs',

@@ -11,10 +11,20 @@ export type Props = {
   items: CardWeMoveMinistryData[]
 }
 
+type CategoryFilter = 'all' | 'announcements' | 'articles' | 'devotions'
+
+const categoryOptions: { label: string; value: CategoryFilter }[] = [
+  { label: 'All', value: 'all' },
+  { label: 'Announcements', value: 'announcements' },
+  { label: 'Articles', value: 'articles' },
+  { label: 'Devotions', value: 'devotions' },
+]
+
 export const WeMoveMinistryArchive: React.FC<Props> = (props) => {
   const { items: initialItems } = props
   const [items] = useState<WeMoveMinistry[]>(initialItems as WeMoveMinistry[])
   const [searchQuery, setSearchQuery] = useState<string>('')
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all')
 
   const filteredItems = items.filter((item) => {
     const searchMatch =
@@ -23,7 +33,9 @@ export const WeMoveMinistryArchive: React.FC<Props> = (props) => {
       item.meta?.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.author?.toLowerCase().includes(searchQuery.toLowerCase())
 
-    return searchMatch
+    const categoryMatch = categoryFilter === 'all' || item.category === categoryFilter
+
+    return searchMatch && categoryMatch
   })
 
   return (
@@ -34,12 +46,28 @@ export const WeMoveMinistryArchive: React.FC<Props> = (props) => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             <Input
               type="text"
-              placeholder="Search devotions..."
+              placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 border-none bg-gray-100 rounded-xl"
             />
           </div>
+          {/* <div className="flex gap-2">
+            {categoryOptions.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => setCategoryFilter(option.value)}
+                className={cn(
+                  'px-4 py-2 rounded-xl text-sm font-medium transition-colors',
+                  categoryFilter === option.value
+                    ? 'bg-black text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+                )}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div> */}
         </div>
       </div>
 
@@ -59,7 +87,7 @@ export const WeMoveMinistryArchive: React.FC<Props> = (props) => {
         </div>
         {filteredItems.length === 0 && (
           <div className="text-center py-12 text-muted-foreground">
-            No devotions found matching your search.
+            No items found matching your search.
           </div>
         )}
       </div>

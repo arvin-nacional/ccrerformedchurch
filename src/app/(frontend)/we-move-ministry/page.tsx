@@ -24,6 +24,7 @@ export default async function WeMoveMinistryPage() {
       publishedDate: true,
       author: true,
       readTime: true,
+      category: true,
       meta: {
         image: true,
         description: true,
@@ -38,7 +39,7 @@ export default async function WeMoveMinistryPage() {
           <h2 className="mb-4 text-3xl lg:text-4xl font-bold mt-2">We Move</h2>
           <div className="prose prose-lg dark:prose-invert">
             <p className="text-center text-muted-foreground text-sm">
-              Explore devotions and articles from our We Move Ministry.
+              Explore devotions, articles and announcements from our We Move Ministry.
             </p>
           </div>
         </div>
@@ -46,7 +47,7 @@ export default async function WeMoveMinistryPage() {
 
       <div className="container mb-8">
         <PageRange
-          collectionLabels={{ plural: 'Devotions', singular: 'Devotion' }}
+          collectionLabels={{ plural: 'Items', singular: 'Item' }}
           currentPage={items.page}
           limit={12}
           totalDocs={items.totalDocs}
@@ -71,6 +72,6 @@ export default async function WeMoveMinistryPage() {
 export function generateMetadata(): Metadata {
   return {
     title: 'We Move Ministry | CCRC',
-    description: 'Explore devotions from our We Move Ministry.',
+    description: 'Explore devotions, articles and announcements from our We Move Ministry.',
   }
 }

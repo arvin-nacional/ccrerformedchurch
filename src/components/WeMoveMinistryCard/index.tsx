@@ -11,8 +11,14 @@ import { formatDateTime } from '@/utilities/formatDateTime'
 
 export type CardWeMoveMinistryData = Pick<
   WeMoveMinistry,
-  'slug' | 'title' | 'publishedDate' | 'author' | 'readTime' | 'meta'
+  'slug' | 'title' | 'publishedDate' | 'author' | 'readTime' | 'meta' | 'category'
 >
+
+const categoryLabels: Record<string, string> = {
+  announcements: 'Announcement',
+  articles: 'Article',
+  devotions: 'Devotion',
+}
 
 export const WeMoveMinistryCard: React.FC<{
   className?: string
@@ -21,7 +27,7 @@ export const WeMoveMinistryCard: React.FC<{
   const { card, link } = useClickableCard({})
   const { className, doc } = props
 
-  const { slug, title, publishedDate, author, readTime, meta } = doc || {}
+  const { slug, title, publishedDate, author, readTime, meta, category } = doc || {}
   const { description, image: metaImage } = meta || {}
 
   const sanitizedDescription = description?.replace(/\s/g, ' ')
@@ -55,7 +61,7 @@ export const WeMoveMinistryCard: React.FC<{
             >
               <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
             </svg>
-            Devotion
+            {categoryLabels[category || 'devotions']}
           </span>
         </div>
       </div>

@@ -38,6 +38,7 @@ export default async function WeMoveMinistryPageNumber({ params: paramsPromise }
       publishedDate: true,
       author: true,
       readTime: true,
+      category: true,
       meta: {
         image: true,
         description: true,
@@ -64,7 +65,7 @@ export default async function WeMoveMinistryPageNumber({ params: paramsPromise }
 
       <div className="container mb-8">
         <PageRange
-          collectionLabels={{ plural: 'Devotions', singular: 'Devotion' }}
+          collectionLabels={{ plural: 'Items', singular: 'Item' }}
           currentPage={items.page}
           limit={12}
           totalDocs={items.totalDocs}
