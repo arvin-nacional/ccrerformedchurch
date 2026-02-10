@@ -207,47 +207,47 @@ export const Sermons: CollectionConfig<'sermons'> = {
           ],
           label: 'Details',
         },
-        {
-          fields: [
-            {
-              name: 'videoFile',
-              type: 'upload',
-              relationTo: 'media',
-              label: 'Video File (MP4)',
-              admin: {
-                description: 'Upload the sermon video file',
-              },
-            },
-            {
-              name: 'audioFile',
-              type: 'upload',
-              relationTo: 'media',
-              label: 'Audio File (MP3)',
-              admin: {
-                description: 'Upload the sermon audio file',
-              },
-            },
-            {
-              name: 'sermonNotes',
-              type: 'upload',
-              relationTo: 'media',
-              label: 'Sermon Notes (PDF)',
-              admin: {
-                description: 'Upload the sermon notes PDF',
-              },
-            },
-            {
-              name: 'transcript',
-              type: 'upload',
-              relationTo: 'media',
-              label: 'Transcript',
-              admin: {
-                description: 'Upload the sermon transcript',
-              },
-            },
-          ],
-          label: 'Media',
-        },
+        // {
+        //   fields: [
+        //     {
+        //       name: 'videoFile',
+        //       type: 'upload',
+        //       relationTo: 'media',
+        //       label: 'Video File (MP4)',
+        //       admin: {
+        //         description: 'Upload the sermon video file',
+        //       },
+        //     },
+        //     {
+        //       name: 'audioFile',
+        //       type: 'upload',
+        //       relationTo: 'media',
+        //       label: 'Audio File (MP3)',
+        //       admin: {
+        //         description: 'Upload the sermon audio file',
+        //       },
+        //     },
+        //     {
+        //       name: 'sermonNotes',
+        //       type: 'upload',
+        //       relationTo: 'media',
+        //       label: 'Sermon Notes (PDF)',
+        //       admin: {
+        //         description: 'Upload the sermon notes PDF',
+        //       },
+        //     },
+        //     {
+        //       name: 'transcript',
+        //       type: 'upload',
+        //       relationTo: 'media',
+        //       label: 'Transcript',
+        //       admin: {
+        //         description: 'Upload the sermon transcript',
+        //       },
+        //     },
+        //   ],
+        //   label: 'Media',
+        // },
         {
           name: 'meta',
           label: 'SEO',

@@ -1771,22 +1771,6 @@ export interface Sermon {
   duration?: number | null;
   scriptureBook?: string | null;
   scriptureReference?: string | null;
-  /**
-   * Upload the sermon video file
-   */
-  videoFile?: (string | null) | Media;
-  /**
-   * Upload the sermon audio file
-   */
-  audioFile?: (string | null) | Media;
-  /**
-   * Upload the sermon notes PDF
-   */
-  sermonNotes?: (string | null) | Media;
-  /**
-   * Upload the sermon transcript
-   */
-  transcript?: (string | null) | Media;
   meta?: {
     title?: string | null;
     /**
@@ -2931,10 +2915,6 @@ export interface SermonsSelect<T extends boolean = true> {
   duration?: T;
   scriptureBook?: T;
   scriptureReference?: T;
-  videoFile?: T;
-  audioFile?: T;
-  sermonNotes?: T;
-  transcript?: T;
   meta?:
     | T
     | {
