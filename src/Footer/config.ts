@@ -35,6 +35,11 @@ export const Footer: GlobalConfig = {
           type: 'text',
           label: 'YouTube URL',
         },
+        {
+          name: 'spotify',
+          type: 'text',
+          label: 'Spotify URL',
+        },
       ],
     },
     {

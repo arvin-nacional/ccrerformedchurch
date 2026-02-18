@@ -2,6 +2,7 @@ import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
 import React from 'react'
 import { Facebook, Instagram, Youtube } from 'lucide-react'
+import Image from 'next/image'
 
 import type { Footer } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
@@ -57,6 +58,22 @@ export async function Footer() {
                   rel="noopener noreferrer"
                 >
                   <Youtube className="w-4 h-4" />
+                </Link>
+              )}
+              {socialLinks?.spotify && (
+                <Link
+                  href={socialLinks.spotify}
+                  className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src="/spotify.png"
+                    alt="spotify"
+                    width={16}
+                    height={16}
+                    className="invert"
+                  />
                 </Link>
               )}
             </div>

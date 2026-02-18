@@ -3522,6 +3522,7 @@ export interface Footer {
     facebook?: string | null;
     instagram?: string | null;
     youtube?: string | null;
+    spotify?: string | null;
   };
   contactInfo?: {
     phone?: string | null;
@@ -3601,6 +3602,7 @@ export interface FooterSelect<T extends boolean = true> {
         facebook?: T;
         instagram?: T;
         youtube?: T;
+        spotify?: T;
       };
   contactInfo?:
     | T
