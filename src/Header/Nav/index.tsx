@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Menu, X } from 'lucide-react'
 
 import type { Header as HeaderType } from '@/payload-types'
@@ -13,16 +13,19 @@ interface HeaderNavProps {
   data: HeaderType
   isScrolled?: boolean
   pathname?: string
+  isMobileMenuOpen: boolean
+  setIsMobileMenuOpen: (open: boolean) => void
 }
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({
   data,
   isScrolled = false,
   pathname = '/',
+  isMobileMenuOpen,
+  setIsMobileMenuOpen,
 }) => {
   const navItems = data?.navItems || []
   const memberNavItems = data?.memberNavItems || []
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { member, logout, isLoading } = useMemberAuth()
 
   // Determine text color based on page and scroll state

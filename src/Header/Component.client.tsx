@@ -17,6 +17,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   /* Storing the value in a useState to avoid hydration errors */
   const [theme, setTheme] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 
@@ -43,13 +44,18 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header
-      className={`transition-all duration-300 z-50 ${
+      className={`transition-all duration-300 fixed top-0 left-0 right-0 ${isMobileMenuOpen ? 'z-[1000]' : 'z-50'} ${
         pathname === '/'
-          ? `fixed top-0 left-0 right-0 ${
-              isScrolled ? 'bg-black/95 md:backdrop-blur-md shadow-lg' : 'bg-transparent'
-            }`
-          : 'fixed top-0 left-0 right-0 bg-black shadow-lg'
+          ? isScrolled && !isMobileMenuOpen
+            ? 'bg-black/95 backdrop-blur-md shadow-lg'
+            : 'bg-transparent'
+          : 'bg-black shadow-lg'
       }`}
+      style={
+        pathname === '/' && (isMobileMenuOpen || isScrolled)
+          ? { backgroundColor: 'rgba(0,0,0,0.95)' }
+          : undefined
+      }
       {...(theme ? { 'data-theme': theme } : {})}
     >
       <div className="container mx-auto">
@@ -65,7 +71,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               }`}
             />
           </Link>
-          <HeaderNav data={data} isScrolled={isScrolled} pathname={pathname} />
+          <HeaderNav
+            data={data}
+            isScrolled={isScrolled}
+            pathname={pathname}
+            isMobileMenuOpen={isMobileMenuOpen}
+            setIsMobileMenuOpen={setIsMobileMenuOpen}
+          />
         </div>
       </div>
     </header>
