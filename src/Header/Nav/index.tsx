@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
 import type { Header as HeaderType } from '@/payload-types'
@@ -27,6 +27,9 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   const navItems = data?.navItems || []
   const memberNavItems = data?.memberNavItems || []
   const { member, logout, isLoading } = useMemberAuth()
+  const [isNavWrapped, setIsNavWrapped] = useState(false)
+  const navRef = useRef<HTMLDivElement>(null)
+  const navItemsRef = useRef<HTMLDivElement>(null)
 
   // Determine text color based on page and scroll state
   const getTextColor = () => {
@@ -55,7 +58,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden xl:flex gap-6 items-center">
+      <nav className={`hidden xl:flex items-center ${member ? 'gap-3' : 'gap-6'}`}>
         {navItems.map(({ link }, i) => {
           return (
             <div
