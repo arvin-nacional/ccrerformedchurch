@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Share2, Check, Copy, Facebook, Twitter } from 'lucide-react'
 
 type Props = {
@@ -10,20 +10,22 @@ type Props = {
 export const ShareButton: React.FC<Props> = ({ title, url }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [copied, setCopied] = useState(false)
-  const [shareUrl, setShareUrl] = useState('')
 
-  useEffect(() => {
+  const getShareUrl = () => {
+    if (typeof window === 'undefined') return ''
+
     if (!url) {
-      setShareUrl(window.location.href)
+      return window.location.href
     } else if (url.startsWith('/')) {
-      setShareUrl(window.location.origin + url)
+      return window.location.origin + url
     } else {
-      setShareUrl(url)
+      return url
     }
-  }, [url])
+  }
 
   const handleCopyLink = async () => {
     try {
+      const shareUrl = getShareUrl()
       await navigator.clipboard.writeText(shareUrl)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
@@ -33,6 +35,8 @@ export const ShareButton: React.FC<Props> = ({ title, url }) => {
   }
 
   const handleShare = async () => {
+    const shareUrl = getShareUrl()
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -50,6 +54,7 @@ export const ShareButton: React.FC<Props> = ({ title, url }) => {
   }
 
   const shareToFacebook = () => {
+    const shareUrl = getShareUrl()
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
       '_blank',
@@ -58,6 +63,7 @@ export const ShareButton: React.FC<Props> = ({ title, url }) => {
   }
 
   const shareToTwitter = () => {
+    const shareUrl = getShareUrl()
     window.open(
       `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`,
       '_blank',
