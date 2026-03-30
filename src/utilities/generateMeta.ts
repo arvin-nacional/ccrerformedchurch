@@ -37,10 +37,15 @@ export const generateMeta = async (args: {
       ? (doc?.meta?.title || (doc as any)?.title) + ' | Capitol Commons Reformed Church'
       : 'Capitol Commons Reformed Church'
 
+  const description =
+    doc?.meta?.description ||
+    (doc as any)?.description?.root?.children?.[0]?.children?.[0]?.text ||
+    'Capitol Commons Reformed Church (CCRC) is a Reformed-Evangelical Church situated inside the Estancia Mall at Capitol Commons, Pasig City.'
+
   return {
-    description: doc?.meta?.description,
+    description,
     openGraph: mergeOpenGraph({
-      description: doc?.meta?.description || '',
+      description,
       images: ogImage
         ? [
             {
