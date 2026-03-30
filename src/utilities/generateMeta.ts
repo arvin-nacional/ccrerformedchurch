@@ -42,6 +42,19 @@ export const generateMeta = async (args: {
     (doc as any)?.description?.root?.children?.[0]?.children?.[0]?.text ||
     'Capitol Commons Reformed Church (CCRC) is a Reformed-Evangelical Church situated inside the Estancia Mall at Capitol Commons, Pasig City.'
 
+  let pageUrl = '/'
+  if (Array.isArray(doc?.slug)) {
+    pageUrl = doc.slug.join('/')
+  } else if (doc?.slug && typeof doc.slug === 'string') {
+    if ('heroImage' in (doc || {})) {
+      pageUrl = `/thinking-biblically/${doc.slug}`
+    } else {
+      pageUrl = `/${doc.slug}`
+    }
+  }
+
+  const serverUrl = getServerSideURL()
+
   return {
     description,
     openGraph: mergeOpenGraph({
@@ -50,11 +63,13 @@ export const generateMeta = async (args: {
         ? [
             {
               url: ogImage,
+              width: 1200,
+              height: 630,
             },
           ]
         : undefined,
       title,
-      url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
+      url: `${serverUrl}${pageUrl}`,
     }),
     title,
   }
