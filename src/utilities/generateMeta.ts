@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import type { Media, Page, Post, Config } from '../payload-types'
+import type { Media, Page, Post, ThinkingBiblically, Config } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
@@ -20,15 +20,22 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
 }
 
 export const generateMeta = async (args: {
-  doc: Partial<Page> | Partial<Post> | null
+  doc: Partial<Page> | Partial<Post> | Partial<ThinkingBiblically> | null
 }): Promise<Metadata> => {
   const { doc } = args
 
-  const ogImage = getImageURL(doc?.meta?.image)
+  let imageToUse = doc?.meta?.image
 
-  const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | Capitol Commons Reformed Church'
-    : 'Capitol Commons Reformed Church'
+  if (!imageToUse && 'heroImage' in (doc || {})) {
+    imageToUse = (doc as Partial<ThinkingBiblically>)?.heroImage
+  }
+
+  const ogImage = getImageURL(imageToUse)
+
+  const title =
+    doc?.meta?.title || (doc as any)?.title
+      ? (doc?.meta?.title || (doc as any)?.title) + ' | Capitol Commons Reformed Church'
+      : 'Capitol Commons Reformed Church'
 
   return {
     description: doc?.meta?.description,
