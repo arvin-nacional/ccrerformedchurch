@@ -244,7 +244,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   const decodedSlug = decodeURIComponent(slug)
   const item = await queryItemBySlug({ slug: decodedSlug })
 
-  return generateMeta({ doc: item })
+  return generateMeta({ doc: item, collectionPath: '/we-move-ministry' })
 }
 
 const queryItemBySlug = cache(async ({ slug }: { slug: string }) => {

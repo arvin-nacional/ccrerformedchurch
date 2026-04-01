@@ -220,7 +220,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
                       {sermon.scriptureBook} {sermon.scriptureReference}
                     </div>
                   )}
-                  <ShareButton title={sermon.title} />
+                  <ShareButton title={sermon.title} url={url} />
                 </div>
               </div>
             </div>
@@ -305,7 +305,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   const decodedSlug = decodeURIComponent(slug)
   const sermon = await querySermonBySlug({ slug: decodedSlug })
 
-  return generateMeta({ doc: sermon })
+  return generateMeta({ doc: sermon, collectionPath: '/sermons' })
 }
 
 const querySermonBySlug = cache(async ({ slug }: { slug: string }) => {

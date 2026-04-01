@@ -1,6 +1,14 @@
 import type { Metadata } from 'next'
 
-import type { Media, Page, Post, ThinkingBiblically, Config } from '../payload-types'
+import type {
+  Media,
+  Page,
+  Post,
+  ThinkingBiblically,
+  Sermon,
+  WeMoveMinistry,
+  Config,
+} from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
@@ -20,14 +28,22 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
 }
 
 export const generateMeta = async (args: {
-  doc: Partial<Page> | Partial<Post> | Partial<ThinkingBiblically> | null
+  doc:
+    | Partial<Page>
+    | Partial<Post>
+    | Partial<ThinkingBiblically>
+    | Partial<Sermon>
+    | Partial<WeMoveMinistry>
+    | null
+  collectionPath?: string
 }): Promise<Metadata> => {
-  const { doc } = args
+  const { doc, collectionPath } = args
 
   let imageToUse = doc?.meta?.image
 
   if (!imageToUse && 'heroImage' in (doc || {})) {
-    imageToUse = (doc as Partial<ThinkingBiblically>)?.heroImage
+    imageToUse = (doc as Partial<ThinkingBiblically> | Partial<Sermon> | Partial<WeMoveMinistry>)
+      ?.heroImage
   }
 
   const ogImage = getImageURL(imageToUse)
@@ -43,14 +59,12 @@ export const generateMeta = async (args: {
     'Capitol Commons Reformed Church (CCRC) is a Reformed-Evangelical Church situated inside the Estancia Mall at Capitol Commons, Pasig City.'
 
   let pageUrl = '/'
-  if (Array.isArray(doc?.slug)) {
+  if (collectionPath && doc?.slug && typeof doc.slug === 'string') {
+    pageUrl = `${collectionPath}/${doc.slug}`
+  } else if (Array.isArray(doc?.slug)) {
     pageUrl = doc.slug.join('/')
   } else if (doc?.slug && typeof doc.slug === 'string') {
-    if ('heroImage' in (doc || {})) {
-      pageUrl = `/thinking-biblically/${doc.slug}`
-    } else {
-      pageUrl = `/${doc.slug}`
-    }
+    pageUrl = `/${doc.slug}`
   }
 
   const serverUrl = getServerSideURL()
