@@ -25,6 +25,7 @@ import { RecentThinkingBiblicallyBlock } from '@/blocks/RecentThinkingBiblically
 import { EventsAnnouncementsBlock } from '@/blocks/EventsAnnouncements/Component'
 import { ContactUsBlock } from '@/blocks/ContactUs/Component'
 import { ChurchLeadershipBlock } from '@/blocks/ChurchLeadership/Component'
+import { FullStatementOfFaithBlockComponent } from '@/blocks/FullStatementOfFaith/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -50,6 +51,7 @@ const blockComponents = {
   eventsAnnouncements: EventsAnnouncementsBlock,
   contactUs: ContactUsBlock,
   churchLeadership: ChurchLeadershipBlock,
+  fullStatementOfFaith: FullStatementOfFaithBlockComponent,
 }
 
 export const RenderBlocks: React.FC<{

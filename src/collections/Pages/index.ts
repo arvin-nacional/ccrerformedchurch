@@ -25,6 +25,7 @@ import { RecentThinkingBiblicallyBlock } from '../../blocks/RecentThinkingBiblic
 import { EventsAnnouncementsBlock } from '../../blocks/EventsAnnouncements/config'
 import { ContactUsBlock } from '../../blocks/ContactUs/config'
 import { ChurchLeadershipBlock } from '../../blocks/ChurchLeadership/config'
+import { FullStatementOfFaithBlock } from '../../blocks/FullStatementOfFaith/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -114,6 +115,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 EventsAnnouncementsBlock,
                 ContactUsBlock,
                 ChurchLeadershipBlock,
+                FullStatementOfFaithBlock,
               ],
               required: true,
               admin: {

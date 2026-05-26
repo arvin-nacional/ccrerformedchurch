@@ -259,6 +259,7 @@ export interface Page {
     | EventsAnnouncementsBlock
     | ContactUsBlock
     | ChurchLeadershipBlock
+    | FullStatementOfFaithBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1740,6 +1741,49 @@ export interface ChurchLeadershipBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FullStatementOfFaithBlock".
+ */
+export interface FullStatementOfFaithBlock {
+  pageTitle: string;
+  pageDescription?: string | null;
+  sections?:
+    | {
+        sectionTitle: string;
+        /**
+         * Used for anchor links. Use lowercase with hyphens, e.g. "the-bible", "god", "man".
+         */
+        sectionId: string;
+        items?:
+          | {
+              itemType: 'statement' | 'subheading' | 'note';
+              subheadingTitle?: string | null;
+              subheadingSize?: ('large' | 'medium') | null;
+              noteText?: string | null;
+              statementNumber?: string | null;
+              statementText?: string | null;
+              scriptureReferences?:
+                | {
+                    referenceText: string;
+                    /**
+                     * The q= parameter for read.lsbible.org. Encode colons as %3A, spaces as +.
+                     */
+                    queryParam: string;
+                    separatorBefore?: (';' | '|' | ',' | '') | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'fullStatementOfFaith';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sermons".
  */
 export interface Sermon {
@@ -2355,6 +2399,7 @@ export interface PagesSelect<T extends boolean = true> {
         eventsAnnouncements?: T | EventsAnnouncementsBlockSelect<T>;
         contactUs?: T | ContactUsBlockSelect<T>;
         churchLeadership?: T | ChurchLeadershipBlockSelect<T>;
+        fullStatementOfFaith?: T | FullStatementOfFaithBlockSelect<T>;
       };
   meta?:
     | T
@@ -2864,6 +2909,42 @@ export interface ChurchLeadershipBlockSelect<T extends boolean = true> {
     | {
         statementCode?: T;
         content?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FullStatementOfFaithBlock_select".
+ */
+export interface FullStatementOfFaithBlockSelect<T extends boolean = true> {
+  pageTitle?: T;
+  pageDescription?: T;
+  sections?:
+    | T
+    | {
+        sectionTitle?: T;
+        sectionId?: T;
+        items?:
+          | T
+          | {
+              itemType?: T;
+              subheadingTitle?: T;
+              subheadingSize?: T;
+              noteText?: T;
+              statementNumber?: T;
+              statementText?: T;
+              scriptureReferences?:
+                | T
+                | {
+                    referenceText?: T;
+                    queryParam?: T;
+                    separatorBefore?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
         id?: T;
       };
   id?: T;
