@@ -44,7 +44,7 @@ export const StatementOfFaithBlock: React.FC<Props> = ({
                   <h2 className="text-xl font-bold mb-4 uppercase tracking-wide text-[#B08D57]">
                     {section.sectionAnchor ? (
                       <Link
-                        href={`/our-statement-of-faith#${section.sectionAnchor}`}
+                        href={`${ctaLink?.url}#${section.sectionAnchor}`}
                         className="hover:underline"
                       >
                         {section.sectionTitle}
