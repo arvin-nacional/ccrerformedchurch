@@ -1746,6 +1746,9 @@ export interface ChurchLeadershipBlock {
 export interface FullStatementOfFaithBlock {
   pageTitle: string;
   pageDescription?: string | null;
+  /**
+   * Statements are numbered automatically across all sections. Notes and sub-headings are not counted.
+   */
   sections?:
     | {
         sectionTitle: string;

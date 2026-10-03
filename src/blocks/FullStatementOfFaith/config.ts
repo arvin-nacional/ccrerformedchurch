@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { numberStatements } from './numberStatements'
 
 export const FullStatementOfFaithBlock: Block = {
   slug: 'fullStatementOfFaith',
@@ -27,6 +28,13 @@ export const FullStatementOfFaithBlock: Block = {
       type: 'array',
       label: 'Doctrine Sections',
       minRows: 1,
+      admin: {
+        description:
+          'Statements are numbered automatically across all sections. Notes and sub-headings are not counted.',
+      },
+      hooks: {
+        beforeValidate: [({ value }) => numberStatements(value)],
+      },
       fields: [
         {
           name: 'sectionTitle',
@@ -99,8 +107,12 @@ export const FullStatementOfFaithBlock: Block = {
             {
               name: 'statementNumber',
               type: 'text',
-              label: 'Statement Number (e.g. 1, 42, 103)',
+              label: 'Statement Number (automatic)',
               admin: {
+                readOnly: true,
+                components: {
+                  Field: '@/blocks/FullStatementOfFaith/StatementNumberField#StatementNumberField',
+                },
                 condition: (_, siblingData) => siblingData?.itemType === 'statement',
               },
             },

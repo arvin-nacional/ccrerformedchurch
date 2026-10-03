@@ -1,5 +1,6 @@
 import React from 'react'
 import type { FullStatementOfFaithBlock as FullStatementOfFaithBlockType } from '@/payload-types'
+import { numberStatements } from './numberStatements'
 
 const goldColor = '#B08D57'
 
@@ -30,7 +31,7 @@ export const FullStatementOfFaithBlockComponent: React.FC<Props> = ({
 
         {sections && sections.length > 0 && (
           <div className="space-y-12">
-            {sections.map((section, sIdx) => (
+            {numberStatements(sections)?.map((section, sIdx) => (
               <div
                 key={sIdx}
                 id={section.sectionId}
