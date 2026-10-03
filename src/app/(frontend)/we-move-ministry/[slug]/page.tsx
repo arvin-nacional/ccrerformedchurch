@@ -10,7 +10,6 @@ import RichText from '@/components/RichText'
 import type { WeMoveMinistry } from '@/payload-types'
 
 import { generateMeta } from '@/utilities/generateMeta'
-import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Media } from '@/components/Media'
 import { formatDateTime } from '@/utilities/formatDateTime'
@@ -55,7 +54,6 @@ export default async function WeMoveMinistryDetailPage({ params: paramsPromise }
 
   return (
     <article className="pt-12">
-      <PageClient />
 
       <PayloadRedirects disableNotFound url={url} />
 
@@ -186,7 +184,7 @@ export default async function WeMoveMinistryDetailPage({ params: paramsPromise }
             {item.description && (
               <div className="mb-8">
                 <RichText
-                  className="prose dark:prose-invert max-w-none"
+                  className="prose max-w-none"
                   data={item.description}
                   enableGutter={false}
                 />

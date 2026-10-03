@@ -6,7 +6,6 @@ import { Pagination } from '@/components/Pagination'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
-import PageClient from './page.client'
 import { notFound } from 'next/navigation'
 
 export const revalidate = 600
@@ -49,11 +48,10 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   return (
     <div className="pt-24 pb-24">
-      <PageClient />
       <div className="container mb-8">
         <div className="flex flex-col items-center">
           <h2 className="mb-4 text-3xl lg:text-4xl font-bold pt-2">Thinking Biblically</h2>
-          <div className="prose prose-lg dark:prose-invert">
+          <div className="prose prose-lg">
             <p className="text-center text-muted-foreground text-sm">
               Explore articles and videos to help you think biblically about faith and life.
             </p>

@@ -38,7 +38,7 @@ export default async function ThinkingBiblicallyPage() {
       <div className="container mb-8">
         <div className="flex flex-col items-center">
           <h2 className="mb-4 text-3xl lg:text-4xl font-bold mt-2">Thinking Biblically</h2>
-          <div className="prose prose-lg dark:prose-invert">
+          <div className="prose prose-lg">
             <p className="text-center text-muted-foreground text-sm">
               Explore articles and videos to help you think biblically about faith and life.
             </p>

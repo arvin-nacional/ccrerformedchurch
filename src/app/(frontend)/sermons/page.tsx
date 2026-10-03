@@ -6,7 +6,6 @@ import { Pagination } from '@/components/Pagination'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
-import PageClient from './page.client'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
@@ -55,9 +54,8 @@ export default async function Page() {
 
   return (
     <div className="pt-24 pb-24">
-      <PageClient />
       <div className="container mb-8">
-        <div className="prose dark:prose-invert max-w-none text-center">
+        <div className="prose max-w-none text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 pt-2">Sermon Archive</h2>
           <p className="text-gray-600 text-sm">
             Browse our complete collection of sermons. Watch, listen, and grow in your faith

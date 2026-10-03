@@ -51,7 +51,7 @@ export const RecentThinkingBiblicallyBlock: React.FC<RecentThinkingBiblicallyPro
       <div className="container">
         <div className="text-center mb-12">
           {title && (
-            <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-900">{title}</h2>
+            <h2 className="text-4xl font-bold mb-4 text-gray-900">{title}</h2>
           )}
           {description && (
             <div className="text-lg text-muted-foreground max-w-5xl mx-auto">

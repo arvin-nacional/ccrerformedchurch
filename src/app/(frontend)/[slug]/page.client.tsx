@@ -1,5 +1,4 @@
 'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
 import { useMemberAuth } from '@/providers/MemberAuth'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
@@ -11,15 +10,10 @@ interface PageClientProps {
 }
 
 const PageClient: React.FC<PageClientProps> = ({ slug }) => {
-  const { setHeaderTheme } = useHeaderTheme()
   const { member, isLoading } = useMemberAuth()
   const router = useRouter()
 
   const isProtectedPage = slug && PROTECTED_SLUGS.includes(slug)
-
-  useEffect(() => {
-    setHeaderTheme('light')
-  }, [setHeaderTheme])
 
   useEffect(() => {
     if (isProtectedPage && !isLoading && !member) {

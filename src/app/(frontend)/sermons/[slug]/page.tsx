@@ -10,7 +10,6 @@ import RichText from '@/components/RichText'
 import type { Sermon } from '@/payload-types'
 
 import { generateMeta } from '@/utilities/generateMeta'
-import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { Media } from '@/components/Media'
 import { formatDateTime } from '@/utilities/formatDateTime'
@@ -71,7 +70,6 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
 
   return (
     <article className=" pt-12 ">
-      <PageClient />
 
       <PayloadRedirects disableNotFound url={url} />
 
@@ -227,7 +225,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
             {sermon.description && (
               <div className="mb-8">
                 <RichText
-                  className="prose dark:prose-invert max-w-none prose-p:m-0"
+                  className="prose max-w-none prose-p:m-0"
                   data={sermon.description}
                   enableGutter={false}
                 />
@@ -236,7 +234,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
 
             {/* {sermon.content && (
               <div className="mb-8">
-                <RichText className="prose dark:prose-invert max-w-none" data={sermon.content} />
+                <RichText className="prose max-w-none" data={sermon.content} />
               </div>
             )} */}
           </div>
@@ -255,7 +253,7 @@ export default async function SermonPage({ params: paramsPromise }: Args) {
                 )}
                 {sermon.populatedSpeaker.description && (
                   <RichText
-                    className="prose dark:prose-invert prose-sm max-w-none"
+                    className="prose prose-sm max-w-none"
                     data={sermon.populatedSpeaker.description}
                     enableGutter={false}
                   />
